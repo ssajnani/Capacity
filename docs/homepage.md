@@ -1,5 +1,7 @@
 # sQuaa 11 - CS 2212 Team 11
 
+![Team logo](http://orig05.deviantart.net/9320/f/2010/203/c/a/30___fsjal_falco_lombardi__by_ztoonlinkz.png)
+
 ##
 
 # Capacity
@@ -12,10 +14,10 @@ Our web-based application, currently named Capacity, is a tool that will help yo
 
 Team Members:
 
-* TA/Professor Liaison (3-4 people) → Andrew & Samar & Ryan(Weizhi Chen)
-* Minutes Taker → Ryan(Weizhi Chen)
-* Github People (2 people) → Samar 
-* Backend (3 people) → Andrew & Samar & Ryan , Steven
+* TA/Professor Liaison → Andrew, Samar, Ryan (Weizhi Chen)
+* Minutes Taker → Ryan (Weizhi Chen)
+* Github People → Samar 
+* Backend → Andrew, Samar, Ryan, Steven
 * Frontend → mkhan, sean, Chase, Victor, Jerry
 
 Last updated: Feb 2, 2017
