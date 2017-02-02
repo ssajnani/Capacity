@@ -1,0 +1,14 @@
+# Front-End
+
+frontend/logs
+frontend/*.log
+frontend/npm-debug.log*
+frontend/.eslintcache
+frontend/node_modules/
+frontend/pids
+frontend/*.pid
+frontend/*.seed
+frontend/*.pid.lock
+frontend/.env
+
+frontend/dist/
