@@ -21,8 +21,11 @@ Lastly, if the user complies, their location can be recorded when they log into 
 [Capacity on GitHub](https://github.com/ssajnani/2212B-Project)
 
 [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)
+
 [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html)
+
 [UI Design](https://ssajnani.github.io/Capacity/uidesign.html)
+
 [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html)
 
 Last updated: Feb 2, 2017
