@@ -24,4 +24,4 @@ Lastly, if the user complies, their location can be recorded when they log into 
 
 [UI Design](https://ssajnani.github.io/Capacity/uidesign.html)
 
-[Project Plan](https://ssajnani.github.io/Capacity/ProjectPlan.html)
+[Project Plan](https://ssajnani.github.io/Capacity/projectplan.html)
