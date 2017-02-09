@@ -13,7 +13,6 @@ A passionate third year computer science student with a undergraduate degree in 
 
 
 ### Sean Marchand is Making Our Front End Make Sense
-![alt text](https://github.com/ssajnani/Capacity/blob/master/docs/pics/sean.png "MC Sean")
 <img src="https://github.com/ssajnani/Capacity/blob/master/docs/pics/sean.png" width="200" height="200" />
 I am studying computer science, but most people know me either as #99 for the NobleKing Knights hockey team. If anyone wants to challenge me to a game of chess, good luck. I think this project is pretty neat and I'll be working on the front end. 
 
