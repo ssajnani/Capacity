@@ -3,6 +3,7 @@
 
 ### Andrew McCann is Trying to Organize Things
 ![alt text](https://github.com/ssajnani/Capacity/blob/master/docs/pics/andrew.jpg "Yung Andrew")
+<img src="https://github.com/ssajnani/Capacity/blob/master/docs/pics/andrew.jpg" width="200" height="200" />
 I am originally a biophysicist, and now a learning computer scientist. More often than not, you can find me drinking good coffee and listening to rap music. I am going to help build the back-end while trying to keep our project on track.
 
 
@@ -13,6 +14,7 @@ A passionate third year computer science student with a undergraduate degree in 
 
 ### Sean Marchand is Making Our Front End Make Sense
 ![alt text](https://github.com/ssajnani/Capacity/blob/master/docs/pics/sean.png "MC Sean")
+<img src="https://github.com/ssajnani/Capacity/blob/master/docs/pics/sean.png" width="200" height="200" />
 I am studying computer science, but most people know me either as #99 for the NobleKing Knights hockey team. If anyone wants to challenge me to a game of chess, good luck. I think this project is pretty neat and I'll be working on the front end. 
 
 
