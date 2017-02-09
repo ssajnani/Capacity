@@ -12,7 +12,7 @@ Look and feel:
 
  * Clean, simple, and intuitive
  * [bulma.io](bulma.io) CSS Framework for design minimalistic design
- * Inspired by Yelp and Yik Yak
+ * Inspired by Yelp (homepage), Yik Yak (comments), YouTube (video page formatting), and Google (results page drop down)
 
 User interaction:
 

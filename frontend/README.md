@@ -1,3 +1,18 @@
-# Front-End
+# capacity-frontend
 
-Use 2-space indentation, not tabs.
+> The vue-js front-end to our 2212 project, Capacity.
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+```
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
