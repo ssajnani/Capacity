@@ -1,5 +1,6 @@
 # Project Plan
 
+![Team logo](http://orig05.deviantart.net/9320/f/2010/203/c/a/30___fsjal_falco_lombardi__by_ztoonlinkz.png)
 ## Message 
 This feature enables user to self-reported data that is self-monitored with the ability of allowing other users to make comment on and vote on the reliability of the information. Every user will possess a mark called user rating on a scale of 5 base on the average of all the data they have reported, in which reflect the reliability of the information the user report. For example, if someone is at Jack Astor and that place is fully occupied, he/she can share this message on the app, so this could be beneficial to people who intend go there and enable them know the status of the location in advanced. 
 
