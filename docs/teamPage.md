@@ -2,12 +2,12 @@
 
 <img src="http://i.imgur.com/JyGmuVL.jpg" width="200" height="200" />
 <br/>
-### Andrew McCann is Trying to Organize Things
+<h3>Andrew McCann is Trying to Organize Things</h3>
 I am originally a biophysicist, and now a learning computer scientist. More often than not, you can find me drinking good coffee and listening to rap music. I am going to help build the back-end while trying to keep our project on track.
 
 <img src="http://i.imgur.com/C4Ml6sE.jpg" width="200" height="200" />
-<br/><br/>
-### Samar Sajnani is Spreading His Knowledge
+<br/>
+<h3>Samar Sajnani is Spreading His Knowledge</h3>
 A passionate third year computer science student with a undergraduate degree in biochemistry. I have a background in web development and machine learning. Excited to get the backend started with Groovy on Grails.
 
 <img src="http://i.imgur.com/J5tmGq3.png" width="200" height="200" />
