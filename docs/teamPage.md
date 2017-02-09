@@ -38,7 +38,7 @@ I am a computer science student who likes musicals and interesting stories. Chec
 <br/>
 <img src="http://i.imgur.com/OHgRaeV.jpg" width="200" height="200" />
 <br/>
-### Ryan Chen is Learning Fast and Having Fun
+<h3>Ryan Chen is Learning Fast and Having Fun</h3>
 In my spare time, I try to soak in as much new information as possible. Although I am the official minute taker of Capacity, I also plan to have more fun than anyone else while working on the back-end.
 <br/>
 <br/>
