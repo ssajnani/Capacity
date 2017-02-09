@@ -1,7 +1,7 @@
 <template lang="html">
-  <div id="home">
-    Home content will go here
-  </div>
+<div id="home">
+<!-- Put a Full-Height Hero Section from Bulma -->
+</div>
 </template>
 
 <script>

@@ -3,6 +3,7 @@ import router from './router'
 
 /* Components */
 import navbar from './components/navbar.vue'
+import footerbar from './components/footer.vue'
 
 /* eslint-disable no-new */
 new Vue({
@@ -20,6 +21,7 @@ new Vue({
   `,
   router,
   components: {
-    navbar
+    navbar,
+    footerbar
   }
 })

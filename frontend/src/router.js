@@ -1,18 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resource from 'vue-resource'
 
-Vue.use(Resource)
 Vue.use(Router)
 
 /* Containers */
 import home from './containers/home.vue'
-import placepage from './containers/placepage.vue'
+import place from './containers/place.vue'
 
 // application routes
 const routes = [
   { path: '/', component: home },
-  { path: '/place/:id', component: placepage }
+  { path: '/place/:id', component: place }
 ]
 
 // export router instance
