@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'place_map'
+  name: 'place_messages'
 }
 </script>
 
