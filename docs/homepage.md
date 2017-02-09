@@ -18,8 +18,6 @@ Our self-reporting system will be built by hand, and will incorporate a referenc
 
 Lastly, if the user complies, their location can be recorded when they log into the application and this data can be used to predict crowd sizes. This will be done through the Geolocation API provided by multiple companies, one example being Google.
 
-[Capacity on GitHub](https://github.com/ssajnani/2212B-Project)
-
 [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)
 
 [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html)
