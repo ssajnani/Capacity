@@ -1,6 +1,6 @@
 # sQuaa 11 Team Roster
 
-<img src="https://github.com/ssajnani/Capacity/blob/master/docs/pics/andrew.jpg" width="200" height="200" />
+<img src="docs/pics/andrew.jpg" width="200" height="200" />
 
 ### Andrew McCann is Trying to Organize Things
 I am originally a biophysicist, and now a learning computer scientist. More often than not, you can find me drinking good coffee and listening to rap music. I am going to help build the back-end while trying to keep our project on track.
