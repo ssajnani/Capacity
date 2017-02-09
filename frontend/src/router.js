@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Resource from 'vue-resource'
 
+Vue.use(Resource)
 Vue.use(Router)
 
+/* Containers */
 import home from './containers/home.vue'
 import placepage from './containers/placepage.vue'
 
