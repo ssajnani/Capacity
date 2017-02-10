@@ -1,3 +1,6 @@
+|[Home](https://ssajnani.github.io/Capacity/homepage.html)| [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)| [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html) | [UI Design](https://ssajnani.github.io/Capacity/uidesign.html) | [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html) |
+|:-:|:-:|:-:|:-:|:-:|
+
 # Project Plan
 
 ![template](https://i.gyazo.com/d5b49eb7a7ef524c7e78c9162afc7335.png)
