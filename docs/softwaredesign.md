@@ -6,6 +6,6 @@
 
 This is the current UML diagram for our project with model and controller classes.
 
-<img src="pics/uml.jpg" width="2000">
+<img src="pics/uml.jpg" width="3000">
 
 This diagram was created using Gliffy and edited using Adobe Photoshop.
