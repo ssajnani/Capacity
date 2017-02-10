@@ -5,12 +5,15 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        Find a place
+        Search
       </h1>
       <div class="columns">
         <div class="column is-5">
           <div class="control has-icon has-icon-right">
-            <input class="input is-large" type="text"> 
+            <input class="input is-large" type="text" placeholder="Libraries, bars, stores...">
+            <span class="icon is-small">
+              <i class="fa fa-search"></i>
+            </span>
           </div>
         </div>
       </div>
