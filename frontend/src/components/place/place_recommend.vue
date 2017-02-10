@@ -18,6 +18,3 @@ export default {
   name: 'place_recommend'
 }
 </script>
-
-<style lang="css">
-</style>

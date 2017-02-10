@@ -18,6 +18,3 @@ export default {
   name: 'place_map'
 }
 </script>
-
-<style lang="css">
-</style>

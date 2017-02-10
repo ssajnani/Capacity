@@ -18,6 +18,3 @@ export default {
   name: 'place_messages'
 }
 </script>
-
-<style lang="css">
-</style>
