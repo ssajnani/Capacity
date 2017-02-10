@@ -1,4 +1,3 @@
-<title>Homepage</title>
 ## |[Home](https://ssajnani.github.io/Capacity/homepage.html)|[Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)| [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html) | [UI Design](https://ssajnani.github.io/Capacity/uidesign.html) | [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html)|
 
 # sQuaa 11 - CS 2212 Team 11
