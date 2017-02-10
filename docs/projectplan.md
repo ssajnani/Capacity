@@ -1,3 +1,4 @@
+<title>Project Plan</title>
 ## |[Home](https://ssajnani.github.io/Capacity/homepage.html)| [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)| [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html) | [UI Design](https://ssajnani.github.io/Capacity/uidesign.html) | [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html) |
 
 # Project Plan
@@ -14,3 +15,6 @@ When a place is being searched by user , several similar places will be introduc
 
 ## Google Analysis 
 Not only we provide real-time data, but also, we offer accumulative data from google’s popular time for users to take extra consideration and making the app become even more comprehensive. 
+
+<a href="#top">Back to Top</a>
+

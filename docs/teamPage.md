@@ -1,3 +1,4 @@
+<title>Team Page</title>
 ## |[Home](https://ssajnani.github.io/Capacity/homepage.html)| [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)| [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html) | [UI Design](https://ssajnani.github.io/Capacity/uidesign.html) | [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html) |
 
 # Team Roster
@@ -59,3 +60,6 @@ I am a 5th year student doing a double major in computer science and BMOS. I hav
 <br/>
 <br/>
 If you read this far, you call him Rubberto!
+
+<a href="#top">Back to Top</a>
+

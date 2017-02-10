@@ -1,3 +1,4 @@
+<title>UI Design</title>
 ## |[Home](https://ssajnani.github.io/Capacity/homepage.html)| [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)| [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html) | [UI Design](https://ssajnani.github.io/Capacity/uidesign.html) | [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html) |
 
 # UI Design
@@ -24,4 +25,6 @@ UI Mockup:
 ![UI mockup](https://i.gyazo.com/a25b0fd4a7c43c48d464aa5fa9367f55.png)
 
 [Actual HTML template](https://github.com/ssajnani/Capacity/blob/master/frontend/mockupV2.html)
+
+<a href="#top">Back to Top</a>
 
