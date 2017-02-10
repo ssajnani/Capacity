@@ -1,7 +1,9 @@
-# Current Capacity 
+# Software Design 
 
-This is the current diagram for our project.
+## Unified Modeling Language Diagram
 
+This is the current UML diagram for our project with model and controller classes.
 
+![alt text](https://raw.githubusercontent.com/ssajnani/Capacity/master/docs/pics/uml.jpg "Capacity UML Diagram")
 
-This diagram was created using ...
+This diagram was created using Gliffy and edited using Adobe Photoshop.
