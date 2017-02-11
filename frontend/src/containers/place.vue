@@ -6,14 +6,12 @@
   <div class="columns">
     <div class="column is-three-quarters">  
       <place_map></place_map>
+      <div class="section">
+        <place_messages></place_messages>
+      </div>
     </div>
     <div class="column">
       <place_recommend></place_recommend>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-three-quarters">  
-      <place_messages></place_messages>
     </div>
   </div>
 </div>

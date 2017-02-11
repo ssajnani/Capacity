@@ -3,6 +3,7 @@
 > The vue-js front-end to our 2212 project, Capacity.
 
 Indentation is 2-spaces.
+
 If you're using Sublimetext with packagecontrol, you can install the VueJS complete package.
 Other text editors probably have similar addons.
 
