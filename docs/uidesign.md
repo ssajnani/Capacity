@@ -2,28 +2,30 @@
 
 # UI Design
 
-Our web app will be a one-page application to keep it simple and user-intuitive. There will be a search bar and two main columns that display data.
-
-1. The left column will have: a list of recommended places based on what the user searched, a locked map of the area, and other potential graphs.
-
-2. The right column will have a message board that users can read and post messages to. It will have different channels that are representative of different areas, for example a global channel vs. a local channel.
-
-Furthermore, there will be a nav bar for things like logging in and account settings that will use modals to interact with the user, maintaining a one-page application design.
-
 Look and feel:
 
  * Clean, simple, and intuitive
  * [bulma.io](bulma.io) CSS Framework for design minimalistic design
- * Inspired by Yelp (homepage), Yik Yak (comments), YouTube (video page formatting), and Google (results page drop down)
+ * Inspired by Yelp (homepage), and Google (results page drop down)
 
 User interaction:
 
- * Users will be able to log in, search for a location, see relevant data/graphs about the location's current capacity, and read or post messages about the location's current capacity.
+ * Users will be able to log in, search for a location, see relevant data about the location's current capacity, and read or post messages about the location's current capacity.
 
-UI Mockup:
-![UI mockup](https://i.gyazo.com/a25b0fd4a7c43c48d464aa5fa9367f55.png)
+Our web app will be a two-page application to keep it clear and user-intuitive.
 
-[Actual HTML template](https://github.com/ssajnani/Capacity/blob/master/frontend/mockupV2.html)
+The home page will simply consist of the search bar and top navigation bar (for user login and account info)
+
+![UI mockup](http://i.imgur.com/xv7sdt9.png)
+
+A place page will display data pertaining to the location:
+
+1. The top navigation bar will allow the user to interact with user accounts and may also have a search bar.
+2. The left column will display data about the capacity by hour.
+3. The centre column will have: A map of the area, its description, and data about its capacity. Beneath will be messages from other users about the location.
+4. The right column will show other suggested places similar to the current one.
+
+![UI mockup](http://i.imgur.com/L4bZyka.png)
+
 
 <a href="#top">Back to Top</a>
-
