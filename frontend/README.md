@@ -7,6 +7,8 @@ Indentation is 2-spaces.
 If you're using Sublimetext with packagecontrol, you can install the VueJS complete package.
 Other text editors probably have similar addons.
 
+We're using bulma for our front-end CSS library.
+
 ## Build Setup
 
 ``` bash

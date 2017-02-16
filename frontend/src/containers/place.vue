@@ -4,7 +4,10 @@
 <navbar></navbar>
 <div id="placepage" class="section container">
   <div class="columns">
-    <div class="column is-three-quarters">  
+    <div class="column">
+      <place_graph></place_graph>
+    </div>
+    <div class="column is-half">  
       <place_map></place_map>
       <div class="section">
         <place_messages></place_messages>
@@ -28,6 +31,7 @@ import navbar from '../components/navbar.vue'
 import place_map from '../components/place/place_map.vue'
 import place_recommend from '../components/place/place_recommend.vue'
 import place_messages from '../components/place/place_messages.vue'
+import place_graph from '../components/place/place_graph.vue'
 
 export default {
   name: 'place',
@@ -37,7 +41,9 @@ export default {
 
     place_map,
     place_recommend,
-    place_messages
+    place_messages,
+    place_graph
+    
   }
 }
 </script>
