@@ -22,7 +22,7 @@ A place page will display data pertaining to the location:
 
 1. The top navigation bar will allow the user to interact with user accounts and may also have a search bar.
 2. The left column will display data about the capacity by hour.
-3. The centre column will have: A map of the area, its description, and data about its capacity. Beneath will be messages from other users about the location.
+3. The centre column will have: A map of the area, its description, and extra information. Beneath will be messages from other users about the location.
 4. The right column will show other suggested places similar to the current one.
 
 ![UI mockup](http://i.imgur.com/L4bZyka.png)
