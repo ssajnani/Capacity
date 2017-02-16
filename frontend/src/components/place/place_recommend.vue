@@ -1,15 +1,51 @@
 <template lang="html">
-<div class="card">
-        
-  <!-- Google Maps -->
-  <div class="card-image">
+<div>
+<h1 class="title">Suggested Places</h1>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="http://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>Name</strong> Location <br>
+        <em>Rating</em>
+      </p>
+    </div>
   </div>
-
-  <!-- Name, Rating, Descriptions, w/e -->
-  <div class="card-content">
-    <!-- {{ place.name }} -->
-    
+</article>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="http://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>Name</strong> Location <br>
+        <em>Rating</em>
+      </p>
+    </div>
   </div>
+</article>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="http://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>Name</strong> Location <br>
+        <em>Rating</em>
+      </p>
+    </div>
+  </div>
+</article>
 </div>
 </template>
 
@@ -18,6 +54,3 @@ export default {
   name: 'place_recommend'
 }
 </script>
-
-<style lang="css">
-</style>

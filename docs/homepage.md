@@ -1,3 +1,5 @@
+## [Home](https://ssajnani.github.io/Capacity/homepage.html) | [Team Roster](https://ssajnani.github.io/Capacity/teamPage.html) | [Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html) | [UI Design](https://ssajnani.github.io/Capacity/uidesign.html) | [Project Plan](https://ssajnani.github.io/Capacity/projectplan.html)
+
 # sQuaa 11 - CS 2212 Team 11
 
 ![Team logo](http://orig05.deviantart.net/9320/f/2010/203/c/a/30___fsjal_falco_lombardi__by_ztoonlinkz.png)
@@ -18,10 +20,4 @@ Our self-reporting system will be built by hand, and will incorporate a referenc
 
 Lastly, if the user complies, their location can be recorded when they log into the application and this data can be used to predict crowd sizes. This will be done through the Geolocation API provided by multiple companies, one example being Google.
 
-[Team Roster](https://ssajnani.github.io/Capacity/teamPage.html)
-
-[Software Design](https://ssajnani.github.io/Capacity/softwaredesign.html)
-
-[UI Design](https://ssajnani.github.io/Capacity/uidesign.html)
-
-[Project Plan](https://ssajnani.github.io/Capacity/projectplan.html)
+<a href="#top">Back to Top</a>
