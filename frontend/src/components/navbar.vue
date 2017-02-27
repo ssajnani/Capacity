@@ -46,6 +46,7 @@
 </nav>
 </template>
 
+<!-- For each button, we will have a modal (preferably seperate components) -->
 <script>
 export default {
   name: 'navbar'
