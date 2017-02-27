@@ -18,6 +18,10 @@
 
 <script>
 export default {
-  name: 'place_map'
+  name: 'place_map',
+  props: ['coords', 'name', 'rating', 'desc'],
+  created: function () {
+
+  }
 }
 </script>

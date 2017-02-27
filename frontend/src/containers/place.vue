@@ -8,7 +8,7 @@
       <place_graph></place_graph>
     </div>
     <div class="column is-half">  
-      <place_map></place_map>
+      <place_map :coords="5"></place_map>
       <div class="section">
         <place_messages></place_messages>
       </div>
@@ -42,8 +42,17 @@ export default {
     place_map,
     place_recommend,
     place_messages,
-    place_graph
-    
+    place_graph 
+  },
+  data: function () {
+    return {
+
+    };
+  },
+  created: function () {
+    console.log('place id: ' + this.$route.params.id);
+    /* Fetch data from backend */
+    /* Initialize Map, recommended places, messages, graph */
   }
 }
 </script>
