@@ -45,6 +45,7 @@ export default {
     place_graph 
   },
   data: function () {
+    /* Make some dummy data for now... */
     return {
 
     };
@@ -52,6 +53,7 @@ export default {
   created: function () {
     console.log('place id: ' + this.$route.params.id);
     /* Fetch data from backend */
+
     /* Initialize Map, recommended places, messages, graph */
   }
 }

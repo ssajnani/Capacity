@@ -22,6 +22,9 @@ export default {
   props: ['coords', 'name', 'rating', 'desc'],
   created: function () {
 
+  },
+  methods: {
+
   }
 }
 </script>
