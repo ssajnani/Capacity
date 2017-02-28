@@ -19,14 +19,12 @@
       </div>
     </div>
   </div>
-  <!-- <div class="hero-foot"><footerbar></footerbar></div> -->
 </section>
 </div>
 </template>
 
 <script>
 import navbar from '../components/navbar.vue'
-// import footerbar from '../components/footer.vue'
 
 export default {
   name: 'home',

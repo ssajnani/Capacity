@@ -15,7 +15,12 @@ export default {
 
   },
   methods: {
-
+    open: function () {
+      /* open modal */
+    },
+    close: function () {
+      
+    }
   }
 }
 </script>
