@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'place_map',
-  props: ['coords', 'name', 'rating', 'desc'],
+  props: ['coords', 'name', 'rating', 'website', 'phone', 'type', ],
   data: function () {
     return {
       // location: function () {
@@ -33,7 +33,130 @@ export default {
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
         scrollwheel: true,
-        zoom: 14
+        streetViewControl: false,
+        mapTypeControl: false,
+        zoom: 14,
+        maxZoom: 17,
+        minZoom: 11,
+        styles: [
+          {
+            "featureType": "administrative",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              },
+              {
+                "hue": "#0066ff"
+              },
+              {
+                "saturation": 74
+              },
+              {
+                "lightness": 100
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "off"
+              },
+              {
+                "weight": 0.6
+              },
+              {
+                "saturation": -85
+              },
+              {
+                "lightness": 61
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "visibility": "on"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+              {
+                "visibility": "simplified"
+              },
+              {
+                "color": "#5f94ff"
+              },
+              {
+                "lightness": 26
+              },
+              {
+                "gamma": 5.86
+              }
+            ]
+          }
+        ]
       });
       var marker = new google.maps.Marker({
         position: this.location,
