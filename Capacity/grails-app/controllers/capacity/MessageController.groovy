@@ -18,7 +18,9 @@ class MessageController extends RestfulController {
     // Method to create message.
     def createMessage() {
         def messageText = params.message
-        newMessage = new Message(userName: 'Anonymous', voteCount: 0, text: messageText)
+        def id = params.messageID
+        def location = params.location
+        newMessage = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
     }
 
     def upvoteMessage() {
@@ -31,10 +33,10 @@ class MessageController extends RestfulController {
     }
 
     def downvoteMessage() {
-        def mCode = params.mCode
+        def id = params.messageID
         def location = params.location
         def messageBoard = MessageBoard.find(location == location)
-        def message = messageBoard.getMessage(mCode)
+        def message = messageBoard.getMessage(id)
 
         message.downvote()
     }
