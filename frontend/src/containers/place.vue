@@ -10,7 +10,7 @@
     <div class="column is-half">  
       <place_map :coords="5"></place_map>
       <div class="section">
-        <place_messages></place_messages>
+        <place_messages :messages="messages"></place_messages>
       </div>
     </div>
     <div class="column">
@@ -45,7 +45,7 @@ export default {
   data: function () {
     /* Make some dummy data for now... */
     return {
-
+      messages: [1,2,3]
     };
   },
   created: function () {

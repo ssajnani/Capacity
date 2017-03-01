@@ -1,20 +1,21 @@
 <template lang="html">
 <div>
 <!-- FOR ALL CURRENT COMMENTS -->
-<article class="media">
+<article class="media" v-for="msg in messages">
   <figure class="media-left">
     <p class="image is-64x64">
       <img src="http://bulma.io/images/placeholders/128x128.png">
     </p>
   </figure>
+  <!-- There are placeholders for now -->
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>Name</strong>
+        <strong>Name {{msg.name}}</strong>
         <br>
-        Message
+        Message {{msg.text}}
         <br>
-        <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+        <small><a v:on-click="likeMessage(msg.id)">Like</a> · Time {{msg.time}}</small>
       </p>
     </div>
   </div>
@@ -29,10 +30,10 @@
   </figure>
   <div class="media-content">
     <p class="control">
-      <textarea class="textarea" placeholder="Add a comment..."></textarea>
+      <textarea class="textarea" v-model="comment" placeholder="Add a comment..."></textarea>
     </p>
     <p class="control">
-      <button class="button">Post comment</button>
+      <button class="button" v:on-click="postMessage">Post comment</button>
     </p>
   </div>
 </article>
@@ -45,7 +46,16 @@ export default {
   props: ['messages'],
   data: function () {
     return {
-
+      comment: ''
+    }
+  },
+  methods: {
+    likeMessage: function (id) {
+      /* EMIT LIKE EVENT TO PARENT WITH MESSAGE ID */
+    },
+    postMessage: function () {
+      /* EMIT POST EVENT TO PARENT WITH TEXT */
+      /* return 'this.comment' as the parameter */
     }
   }
 }
