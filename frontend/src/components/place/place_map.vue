@@ -28,10 +28,16 @@ export default {
   },
   methods: {
     initMap: function() {
+      this.location = {lat: 43.0096, lng: -81.2737};
+      // Coords of UWO 43.0096° N, 81.2737° W
       this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 83.9207, lng: 35.9565},
-        scrollwheel: false,
-        zoom: 4
+        center: this.location,
+        scrollwheel: true,
+        zoom: 14
+      });
+      var marker = new google.maps.Marker({
+        position: this.location,
+        map: this.map
       });
     }
   },
