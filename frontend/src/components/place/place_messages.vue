@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-<!-- CURRENT COMMENTS -->
+<!-- FOR ALL CURRENT COMMENTS -->
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
@@ -10,9 +10,9 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>Barbara Middleton</strong>
+        <strong>Name</strong>
         <br>
-        Yeah, she's footloose and so fancy free. You think you've seen her in a magazine. So make a wish, I'll make it like your birthday everyday. Ripped my favorite party dress, warrant's out for my arrest. Used to steal your parents' liquor and climb to the roof. Oh my God no exaggeration. You think you're so rock and roll, but you're really just a joke. Had the world in the palm of your hands. This is how we do, This is how we do. Uh, She’s a beast. I call her Karma (come back).
+        Message
         <br>
         <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
       </p>
@@ -20,7 +20,7 @@
   </div>
 </article>
 
-<!-- POST COMMENT  -->
+<!-- POST COMMENT -->
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
@@ -41,6 +41,12 @@
 
 <script>
 export default {
-  name: 'place_messages'
+  name: 'place_messages',
+  props: ['messages'],
+  data: function () {
+    return {
+
+    }
+  }
 }
 </script>

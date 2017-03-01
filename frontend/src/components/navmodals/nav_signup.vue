@@ -6,7 +6,7 @@
     <div class="box">
       <div class="content">
         <h1>Sign Up</h1>
-        <p></p>
+        <p>This will contain the signup flow</p>
       </div>
     </div>
   </div>
