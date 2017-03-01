@@ -3,6 +3,7 @@
         
   <!-- Google Maps -->
   <div class="card-image">
+    <div id="map"></div>
     <figure class="image is-4by2">
       <img src="http://bulma.io/images/placeholders/640x360.png" alt="Image">
     </figure>
@@ -20,8 +21,23 @@
 export default {
   name: 'place_map',
   props: ['coords', 'name', 'rating', 'desc'],
+  data: function () {
+    return {
+      location: function () {
+        return this.coords;
+      }
+    };
+  },
   created: function () {
-
+    this.location = {lat: -25.363, lng: 131.044};
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: this.location
+    });
+    var marker = new google.maps.Marker({
+    position: this.location,
+    map: map
+    });
   },
   methods: {
 
