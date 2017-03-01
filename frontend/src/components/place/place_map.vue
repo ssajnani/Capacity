@@ -4,9 +4,6 @@
   <!-- Google Maps -->
   <div class="card-image">
     <div id="map"></div>
-    <figure class="image is-4by2">
-      <img src="http://bulma.io/images/placeholders/640x360.png" alt="Image">
-    </figure>
   </div>
 
   <!-- Name, Rating, Descriptions, w/e -->
@@ -14,6 +11,7 @@
     <p class="title is-3">Western University</p>
     <p class="subtitle is-6">London, ON<!-- location --> <em>5/5</em></p>
   </div>
+
 </div>
 </template>
 
@@ -23,24 +21,29 @@ export default {
   props: ['coords', 'name', 'rating', 'desc'],
   data: function () {
     return {
-      location: function () {
-        return this.coords;
-      }
+      // location: function () {
+      //   return this.coords;
+      // }
     };
   },
-  created: function () {
-    this.location = {lat: -25.363, lng: 131.044};
-    var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: this.location
-    });
-    var marker = new google.maps.Marker({
-    position: this.location,
-    map: map
-    });
-  },
   methods: {
-
+    initMap: function() {
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 83.9207, lng: 35.9565},
+        scrollwheel: false,
+        zoom: 4
+      });
+    }
+  },
+  mounted: function() {
+    this.initMap();
   }
 }
 </script>
+
+<style>
+  #map {
+    height: 500px;
+    width: 100%;
+  }
+</style>
