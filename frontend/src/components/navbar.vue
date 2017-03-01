@@ -44,8 +44,8 @@
       </div>
     <nav_about :visible="modals.about" v-on:closeModal="closeModal('about')"></nav_about>
     <nav_account :visible="modals.account" v-on:closeModal="closeModal('account')"></nav_account>
-    <nav_signup :visible="modals.login" v-on:closeModal="closeModal('signup')"></nav_signup>
-    <nav_login :visible="modals.signup" v-on:closeModal="closeModal('login')"></nav_login>
+    <nav_login :visible="modals.login" v-on:closeModal="closeModal('login')"></nav_login>
+    <nav_signup :visible="modals.signup" v-on:closeModal="closeModal('signup')"></nav_signup>
   </div>
 </nav>
 </template>
