@@ -1,25 +1,35 @@
 <template lang="html">
-<div class="modal">
-  <div class="modal-background"></div>
+<transition name="fade">
+<div class="modal is-active" v-if="visible">
+  <div class="modal-background" v-on:click="closeModal"></div>
   <div class="modal-content">
-    <!-- Any other Bulma elements you want -->
+    <div class="box">
+      <div class="content">
+        <h1>Sign Up</h1>
+        <p></p>
+      </div>
+    </div>
   </div>
-  <button class="modal-close"></button>
+  <button class="modal-close" v-on:click="closeModal"></button>
 </div>
+</transition>
 </template>
 
 <script>
 export default {
   name: 'nav_signup',
+  props: ['visible'],
+  data: function () {
+    return {
+
+    }
+  },
   created: function () {
 
   },
   methods: {
-    open: function () {
-      /* open modal */
-    },
-    close: function () {
-      
+    closeModal: function () {
+      this.$emit('closeModal');
     }
   }
 }

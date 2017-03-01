@@ -37,8 +37,6 @@ export default {
   name: 'place',
   components: {
     navbar,
-    // footerbar,
-
     place_map,
     place_recommend,
     place_messages,
