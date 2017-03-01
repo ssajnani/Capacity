@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     closeModal: function () {
+      console.log("asdf");
       this.$emit('closeModal');
     }
   }
