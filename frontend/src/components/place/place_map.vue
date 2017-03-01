@@ -28,13 +28,16 @@ export default {
   },
   methods: {
     initMap: function() {
-      this.location = {lat: 43.0096, lng: -81.2737};
+
+      // Placeholder for searched item
       // Coords of UWO 43.0096° N, 81.2737° W
+      this.location = {lat: 43.0096, lng: -81.2737};
+
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
         scrollwheel: true,
-        streetViewControl: false,
         mapTypeControl: false,
+        streetViewControl: false,
         zoom: 14,
         maxZoom: 17,
         minZoom: 11,
@@ -158,10 +161,63 @@ export default {
           }
         ]
       });
-      var marker = new google.maps.Marker({
+
+      // Custom marker icon
+      var mainMarker = 'https://image.flaticon.com/icons/png/128/179/179386.png'
+      var suggestedMarker = 'http://findicons.com/files/icons/1963/colorcons_blue/128/questionmark.png';
+
+      // Marker sizes are expressed as a Size of X,Y where the origin of the image
+      // (0,0) is located in the top left of the image.
+      // Origins, anchor positions and coordinates of the marker increase in the X
+      // direction to the right and in the Y direction down.
+      // var image = {
+      //   url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      //   // This marker is 20 pixels wide by 32 pixels high.
+      //   size: new google.maps.Size(20, 32),
+      //   // The origin for this image is (0, 0).
+      //   origin: new google.maps.Point(0, 0),
+      //   // The anchor for this image is the base of the flagpole at (0, 32).
+      //   anchor: new google.maps.Point(0, 32)
+      // };
+
+      // Main marker
+      var mainMarker = new google.maps.Marker({
         position: this.location,
-        map: this.map
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        label: 'WESTERN',
+        // icon: mainMarker
       });
+
+      // More placeholders for marker drop, represents suggested locations
+      // King Richie's 43.0082° N, 81.2606° W
+      // Saugeen-Maitland Hall 43.0115° N, 81.2793° W
+      // 7/11 43.0016° N, 81.2768° W
+      var suggestedLocations = [
+        {lat: 43.0082, lng: -81.2606},
+        {lat: 43.0115, lng: -81.2793},
+        {lat: 43.0016, lng: -81.2768}
+      ];
+
+      var labels = '123456789';
+      var labelIndex = 0; 
+
+      function addMarkerWithTimeout(location, map, timeout) {
+        setTimeout(function(){ 
+          var newMarker = new google.maps.Marker({
+            position: location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            // label: labels[labelIndex++ % labels.length],
+            // icon: suggestedMarker
+          });
+        }, timeout);
+      };
+
+      // Wierd i values to adjust for drop time against mainMarker
+      for (var i = 1; i <= suggestedLocations.length; i++) {
+        addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
+      };
     }
   },
   mounted: function() {
