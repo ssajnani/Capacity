@@ -6,7 +6,7 @@
     <div class="box">
       <div class="content">
         <h1>Login</h1>
-        <p></p>
+        <p>This will contain the login flow</p>
       </div>
     </div>
   </div>
@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     closeModal: function () {
-      console.log("asdf");
       this.$emit('closeModal');
     }
   }

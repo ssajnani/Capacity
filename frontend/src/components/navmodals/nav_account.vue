@@ -6,7 +6,7 @@
     <div class="box">
       <div class="content">
         <h1>Account Info</h1>
-        <p></p>
+        <p>The user will be able to view and manage their account and settings here.</p>
       </div>
     </div>
   </div>
