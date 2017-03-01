@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="column">
-      <place_recommend></place_recommend>
+      <place_recommend :recommendations="recommended"></place_recommend>
     </div>
   </div>
 </div>
@@ -45,7 +45,8 @@ export default {
   data: function () {
     /* Make some dummy data for now... */
     return {
-      messages: [1,2,3]
+      messages: [1,2,3],
+      recommended: [{id: 1234},{id: 15555}, {id: 1555556}]
     };
   },
   created: function () {
@@ -53,6 +54,12 @@ export default {
     /* Fetch data from backend */
 
     /* Initialize Map, recommended places, messages, graph */
+  },
+  watch: {
+    '$route' (to, from) {
+      // react to route changes...
+      // When the user goes to another page
+    }
   }
 }
 </script>

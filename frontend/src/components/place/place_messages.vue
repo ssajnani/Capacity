@@ -56,6 +56,7 @@ export default {
     postMessage: function () {
       /* EMIT POST EVENT TO PARENT WITH TEXT */
       /* return 'this.comment' as the parameter */
+      /* reset this.comment value to empty string */
     }
   }
 }
