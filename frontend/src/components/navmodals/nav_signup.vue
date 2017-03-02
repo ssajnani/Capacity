@@ -19,7 +19,7 @@
 
         <div class="control is-grouped">
           <p class="control">
-            <button class="button is-primary" v-on:click="signup">Log In</button>
+            <button class="button is-primary" v-on:click="signUp">Log In</button>
           </p>
           <p class="control">
             <button class="button is-link" v-on:click="closeModal">Cancel</button>
@@ -61,7 +61,7 @@ export default {
       this.password = '';
       this.$emit('closeModal');
     },
-    signup: function () {
+    signUp: function () {
       this.username;
       this.password;
     }
