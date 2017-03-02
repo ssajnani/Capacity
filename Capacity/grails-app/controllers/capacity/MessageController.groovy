@@ -16,12 +16,21 @@ class MessageController extends RestfulController {
     }
 
     // Method to create message.
-    def createMessage() {
+    def create() {
         def messageText = params.message
         def id = params.messageID
         def location = params.location
-        newMessage = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
-        response.status = 200
+        def message = Message.find(messageID: id)
+
+        if (message == null) {
+            newMessage = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
+            System.out.print('Message created.')
+            response.status = 200
+        } else {
+            System.out.print('Message with this ID exists.')
+            response.status = 500
+        }
+
     }
 
     def upvoteMessage() {
