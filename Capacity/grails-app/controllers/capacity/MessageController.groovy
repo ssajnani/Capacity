@@ -21,6 +21,7 @@ class MessageController extends RestfulController {
         def id = params.messageID
         def location = params.location
         newMessage = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
+        response.status = 200
     }
 
     def upvoteMessage() {
