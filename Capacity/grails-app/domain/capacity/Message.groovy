@@ -18,6 +18,26 @@ class Message {
         this.voteCount = this.voteCount - 1
     }
 
+    String getMessageID() {
+        return messageID
+    }
+
+    String getUserName() {
+        return userName
+    }
+
+    int getVoteCount() {
+        return voteCount
+    }
+
+    String getText() {
+        return text
+    }
+
+    String getLocation() {
+        return location
+    }
+
     static constraints = {
         messageID blank: false, unique: true, nullable: false
         userName blank: false, nullable: false
