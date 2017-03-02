@@ -1,21 +1,26 @@
 package Capacity
 
 class MessageBoard {
+
     def messageMap = [:]
     def idList = []
 
-    String location
-
     static hasMany = [messages : Message]
+    static belongsTo = [place : Place]
 
-    def getID(int arrayCount){ //gets the id specified by the parameter
+    //gets the id specified by the parameter
+    def getID(int arrayCount){
         return idList.get(arrayCount)
     }
-    def messageMapping(Message newMessage){ //Stores new messages in a map
+
+    // Stores new messages in dictionary
+    def messageMapping(Message newMessage){
         messageMap.put(newMessage.getMessageID, newMessage.getText)
         idList >> newMessage.getMessageID
     }
-    def retrieveMessage(int idNumber){ //Retrieves a message corresponding to an id number from the map
+
+    // Retrieves a message corresponding to an id number from the dictionary
+    def retrieveMessage(int idNumber) {
         messageMap.get(idNumber)
     }
 }

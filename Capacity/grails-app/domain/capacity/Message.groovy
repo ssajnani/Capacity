@@ -3,7 +3,7 @@ package capacity
 class Message {
 
     String messageID // unique ID attached to identify comment
-    String userName  // attached to user who posted, may also be anonymous to start
+    String userName  // attached to user who posted
     int voteCount    // score attached to comment
     String text      // actual text of message
     String location  // location this message pertains to
@@ -11,11 +11,6 @@ class Message {
     // Increment vote count by one.
     def upvote() {
         this.voteCount = this.voteCount + 1
-    }
-
-    // Decrement vote count by one.
-    def downvote() {
-        this.voteCount = this.voteCount - 1
     }
 
     String getMessageID() {

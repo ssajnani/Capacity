@@ -16,12 +16,13 @@ class MessageController extends RestfulController {
     }
 
     // Method to create message.
+    // Generates unique message ID that will pertain to the created message for lookup later.
     def createMessage() {
         def messageText = params.text
-        def id = params.messageID
         def place = params.location
         def message = Message.find{messageID == id}
 
+        // Message ID unique, so generate new message.
         if (message == null) {
             message = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
             System.out.print('Message created.')
@@ -33,22 +34,14 @@ class MessageController extends RestfulController {
 
     }
 
+    // Upvote message, found by message ID and location.
     def upvoteMessage() {
-        def mCode = params.messageID
-        def location = params.location
-        def messageBoard = MessageBoard.find{location == location}
-        def message = messageBoard.getMessage(id)
-
-        message.upvote()
-    }
-
-    def downvoteMessage() {
         def id = params.messageID
         def location = params.location
         def messageBoard = MessageBoard.find{location == location}
         def message = messageBoard.getMessage(id)
 
-        message.downvote()
+        message.upvote()
     }
 
 }
