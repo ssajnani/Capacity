@@ -34,10 +34,10 @@ class MessageController extends RestfulController {
     }
 
     def upvoteMessage() {
-        def mCode = params.mCode
+        def mCode = params.messageID
         def location = params.location
-        def messageBoard = MessageBoard.find(location == location)
-        def message = messageBoard.getMessage(mCode)
+        def messageBoard = MessageBoard.find{location == location}
+        def message = messageBoard.getMessage(id)
 
         message.upvote()
     }
@@ -45,7 +45,7 @@ class MessageController extends RestfulController {
     def downvoteMessage() {
         def id = params.messageID
         def location = params.location
-        def messageBoard = MessageBoard.find(location == location)
+        def messageBoard = MessageBoard.find{location == location}
         def message = messageBoard.getMessage(id)
 
         message.downvote()
