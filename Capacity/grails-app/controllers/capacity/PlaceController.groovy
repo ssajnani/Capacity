@@ -1,6 +1,7 @@
 package capacity
 
 import grails.rest.RestfulController
+import grails.converters.JSON
 
 class PlaceController extends RestfulController{
 
@@ -26,7 +27,9 @@ class PlaceController extends RestfulController{
 
         // If place exists, retrieve data.
         if(place != null) {
-            respond place
+            def jsonPlace = {
+                render place as JSON
+            }
             System.out.print('Messages retrieved.')
             response.status = 200
         }
@@ -34,10 +37,11 @@ class PlaceController extends RestfulController{
         else {
             System.out.print('New place needs to be created.')
             place = new Place(googleID: googleID)
-            respond place
+            def jsonPlace = {
+                render place as JSON
+            }
             System.out.print('New place created.\n')
             response.status = 200
-            check = true
         }
     }
 }
