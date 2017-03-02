@@ -16,8 +16,8 @@ class MessageController extends RestfulController {
     }
 
     // Method to create message.
-    def create() {
-        def messageText = params.message
+    def createMessage() {
+        def messageText = params.text
         def id = params.messageID
         def place = params.location
         def message = Message.find{messageID == id}
