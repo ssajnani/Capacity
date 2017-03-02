@@ -1,5 +1,4 @@
 <template lang="html">
-<div v-on:keyup.enter="goto_place" id="home">
 <section class="hero is-fullheight">
   <div class="hero-head"><navbar></navbar></div>
   <div class="hero-body">
@@ -33,7 +32,6 @@
     </div>
   </div>
 </section>
-</div>
 </template>
 
 <style>
@@ -79,8 +77,7 @@ export default {
   },
   mounted: function() { // Component initialization: variables, etc...
 
-    // Request user location
-
+    // Request user location for autocomplete accuracy
     if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition((success) => {
@@ -101,10 +98,14 @@ export default {
     this.autocomplete = new google.maps.places.AutocompleteService();
 
   },
-  // Fires off events on data change
-  watch: {
-    search_text: function (new_text) { // When user types something into the searchbar
 
+  // Fires off events on data changes
+  watch: {
+
+    // When user types something into the searchbar
+    search_text: function (new_text) {
+
+      // Calls google autocomplete and updates data
       const latlng = new google.maps.LatLng(this.location.lat, this.location.lng);
 
       if (new_text != '') {

@@ -20,6 +20,6 @@ new Vue({
   router,
 
   mounted: function () {
-
+  	auth.checkAuth();
   }
 })
