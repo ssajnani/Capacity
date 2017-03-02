@@ -5,33 +5,28 @@
   <div class="hero-body">
     <div class="container">
 
-      <h1 class="title">
-        Search
-      </h1>
-
       <div class="columns">
-        <div class="column is-5">
-          <div class="control has-icon has-icon-right">
-            <div id ="demo">
-              <!--<p><i>myInstanceAddress</i> Property</p>-->
-              <pre>{{ myInstanceAddress | json }}</pre>
-                <input onblur="this.focus();" v-on:keyup.enter="goto_place" id="addressInput" class="input is-large" type="text" placeholder="Libraries, bars, stores...">
-              <span class="icon is-small">
-                <i class="fa fa-search"></i>
-              </span>
-            </div>
+        <div class="column is-half is-offset-one-quarter">
+
+          <h1 class="title">
+            Search
+          </h1>
+
+          <div id="search-bar" class="control has-icon has-icon-right">
+            <input v-model="search_text" class="input is-large" type="text" placeholder="Libraries, bars, stores...">
+            <span class="icon is-small">
+              <i class="fa fa-search"></i>
+            </span>
           </div>
-        </div>
-      </div>
 
-      <!-- spacing
-      <div style="margin-top:-50px;"></div>-->
+          <table class="table is-bordered">
+            <tbody>
+              <tr v-for="suggestion in suggestions" v-on:click="selectPlace(suggestion)">
+                <td>{{suggestion.description}}</td>
+              </tr>
+            </tbody>
+          </table>
 
-      <div class="columns">
-        <div class="column is-12">
-          <div id="search-bar-results">
-
-          </div>
         </div>
       </div>
 
@@ -41,89 +36,99 @@
 </div>
 </template>
 
-<script type = "text/javascript">
-  var googleAutocomplete = require('../components/googleAutocomplete.js');
-</script>
+<style>
+
+#search-bar {
+  margin-bottom: 0;
+}
+
+</style>
 
 <script>
 
-  import navbar from '../components/navbar.vue'
+import navbar from '../components/navbar.vue'
 
-  export default {
-    name: 'home',
-    components: {
-      navbar
-    },
-    data: {
-        myInstanceAddress: {
-            address: null,
-            city: null,
-            state: null,
-            zipcode: null,
-            country: null
-        },
-        googleAutoCompleteInput: 'addressInput',
-        url: null
-    },
-    ready: function() {
-        //get input element where user will type/search addresses
-        //get DOM input element where users will start typing addresses
-        var inputElement = document.getElementById(this.googleAutoCompleteInput);
+export default {
+  name: 'home',
+  components: {
+    navbar
+  },
+  data: function () {
+    return {
+      default_location: { // London, Ontario
+        lat: 42.9849,
+        lng: 81.2453
+      },
+      location: {
+        lat: null,
+        lng: null
+      },
+      search_text: '',
+      search_rad: 10000,
+      autocomplete: null,
+      suggestions: [],
+    }
+  },
+  methods: {
+    selectPlace: function (place) {
+      // Sends the place information to the backend
+      console.log(place);
 
-        //create new google maps object
-        this.googleAddress.autocomplete = new google.maps.places.Autocomplete(inputElement,
-            {types: ['geocode']});
+      // Route to the place page on success
+    }
+  },
+  mounted: function() { // Component initialization: variables, etc...
 
-        //add event listener to trigger method getAddressComponents when user select an address
-        this.googleAddress.autocomplete.addListener('place_changed', this.getAddressComponents);
-    },
-    methods: {
-      updateAddress: function() {
-            //assign required values to my instance property
-            this.myInstanceAddress.address = this.googleAddress.street_number + ' ' + this.googleAddress.street_name;
-            this.myInstanceAddress.city = this.googleAddress.city;
-            this.myInstanceAddress.state = this.googleAddress.state;
-            this.myInstanceAddress.zipcode = this.googleAddress.zipcode;
-            this.myInstanceAddress.country = this.googleAddress.country;
-      },
-      setResultData: function(name, description="") {
-        var result = "<article class='media'>" +
-              "<figure class='media-left'>" +
-                "<p class='image is-64x64'>" +
-                  "<img src='http://bulma.io/images/placeholders/128x128.png'>" +
-                "</p>" +
-              "</figure>" +
-              "<div class='media-content'>" +
-                "<div class='content'>" +
-                  "<p>" +
-                    "<a href = \"/place/"+ name +"\"><strong>" + name + "</strong></a>" +
-                    "<br>" +
-                    description +
-                  "</p>" +
-                "</div>" +
-              "</div>" +
-            "</article>";
-        return result;
-      },
-      addResult: function(resultData) {
-         document.getElementById("search-bar-results").innerHTML = resultData;
-      },
-      goto_place: function () {
-        var name = document.getElementById("addressInput").value;
-        var replace = "";
-        name = name.split(".").join(replace);
-        window.location.href = "/place/"+encodeURI(name);
+    // Request user location
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition((success) => {
+          this.location.lat = success.coords.latitude;
+          this.location.lng = success.coords.longitude;
+        }, (error) => {
+          console.log('error');
+          this.location.lat = this.default_location.lat;
+          this.location.lng = this.default_location.lng;
+        });
+
+      } else {
+        this.location.lat = this.default_location.lat;
+        this.location.lng = this.default_location.lng;
       }
-    },
-    mounted: function() {
-      
+
+    // initialize autocompleteservice
+    this.autocomplete = new google.maps.places.AutocompleteService();
+
+  },
+  // Fires off events on data change
+  watch: {
+    search_text: function (new_text) { // When user types something into the searchbar
+
+      const latlng = new google.maps.LatLng(this.location.lat, this.location.lng);
+
+      if (new_text != '') {
+        this.autocomplete.getPlacePredictions(
+          {
+            location: latlng,
+            radius: this.search_rad,
+            types: ['establishment'],
+            input: new_text
+          }, 
+          (response, status) => {
+
+            if (status != google.maps.places.PlacesServiceStatus.OK) {
+              console.warn(status);
+            } else {
+              this.suggestions = response;
+            }
+          }
+        );
+      } else {
+        this.suggestions = [];
+      }
     }
   }
+}
 
 </script>
-
-<!--<style type="text/css">
-  .hero.is-fullheight .hero-body {
-    display: block;
-  }
-</style>-->
