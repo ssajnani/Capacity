@@ -2,11 +2,11 @@ package capacity
 
 class Message {
 
-    String messageID // unique ID attached to identify comment
-    String userName  // attached to user who posted
-    int voteCount    // score attached to comment
-    String text      // actual text of message
-    String location  // location this message pertains to
+    String messageID  // unique ID attached to identify comment
+    String userName   // attached to user who posted
+    int voteCount = 0 // score attached to comment
+    String text       // actual text of message
+    String location   // location this message pertains to
 
     // Increment vote count by one.
     def upvote() {

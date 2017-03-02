@@ -37,10 +37,10 @@ class PlaceController extends RestfulController{
         else {
             System.out.print('New place needs to be created. ')
             place = new Place(googleID: googleID)
+            place.save()
             def jsonPlace = {
                 render place as JSON
             }
-            System.out.print(jsonPlace.toString())
             System.out.print('New place created.\n')
             response.status = 200
         }
