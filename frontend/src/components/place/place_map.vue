@@ -9,7 +9,8 @@
   <!-- Name, Rating, Descriptions, w/e -->
   <div class="card-content">
     <p class="title is-3">Western University</p>
-    <p class="subtitle is-6">London, ON<!-- location --> <em>5/5</em></p>
+    <!-- location --> 
+    <p class="subtitle is-6">London, ON <em>5/5</em></p>
   </div>
 
 </div>
@@ -18,7 +19,7 @@
 <script>
 export default {
   name: 'place_map',
-  props: ['coords', 'name', 'rating', 'website', 'phone', 'type', ],
+  props: ['coords', 'name', 'rating', 'type', 'website', 'phone'],
   data: function () {
     return {
       // location: function () {
@@ -35,12 +36,14 @@ export default {
 
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
-        scrollwheel: true,
+        // Google Map options, no changing to satellite or street view
         mapTypeControl: false,
         streetViewControl: false,
+        // Zoom parameters, these are the most comfortable options I found
         zoom: 14,
         maxZoom: 17,
         minZoom: 11,
+        // Styling for the Google Map, can be changed as necessary
         styles: [
           {
             "featureType": "administrative",
@@ -162,9 +165,9 @@ export default {
         ]
       });
 
-      // Custom marker icon
-      var mainMarker = 'https://image.flaticon.com/icons/png/128/179/179386.png'
-      var suggestedMarker = 'http://findicons.com/files/icons/1963/colorcons_blue/128/questionmark.png';
+      // Custom marker icons
+      // var mainMarker = 'https://image.flaticon.com/icons/png/128/179/179386.png'
+      // var suggestedMarker = 'http://findicons.com/files/icons/1963/colorcons_blue/128/questionmark.png';
 
       // Marker sizes are expressed as a Size of X,Y where the origin of the image
       // (0,0) is located in the top left of the image.
@@ -180,12 +183,11 @@ export default {
       //   anchor: new google.maps.Point(0, 32)
       // };
 
-      // Main marker
+      // Main marker dropped
       var mainMarker = new google.maps.Marker({
         position: this.location,
         map: this.map,
         animation: google.maps.Animation.DROP,
-        label: 'WESTERN',
         // icon: mainMarker
       });
 
@@ -199,22 +201,24 @@ export default {
         {lat: 43.0016, lng: -81.2768}
       ];
 
+      // Labels for markers on map, labels can be ABCDEFGHI... as well
       var labels = '123456789';
       var labelIndex = 0; 
 
+      // This function was made to add the suggested markers
       function addMarkerWithTimeout(location, map, timeout) {
         setTimeout(function(){ 
           var newMarker = new google.maps.Marker({
             position: location,
             map: map,
             animation: google.maps.Animation.DROP,
-            // label: labels[labelIndex++ % labels.length],
+            label: labels[labelIndex++ % labels.length],
             // icon: suggestedMarker
           });
         }, timeout);
       };
 
-      // Wierd i values to adjust for drop time against mainMarker
+      // To add suggested markers, i values are adjusted for drop time against mainMarker
       for (var i = 1; i <= suggestedLocations.length; i++) {
         addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
       };
