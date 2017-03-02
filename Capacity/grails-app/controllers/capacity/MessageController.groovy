@@ -34,7 +34,6 @@ class MessageController extends RestfulController {
                 System.out.print('Message with this ID exists.')
                 id = random.nextInt()
                 response.status = 500
-
            }
     }
 
