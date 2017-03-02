@@ -1,4 +1,4 @@
-package Capacity
+package capacity
 
 class MessageBoard {
     def messageMap = [:]
@@ -13,7 +13,7 @@ class MessageBoard {
         messageMap.put(newMessage.getMessageID, newMessage.getText)
         idList >> newMessage.getMessageID
     }
-    def retrieveMessage(int idNumber){ //Retrieves a message corresponding to an id number from the map
+    def getMessage(int idNumber){ //Retrieves a message corresponding to an id number from the map
         messageMap.get(idNumber)
     }
 }
