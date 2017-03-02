@@ -1,4 +1,4 @@
-package Capacity
+package capacity
 
 class MessageBoard {
 

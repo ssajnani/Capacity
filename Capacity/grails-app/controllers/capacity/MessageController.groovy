@@ -1,9 +1,10 @@
 package capacity
 
+import com.sun.org.apache.xpath.internal.operations.Bool
 import grails.rest.RestfulController
 
 class MessageController extends RestfulController {
-
+    Random random = new Random()
     static allowedMethods = [createMessage: 'POST']
     static responseFormats = ['json', 'xml']
 
@@ -19,19 +20,22 @@ class MessageController extends RestfulController {
     // Generates unique message ID that will pertain to the created message for lookup later.
     def createMessage() {
         def messageText = params.text
+        def id = random.nextInt()
         def place = params.location
-        def message = Message.find{messageID == id}
+        Boolean check = false
+        while(!check)
+           def message = Message.find{messageID == id}
+           if (message == null) {
+                message = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
+                System.out.print('Message created.')
+                response.status = 200
+                check = true
+           } else {
+                System.out.print('Message with this ID exists.')
+                id = random.nextInt()
+                response.status = 500
 
-        // Message ID unique, so generate new message.
-        if (message == null) {
-            message = new Message(userName: 'Anonymous', voteCount: 0, text: messageText, messageID: id, location: place)
-            System.out.print('Message created.')
-            response.status = 200
-        } else {
-            System.out.print('Message with this ID exists.')
-            response.status = 500
-        }
-
+           }
     }
 
     // Upvote message, found by message ID and location.
