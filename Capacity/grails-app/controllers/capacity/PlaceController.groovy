@@ -19,19 +19,22 @@ class PlaceController extends RestfulController{
     // If Google ID is new, it must be a new location, therefore
     // generate a new place object.
     def getPlaceInfo() {
-
+        // Begin place retrieval..
         System.out.println('Request for place data recieved.\n')
         def googleID = params.googleID
         def place = Place.find{googleID == googleID}
 
-        if(place != null){
-            respond place.getBoard().getMessages()
+        // If place exists, retrieve data.
+        if(place != null) {
+            respond place
             System.out.print('Messages retrieved.')
             response.status = 200
         }
+        // new place, create place object and respond with data
         else {
             System.out.print('New place needs to be created.')
-            message = new Place(googleID: googleID, board: messageboard)
+            place = new Place(googleID: googleID)
+            respond place
             System.out.print('New place created.\n')
             response.status = 200
             check = true
