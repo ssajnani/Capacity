@@ -4,6 +4,10 @@ import router from './router'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template:'<router-view></router-view>',
+  template:`
+  <transition name="fade">
+	  <router-view></router-view>
+  </transition>
+  `,
   router
 })

@@ -8,13 +8,13 @@
       <place_graph></place_graph>
     </div>
     <div class="column is-half">  
-      <place_map></place_map>
+      <place_map :coords="5"></place_map>
       <div class="section">
-        <place_messages></place_messages>
+        <place_messages :messages="messages"></place_messages>
       </div>
     </div>
     <div class="column">
-      <place_recommend></place_recommend>
+      <place_recommend :recommendations="recommended"></place_recommend>
     </div>
   </div>
 </div>
@@ -37,13 +37,29 @@ export default {
   name: 'place',
   components: {
     navbar,
-    // footerbar,
-
     place_map,
     place_recommend,
     place_messages,
-    place_graph
-    
+    place_graph 
+  },
+  data: function () {
+    /* Make some dummy data for now... */
+    return {
+      messages: [1,2,3],
+      recommended: [{id: 1234},{id: 15555}, {id: 1555556}]
+    };
+  },
+  created: function () {
+    console.log('place id: ' + this.$route.params.id);
+    /* Fetch data from backend */
+
+    /* Initialize Map, recommended places, messages, graph */
+  },
+  watch: {
+    '$route' (to, from) {
+      // react to route changes...
+      // When the user goes to another page
+    }
   }
 }
 </script>

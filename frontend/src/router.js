@@ -9,8 +9,8 @@ import place from './containers/place.vue'
 
 // application routes
 const routes = [
-  { path: '/', component: home },
-  { path: '/place/:id', component: place },
+  { path: '/', name: 'home', component: home },
+  { path: '/place/:id', name: 'place', component: place },
   { path: '*', redirect: '/' }
 ]
 
