@@ -3,8 +3,8 @@ package capacity
 class Message {
 
     String messageID  // unique ID attached to identify comment
-    String userName
-    int voteCount = 0 // score attached to comment
+    String userName   // attached user who posted comment
+    int voteCount     // score attached to comment
     String text       // actual text of message
     String googleID   // location this message pertains to
 

@@ -28,7 +28,8 @@ class PlaceController extends RestfulController{
         // if place exists, retrieve data
         if(place != null) {
             def gID = place.getGoogleID()
-            render (['googleID': gID] as JSON)
+            def messageList = place.getMessageList()
+            render (['googleID': gID, 'messages': messageList] as JSON)
             System.out.print('Place retrieved.')
             response.status = 200
         }
@@ -38,7 +39,8 @@ class PlaceController extends RestfulController{
             place = new Place(googleID: googleID)
             place.save()
             def gID = place.getGoogleID()
-            render (['googleID': gID] as JSON)
+            def messageList = place.getMessageList()
+            render (['googleID': gID, 'messages': messageList] as JSON)
             System.out.print('New place created.\n')
             response.status = 200
         }
