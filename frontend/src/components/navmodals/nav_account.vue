@@ -1,3 +1,5 @@
+<!-- The modal which will store the account information -->
+
 <template lang="html">
 <transition name="fade">
 <div class="modal is-active" v-if="visible">

@@ -19,7 +19,7 @@
 
         <div class="control is-grouped">
           <p class="control">
-            <button class="button is-primary" v-on:click="signUp">Log In</button>
+            <button class="button is-primary" v-on:click="signUp" v-bind:class="{'is-loading': is_submitting}">Sign Up</button>
           </p>
           <p class="control">
             <button class="button is-link" v-on:click="closeModal">Cancel</button>
@@ -52,18 +52,21 @@ export default {
   data: function () {
     return {
       username: '',
-      password: ''
+      password: '',
+      is_submitting: false
     }
   },
   methods: {
     closeModal: function () {
       this.username = '';
       this.password = '';
+      this.is_submitting = false;
       this.$emit('closeModal');
     },
     signUp: function () {
       this.username;
       this.password;
+      this.is_submitting = true;
     }
   }
 }

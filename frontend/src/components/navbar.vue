@@ -82,6 +82,8 @@ export default {
     }
   },
   methods: {
+
+    // Button configurations
     toggleMenu: function () {
       this.menu_open = !this.menu_open;
     },
@@ -102,7 +104,7 @@ export default {
 .fade-enter-active, .fade-leave-active {
   transition: opacity .2s ease;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>
