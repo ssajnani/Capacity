@@ -3,10 +3,10 @@ package capacity
 class Message {
 
     String messageID  // unique ID attached to identify comment
-    String userName   // attached to user who posted
+    String userName
     int voteCount = 0 // score attached to comment
     String text       // actual text of message
-    String location   // location this message pertains to
+    String googleID   // location this message pertains to
 
     // Increment vote count by one.
     def upvote() {
@@ -29,8 +29,8 @@ class Message {
         return text
     }
 
-    String getLocation() {
-        return location
+    String getGoogleID() {
+        return googleID
     }
 
     static constraints = {
@@ -38,6 +38,6 @@ class Message {
         userName blank: false, nullable: false
         voteCount blank: false, nullable: false
         text blank: false, size: 1..140, nullable: false
-        location blank: false, nullable: false
+        googleID blank: false, nullable: false
     }
 }

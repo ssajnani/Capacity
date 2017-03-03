@@ -6,7 +6,7 @@ import grails.converters.JSON
 class MessageController extends RestfulController {
 
     Random random = new Random()
-    static allowedMethods = ['createMessage']
+    //static allowedMethods = ['createMessage']
     static responseFormats = ['json', 'xml']
 
     MessageController() {
@@ -24,13 +24,13 @@ class MessageController extends RestfulController {
         def messageText = params.text
         Random random = new Random()
         int id = random.nextInt(100000 + 1 - 1) + 1;
-        def place = params.location
+        def gID = params.googleID
         Boolean check = false
 
         while (!check) {
             def message = Message.find{messageID == id}
             if (message == null) {
-                message = new Message(userName: 'Anonymous', text: messageText, messageID: id, location: place)
+                message = new Message(userName: 'Anonymous', text: messageText, messageID: id, googleID: gID)
                 message.save()
                 def jsonMessage = {
                     render message as JSON
@@ -48,9 +48,7 @@ class MessageController extends RestfulController {
     // Upvote message, found by message ID and location.
     def upvoteMessage() {
         def id = params.messageID
-        def location = params.location
-        def messageBoard = MessageBoard.find { place == location }
-        def message = messageBoard.getMessage(id)
+        def message = Message.find{messageID == id}
 
         message.upvote()
     }

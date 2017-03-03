@@ -5,7 +5,7 @@ import grails.converters.JSON
 
 class PlaceController extends RestfulController{
 
-    static allowedMethods = ['getPlaceInfo']
+    //static allowedMethods = ['getPlaceInfo']
     static responseFormats = ['json', 'xml']
 
     PlaceController() {
