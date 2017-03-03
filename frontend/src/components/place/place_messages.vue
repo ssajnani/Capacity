@@ -2,6 +2,7 @@
 <div>
 <h1 class="title">Comments</h1>
 <!-- FOR ALL CURRENT COMMENTS -->
+
 <article class="media" v-for="msg in messages">
   <figure class="media-left">
     <p class="image is-64x64">

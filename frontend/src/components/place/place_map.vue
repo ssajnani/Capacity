@@ -1,24 +1,14 @@
 <template lang="html">
-<div class="card">
-        
-  <!-- Google Maps -->
-  <div class="card-image">
-    <div id="map"></div>
-  </div>
-
-  <!-- Name, Rating, Descriptions, w/e -->
-  <div class="card-content">
-    <p class="title is-3">Western University</p>
-    <p class="subtitle is-6">London, ON<!-- location --> <em>5/5</em></p>
-  </div>
-
+<!-- Google Maps -->
+<div class="card-image">
+  <div id="map"></div>
 </div>
 </template>
 
 <script>
 export default {
   name: 'place_map',
-  props: ['coords', 'name', 'rating', 'website', 'phone', 'type', ],
+  props: ['coords', 'suggestions'],
   data: function () {
     return {
       // location: function () {
@@ -31,14 +21,14 @@ export default {
 
       // Placeholder for searched item
       // Coords of UWO 43.0096° N, 81.2737° W
-      this.location = {lat: 43.0096, lng: -81.2737};
+      this.location = this.coords;
 
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
         scrollwheel: true,
         mapTypeControl: false,
         streetViewControl: false,
-        zoom: 14,
+        zoom: 11,
         maxZoom: 17,
         minZoom: 11,
         styles: [
@@ -184,8 +174,7 @@ export default {
       var mainMarker = new google.maps.Marker({
         position: this.location,
         map: this.map,
-        animation: google.maps.Animation.DROP,
-        label: 'WESTERN',
+        animation: google.maps.Animation.DROP
         // icon: mainMarker
       });
 
@@ -193,42 +182,46 @@ export default {
       // King Richie's 43.0082° N, 81.2606° W
       // Saugeen-Maitland Hall 43.0115° N, 81.2793° W
       // 7/11 43.0016° N, 81.2768° W
-      var suggestedLocations = [
-        {lat: 43.0082, lng: -81.2606},
-        {lat: 43.0115, lng: -81.2793},
-        {lat: 43.0016, lng: -81.2768}
-      ];
+      // var suggestedLocations = [
+      //   {lat: 43.0082, lng: -81.2606},
+      //   {lat: 43.0115, lng: -81.2793},
+      //   {lat: 43.0016, lng: -81.2768}
+      // ];
 
-      var labels = '123456789';
-      var labelIndex = 0; 
+      // var labels = '123456789';
+      // var labelIndex = 0; 
 
-      function addMarkerWithTimeout(location, map, timeout) {
-        setTimeout(function(){ 
-          var newMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-            animation: google.maps.Animation.DROP,
-            // label: labels[labelIndex++ % labels.length],
-            // icon: suggestedMarker
-          });
-        }, timeout);
-      };
+      // function addMarkerWithTimeout(location, map, timeout) {
+      //   setTimeout(function(){ 
+      //     var newMarker = new google.maps.Marker({
+      //       position: location,
+      //       map: map,
+      //       animation: google.maps.Animation.DROP,
+      //       // label: labels[labelIndex++ % labels.length],
+      //       // icon: suggestedMarker
+      //     });
+      //   }, timeout);
+      // };
 
       // Wierd i values to adjust for drop time against mainMarker
-      for (var i = 1; i <= suggestedLocations.length; i++) {
-        addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
-      };
+      // for (var i = 1; i <= suggestedLocations.length; i++) {
+      //   addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
+      // };
     }
   },
-  mounted: function() {
-    this.initMap();
+  watch: {
+    coords: function (new_coords) {
+      if (new_coords.lat != null && new_coords.lng != null) {
+        this.initMap();
+      }
+    }
   }
 }
 </script>
 
 <style>
   #map {
-    height: 500px;
+    height: 400px;
     width: 100%;
   }
 </style>
