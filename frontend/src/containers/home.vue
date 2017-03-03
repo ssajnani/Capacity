@@ -18,7 +18,7 @@
             </span>
           </div>
 
-          <table class="table is-bordered">
+          <table class="table is-bordered autocomplete">
             <tbody>
               <tr v-for="suggestion in suggestions" v-on:click="selectPlace(suggestion)">
                 <td>{{suggestion.description}}</td>
@@ -34,15 +34,21 @@
 </section>
 </template>
 
-<style>
+<style scoped>
 
 #search-bar {
   margin-bottom: 0;
 }
 
+.autocomplete tr {
+  cursor: pointer;
+}
+
 </style>
 
 <script>
+
+import router from '../router'
 
 import navbar from '../components/navbar.vue'
 
@@ -69,10 +75,9 @@ export default {
   },
   methods: {
     selectPlace: function (place) {
-      // Sends the place information to the backend
-      console.log(place);
-
-      // Route to the place page on success
+      // Route to the place page
+      console.log("Redirecting to: " + place);
+      router.push({ name: 'place', params: { id: place.place_id }})
     }
   },
   created: function() { // Component initialization: variables, etc...

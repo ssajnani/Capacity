@@ -1,9 +1,11 @@
+// The service for authentication
+
 import router from '../router'
 
 // URL and endpoint constants
 const API_URL = 'http://localhost:8080/'
-const LOGIN_URL = API_URL + 'ENDPOINT'
-const SIGNUP_URL = API_URL + 'ENDPOINT'
+const LOGIN_URL = API_URL + 'api/login'
+const SIGNUP_URL = API_URL + 'api/signup'
 
 export default {
   
