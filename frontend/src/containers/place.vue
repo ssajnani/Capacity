@@ -51,9 +51,11 @@ export default {
   },
   created: function () {
     console.log('place id: ' + this.$route.params.id);
-    /* Fetch data from backend */
+    // Fetch data from backend
 
-    /* Initialize Map, recommended places, messages, graph */
+    // get data from google places place details API
+
+    // Initialize Map, recommended places, messages, graph
   },
   watch: {
     '$route' (to, from) {
