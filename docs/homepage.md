@@ -2,8 +2,6 @@
 
 # sQuaa 11 - CS 2212 Team 11
 
-![Team logo](http://orig05.deviantart.net/9320/f/2010/203/c/a/30___fsjal_falco_lombardi__by_ztoonlinkz.png)
-
 # Capacity
 
 How many times have you gone to the library looking for a cubicle only to wander for an hour? How many times have you cabbed downtown only to see the bar you wanted to visit was full? Think about the time you could have saved by knowing this information before you even left the house.

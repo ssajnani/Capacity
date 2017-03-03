@@ -12,7 +12,7 @@ User interaction:
 
  * Users will be able to log in, search for a location, see relevant data about the location's current capacity, and read or post messages about the location's current capacity.
 
-Our web app will be a two-page application to keep it clear and user-intuitive.
+Our web app will be a two-state application to keep it clear and user-intuitive.
 
 The home page will simply consist of the search bar and top navigation bar (for user login and account info)
 
