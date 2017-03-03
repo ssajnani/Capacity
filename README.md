@@ -4,7 +4,7 @@ Our web-based application, currently named Capacity, is a tool that will help yo
 ## Repository Structure
 Our repository follows the structure of a typical Grails app. The backend of Capacity is found under the Capacity/grails-app folder tree. Here you can find classes for our Grails domains and controllers.
 
-## Installing Dependencies
+## Installing Programs
                                 	GRAILS
 To run our application, Grails will have to be downloaded and installed. Below is a link to download the Grails installer:
 
@@ -33,10 +33,37 @@ Download Node here: https://nodejs.org/en/
 After Node downloads, you have to run the .exe to install it. After it has been installed, open up the Node command prompt and type npm to update npm.
 
 
-## Running Capacity
+## Setting Up Capacity's Development Environment
 
-After installing the above dependencies, Capacity will be functional on your computer. Download our project, and unzip the folder. Using your command prompt, navigate to where you unzipped Capacity. From here, type:
+After installing the above required programs, You will need to clone the repository and install the project dependencies. Download our project, and unzip the folder. Using your command prompt, navigate to where you unzipped Capacity. 
 
-	grails run-app
-    
-A message saying 'running application...' should appear. Shortly after, another message will tell you that the server is initiated. Navigate to localhost:8080 on your browser to begin using Capacity on your local server.
+To setup the front-end, you will need to install the front-end dependencies in its directory:
+
+```
+cd frontend/
+npm install
+cd ..
+```
+
+This will download the modules needed to compile the frontend.
+
+## Running Capacity in Development Mode
+
+To run Capacity, you will need to simultaneously run two servers, one for the frontend, and another for the backend.
+
+To start the frontend, type the following command in the './frontend/' directory:
+
+```
+npm run dev
+```
+
+For the backend, navigate to the './Capacity' folder holding the grails files in a seperate terminal.
+
+From here, type:
+```
+grails run-app
+```
+
+A message saying 'running application...' should appear. Shortly after, another message will tell you that the server is initiated. 
+
+Navigate to localhost:8090 on your browser to load the website and start using Capacity!
