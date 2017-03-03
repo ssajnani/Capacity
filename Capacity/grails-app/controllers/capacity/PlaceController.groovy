@@ -21,15 +21,14 @@ class PlaceController extends RestfulController{
     // generate a new place object.
     def getPlaceInfo() {
         // Begin place retrieval..
-        System.out.println('Request for place data recieved.\n')
+        System.out.println('Request for place data received.\n')
         def googleID = params.googleID
         def place = Place.find{googleID == googleID}
 
-        // If place exists, retrieve data.
+        // if place exists, retrieve data
         if(place != null) {
-            def jsonPlace = {
-                render place as JSON
-            }
+            def gID = place.getGoogleID()
+            render (['googleID': gID] as JSON)
             System.out.print('Place retrieved.')
             response.status = 200
         }
@@ -38,9 +37,8 @@ class PlaceController extends RestfulController{
             System.out.print('New place needs to be created. ')
             place = new Place(googleID: googleID)
             place.save()
-            def jsonPlace = {
-                render place as JSON
-            }
+            def gID = place.getGoogleID()
+            render (['googleID': gID] as JSON)
             System.out.print('New place created.\n')
             response.status = 200
         }
