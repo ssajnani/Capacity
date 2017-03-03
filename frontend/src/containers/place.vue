@@ -25,6 +25,8 @@
 
 <!-- $route.params.id for place id -->
 <script>
+import router from '../router'
+
 import navbar from '../components/navbar.vue'
 // import footerbar from '../components/footer.vue'
 
@@ -32,6 +34,9 @@ import place_map from '../components/place/place_map.vue'
 import place_recommend from '../components/place/place_recommend.vue'
 import place_messages from '../components/place/place_messages.vue'
 import place_graph from '../components/place/place_graph.vue'
+
+const maps_endpoint = 'https://maps.googleapis.com/maps/api/place/details/json';
+const api_endpoint = '';
 
 export default {
   name: 'place',
@@ -45,17 +50,27 @@ export default {
   data: function () {
     /* Make some dummy data for now... */
     return {
-      messages: [1,2,3],
-      recommended: [{id: 1234},{id: 15555}, {id: 1555556}]
+      messages: [],
+      recommended: [],
+      map_data: null,
+      place_id: ''
     };
   },
   created: function () {
     console.log('place id: ' + this.$route.params.id);
-    // Fetch data from backend
+    this.place_id = this.$route.params.id;
 
-    // get data from google places place details API
+    // Backend: messages, graph data, recommendations
+    // this.$http.get();
 
-    // Initialize Map, recommended places, messages, graph
+    // Google Maps: name, coordinates, 
+    // this.$http.get();
+
+  },
+  methods: {
+    goToPlace: function (id) {
+
+    }
   },
   watch: {
     '$route' (to, from) {

@@ -19,7 +19,7 @@
 
         <div class="control is-grouped">
           <p class="control">
-            <button class="button is-primary" v-on:click="signUp" v-bind:class="{'is-loading': is_submitting}">Sign Up</button>
+            <button class="button is-primary" v-on:click="signUp" v-bind:class="{'is-loading': is_submitting, 'is-disabled': invalidFields}">Sign Up</button>
           </p>
           <p class="control">
             <button class="button is-link" v-on:click="closeModal">Cancel</button>
@@ -54,6 +54,11 @@ export default {
       username: '',
       password: '',
       is_submitting: false
+    }
+  },
+  computed: {
+    invalidFields: function () {
+      return !(this.username && this.password);
     }
   },
   methods: {

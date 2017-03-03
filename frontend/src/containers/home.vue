@@ -75,24 +75,22 @@ export default {
       // Route to the place page on success
     }
   },
-  mounted: function() { // Component initialization: variables, etc...
+  created: function() { // Component initialization: variables, etc...
+
+    this.location.lat = this.default_location.lat;
+    this.location.lng = this.default_location.lng;
 
     // Request user location for autocomplete accuracy
     if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition((success) => {
-          this.location.lat = success.coords.latitude;
-          this.location.lng = success.coords.longitude;
-        }, (error) => {
-          console.log('error');
-          this.location.lat = this.default_location.lat;
-          this.location.lng = this.default_location.lng;
-        });
+      navigator.geolocation.getCurrentPosition((success) => {
+        this.location.lat = success.coords.latitude;
+        this.location.lng = success.coords.longitude;
+      }, (error) => {
+        console.log('error');
+      });
 
-      } else {
-        this.location.lat = this.default_location.lat;
-        this.location.lng = this.default_location.lng;
-      }
+    }
 
     // initialize autocompleteservice
     this.autocomplete = new google.maps.places.AutocompleteService();
