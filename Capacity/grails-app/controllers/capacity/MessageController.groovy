@@ -23,24 +23,25 @@ class MessageController extends RestfulController {
         System.out.print('Message being posted...\n')
         def messageText = params.text
         Random random = new Random()
-        int id = random.nextInt(100000 + 1 - 1) + 1;
-        def gID = params.googleID
+        String messageID = (random.nextInt(100000 + 1 - 1) + 1).toString()
+        def googleID = params.googleID
         Boolean check = false
 
         while (!check) {
-            def message = Message.find{messageID == id}
+            def message = Message.find{messageID == messageID}
+            def place = Place.find{googleID == googleID}
             if (message == null) {
-                message = new Message(userName: 'Anonymous', text: messageText, messageID: id, googleID: gID)
+                message = new Message(userName: 'Anonymous', text: messageText, messageID: messageID, googleID: googleID)
+                place.addMessage(message)
+                place.save()
+                System.out.print(place.messageList.toString())
                 message.save()
-                def jsonMessage = {
-                    render message as JSON
-                }
                 System.out.print('Message created.\n')
                 check = true
                 response.status = 200
             } else {
                 System.out.print('Message with this ID exists.\n')
-                id = random.nextInt(10000 + 1 - 1) + 1;
+                messageID = (random.nextInt(10000 + 1 - 1) + 1).toString()
             }
         }
     }
