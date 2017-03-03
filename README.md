@@ -1,6 +1,9 @@
 # Capacity
 Our web-based application, currently named Capacity, is a tool that will help you save time by giving you the information you wish you had before getting to your destination.
 
+## Repository Structure
+Our repository follows the structure of a typical Grails app. The backend of Capacity is found under the Capacity/grails-app folder tree. Here you can find classes for our Grails domains and controllers.
+
 ## Installing Dependencies
                                 	GRAILS
 To run our application, Grails will have to be downloaded and installed. Below is a link to download the Grails installer:
