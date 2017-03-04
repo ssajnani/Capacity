@@ -21,7 +21,7 @@
 
 
       <div class="section">
-        <place_messages :messages="messages"></place_messages>
+        <place_messages :messages="messages" v-on:postMessage="postMessage" v-on:likeMessage="likeMessage"></place_messages>
       </div>
    
     </div>
@@ -105,7 +105,7 @@ export default {
 
     // Calls backend for messages, data
     api.getPlace(this, this.place_id, result => {
-      this.messages = result.data.messages.filter(i => i==null);
+      this.messages = result.messages;
       console.log(this.messages);
     })
 
@@ -115,9 +115,27 @@ export default {
       // For recommended places
     },
     postMessage: function (msg) {
-      api.postMessage(this, msg, place_id, (data) => {
+      console.log(msg)
+      api.postMessage(this, msg, this.place_id, (data) => {
+        console.log(data);
         this.messages.push(data);
       });
+    },
+    likeMessage: function (id) {
+
+      api.likeMessage(this, id, (id) => {
+        console.log('return')
+        // console.log(this.messages);
+
+        this.messages.forEach(n => {
+          if (n.id === id) {
+            n.likes += 1; 
+          }
+        });
+      });
+    },
+    incrementMsglike: function (id) {
+
     }
   },
   watch: {

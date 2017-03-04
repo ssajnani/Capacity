@@ -13,11 +13,12 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>Name {{msg.name}}</strong>
+        <strong>{{msg.name}}</strong>
         <br>
-          Comment text, commenlaksdjflkasjdflksdjflkj {{msg.text}}
+          {{msg.text}}
         <br>
-        <small v-if="user.authenticated"><a v:on-click="likeMessage(msg.id)" >Like</a> · </small>
+        <small v-if="user.authenticated"><a v-on:click="likeMessage(msg.id)" >Like</a> · </small>
+        <small>{{msg.likes}} likes · </small>
         <small>Time {{msg.time}}</small>
       </p>
     </div>
@@ -35,9 +36,7 @@
     <p class="control">
       <textarea class="textarea" v-model="comment" placeholder="Add a comment..."></textarea>
     </p>
-    <p class="control">
-      <button class="button" v:on-click="postMessage">Post comment</button>
-    </p>
+      <button class="button" v-bind:class="{ 'is-disabled': (comment=='') }"v-on:click="submitMessage">Post comment</button>
   </div>
 </article>
 </div>
@@ -57,17 +56,17 @@ export default {
   methods: {
     likeMessage: function (id) {
       /* EMIT LIKE EVENT TO PARENT WITH MESSAGE ID */
+      this.$emit('likeMessage', id);
     },
-    postMessage: function (message) {
+    submitMessage: function (message) {
       /* EMIT POST EVENT TO PARENT WITH TEXT */
       /* return 'this.comment' as the parameter */
       /* reset this.comment value to empty string */
+      const text = this.comment;
+      this.comment = '';      
 
-      this.comment = '';
-
-      console.log('LKAJLAKJFLK');
       this.$emit('postMessage',{
-        text: this.comment,
+        text: text,
         user: auth.user
       });
 

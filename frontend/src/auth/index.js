@@ -108,8 +108,9 @@ export default {
     //
     let un = localStorage.getItem('username');
     if (un) {
+      console.log(un);
       this.user.username = un;
-      this.authenticated = true;
+      this.user.authenticated = true;
     }
     //
   },

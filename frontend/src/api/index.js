@@ -17,18 +17,21 @@ const gmaps = {
 
 export default {
 
-
-
   getPlace (context, place_id, callback) {
     //
     let ls_m = {};
     if (localStorage.msgs) {
-      ls_p = JSON.parse(localStorage.getItem(msgs));
+      ls_m = JSON.parse(localStorage.getItem('msgs'));
     }
-    // const msgs = 
-    // callback({ messages: });
+    let msgs = Object.keys(ls_m);
+    let place_msgs_ids = msgs.filter(msg => ls_m[msg].place == place_id);
+    console.log(place_msgs_ids);
+
+    let place_msgs = [];
+    place_msgs_ids.forEach(msg_id => place_msgs.push(ls_m[msg_id]));
+    console.log(place_msgs);
+    callback({ messages: place_msgs });
     return;
-      // callback();
     //
 
 
@@ -47,9 +50,14 @@ export default {
     //
     let ls_m = {};
     if (localStorage.msgs) {
-      ls_p = JSON.parse(localStorage.getItem(msgs));
+      ls_m = JSON.parse(localStorage.getItem('msgs'));
     }
-    // callback({ messages: });
+
+    ls_m[message_id]['likes'] += 1;
+
+    localStorage.setItem('msgs', JSON.stringify(ls_m));
+    console.log('like saved');
+    callback(message_id);
     return;
     //
 
@@ -68,12 +76,13 @@ export default {
     //
     let ls_m = {};
     if (localStorage.msgs) {
-      ls_m = JSON.parse(localStorage.getItem(msgs));
+      ls_m = JSON.parse(localStorage.getItem('msgs'));
     }
     const id = Object.keys(ls_m).length;
     ls_m[id] = {
-      id: id, place: place_id, likes: 0, text: msg.text, user: msg.user 
+      id: id, place: place_id, likes: 0, text: msg.text, name: msg.user.username 
     };
+    console.log(msg);
 
     localStorage.setItem('msgs', JSON.stringify(ls_m));
     callback(ls_m[id]);
