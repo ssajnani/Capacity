@@ -72,13 +72,17 @@ export default {
       this.$emit('closeModal');
     },
     signUp: function () {
-      this.username;
-      this.password;
       this.is_submitting = true;
 
       auth.signup(this, {username:this.username, password:this.password},
-        (data) => {
-          console.log(data);
+        success => {
+          console.log(success);
+          this.closeModal();
+            alert("You've successfully signed up! Please login.");
+        }, error => {
+          console.log(error);
+          this.closeModal();
+          alert(error.data.error);
         });
     }
   }

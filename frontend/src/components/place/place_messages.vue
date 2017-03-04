@@ -58,10 +58,19 @@ export default {
     likeMessage: function (id) {
       /* EMIT LIKE EVENT TO PARENT WITH MESSAGE ID */
     },
-    postMessage: function () {
+    postMessage: function (message) {
       /* EMIT POST EVENT TO PARENT WITH TEXT */
       /* return 'this.comment' as the parameter */
       /* reset this.comment value to empty string */
+
+      this.comment = '';
+
+      console.log('LKAJLAKJFLK');
+      this.$emit('postMessage',{
+        text: this.comment,
+        user: auth.user
+      });
+
     }
   }
 }

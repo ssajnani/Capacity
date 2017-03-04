@@ -43,6 +43,7 @@ import api from '../api'
 import navbar from '../components/navbar.vue'
 // import footerbar from '../components/footer.vue'
 
+// All the sub-components
 import place_map from '../components/place/place_map.vue'
 import place_recommend from '../components/place/place_recommend.vue'
 import place_messages from '../components/place/place_messages.vue'
@@ -78,6 +79,7 @@ export default {
   created: function () {
     console.log('place id: ' + this.place_id);
 
+    // Calls google maps for place details
     this.gmaps = new google.maps.places.PlacesService(document.createElement('div'));
 
     this.gmaps.getDetails({ placeId: this.place_id }, (data, status) => {
@@ -100,13 +102,22 @@ export default {
         // Handle error
       }
     });
-    // Backend: messages, graph data, recommendations
-    // this.$http.get();
+
+    // Calls backend for messages, data
+    api.getPlace(this, this.place_id, result => {
+      this.messages = result.data.messages.filter(i => i==null);
+      console.log(this.messages);
+    })
 
   },
   methods: {
     goToPlace: function (id) {
       // For recommended places
+    },
+    postMessage: function (msg) {
+      api.postMessage(this, msg, place_id, (data) => {
+        this.messages.push(data);
+      });
     }
   },
   watch: {

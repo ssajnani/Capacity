@@ -46,6 +46,8 @@
 </style>
 
 <script>
+import auth from '../../auth'
+
 export default {
   name: 'nav_login',
   props: ['visible'],
@@ -72,6 +74,16 @@ export default {
     // Sends login request to API
     logIn: function () {
       this.is_submitting = true;
+
+      auth.login(this, {username:this.username, password:this.password},
+        success => {
+          console.log(success);
+          alert("You're logged in!");
+          this.closeModal();
+        }, error => {
+          alert(error.data.error);
+          this.closeModal();
+        });
     }
   }
 }

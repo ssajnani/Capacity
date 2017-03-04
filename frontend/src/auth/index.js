@@ -11,42 +11,92 @@ export default {
   
   // User object will let us check authentication status
   user: {
-    authenticated: false
+    authenticated: false,
+    username: null
   },
 
   // Send a request to the login URL and save the returned JWT
-  signup(context, creds, callback) {
+  signup(context, creds, callback, error) {
+
+    //
+    let ls_u = {};
+    if (localStorage.users) {
+      ls_u = JSON.parse(localStorage.getItem('users'));
+    }
+
+    if (ls_u.hasOwnProperty(creds.username)) {
+      error({
+        data: {
+          error: "A user already exists with that name"
+        }
+      })
+    } else {
+      this.user.username = creds.username;
+      ls_u[creds.username] = creds.password;
+      localStorage.setItem('users', JSON.stringify(ls_u));
+      callback({});
+    }
+    return;
+    ///
 
     const url = SIGNUP_URL + "?username=" + creds.username
       + "&password="+creds.password;
-    context.$http.post(url, {}, (data) => {
-      callback(data);
 
-    })
+
+    context.$http.post(url).then(callback, error);
   },
 
   // Send a request to the login URL and save the returned JWT
-  login(context, creds, redirect) {
-    context.$http.post(LOGIN_URL, creds, (data) => {
-      localStorage.setItem('id_token', data.id_token)
+  login(context, creds, success, failure) {
 
-      this.user.authenticated = true
+    //
+    let ls_u = {};
+    if (localStorage.users) {
+      ls_u = JSON.parse(localStorage.getItem('users'));
+    }
 
-      // Redirect to a specified route
-      if(redirect) {
-        router.go(redirect)        
+    if (ls_u.hasOwnProperty(creds.username) && ls_u[creds.username] == creds.password) {
+      this.user.username = creds.username;
+      localStorage.setItem('username', creds.username);
+      this.user.authenticated = true;
+      success({});
+    } else {
+      failure({
+        data: {
+          error: "Invalid Login!"
+        }
+      })
+    }
+    return;
+    //
+
+    context.$http.post(LOGIN_URL, creds, {
+      method: 'POST',
+      credentials: false,
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
       }
-
-    })
+    }).then(succ => {
+      localStorage.setItem('id_token', data.id_token)
+      this.user.authenticated = true;
+      success(succ);
+    }, failure)
   },
 
   // To log out, we just need to remove the token
   logout() {
     localStorage.removeItem('id_token')
     this.user.authenticated = false
+
+    //
+    localStorage.removeItem('username');
+    this.user.username = null;
+    //
   },
 
   checkAuth() {
+    console.log('hey!');
     var jwt = localStorage.getItem('id_token')
     if(jwt) {
       this.user.authenticated = true
@@ -54,6 +104,14 @@ export default {
     else {
       this.user.authenticated = false      
     }
+
+    //
+    let un = localStorage.getItem('username');
+    if (un) {
+      this.user.username = un;
+      this.authenticated = true;
+    }
+    //
   },
 
   // The object to be passed as a header for authenticated requests
