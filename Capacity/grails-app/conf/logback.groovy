@@ -5,6 +5,8 @@ import org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverte
 
 import java.nio.charset.Charset
 
+//Used to develop a log and display the stacktrace
+
 conversionRule 'clr', ColorConverter
 conversionRule 'wex', WhitespaceThrowableProxyConverter
 

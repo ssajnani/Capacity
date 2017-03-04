@@ -5,20 +5,27 @@ import groovy.transform.ToString
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
+/*UserRole Class
+
+Developed by spring to define a user
+ */
 @ToString(cache=true, includeNames=true, includePackage=false)
 class UserRole implements Serializable {
 
+	//Attribute Declarations
 	private static final long serialVersionUID = 1
 
 	User user
 	Role role
 
+	//Constructor: Combines user and role into a userrole object
 	UserRole(User u, Role r) {
 		this()
 		user = u
 		role = r
 	}
 
+	//Checks if two UserRoles are equal
 	@Override
 	boolean equals(other) {
 		if (!(other instanceof UserRole)) {
@@ -28,6 +35,7 @@ class UserRole implements Serializable {
 		other.user?.id == user?.id && other.role?.id == role?.id
 	}
 
+	//Generates hashcodes for users and roles
 	@Override
 	int hashCode() {
 		def builder = new HashCodeBuilder()
@@ -36,14 +44,17 @@ class UserRole implements Serializable {
 		builder.toHashCode()
 	}
 
+	//gets a UserRole based on a userID and roleID
 	static UserRole get(long userId, long roleId) {
 		criteriaFor(userId, roleId).get()
 	}
 
+	//Checks if a UserRole exists for a userID and roleID
 	static boolean exists(long userId, long roleId) {
 		criteriaFor(userId, roleId).count()
 	}
 
+	//Checkes for all UserRoles based on a criteria
 	private static DetachedCriteria criteriaFor(long userId, long roleId) {
 		UserRole.where {
 			user == User.load(userId) &&
@@ -51,12 +62,14 @@ class UserRole implements Serializable {
 		}
 	}
 
+	//Creates a new user role by taking a user and role
 	static UserRole create(User user, Role role, boolean flush = false) {
 		def instance = new UserRole(user: user, role: role)
 		instance.save(flush: flush, insert: true)
 		instance
 	}
 
+	//Remove a user role by taking a user and role
 	static boolean remove(User u, Role r, boolean flush = false) {
 		if (u == null || r == null) return false
 
@@ -67,6 +80,7 @@ class UserRole implements Serializable {
 		rowCount
 	}
 
+	//Remove all user roles with a specific user
 	static void removeAll(User u, boolean flush = false) {
 		if (u == null) return
 
@@ -75,6 +89,7 @@ class UserRole implements Serializable {
 		if (flush) { UserRole.withSession { it.flush() } }
 	}
 
+	//Remove all user roles with a specific role
 	static void removeAll(Role r, boolean flush = false) {
 		if (r == null) return
 
@@ -96,6 +111,7 @@ class UserRole implements Serializable {
 		}
 	}
 
+	//Relationship to users
 	static hasMany = [users:User]
 
 	static mapping = {
