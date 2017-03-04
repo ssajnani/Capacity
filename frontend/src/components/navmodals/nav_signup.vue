@@ -46,6 +46,9 @@
 </style>
 
 <script>
+
+import auth from '../../auth'
+
 export default {
   name: 'nav_signup',
   props: ['visible'],
@@ -72,6 +75,11 @@ export default {
       this.username;
       this.password;
       this.is_submitting = true;
+
+      auth.signup(this, {username:this.username, password:this.password},
+        (data) => {
+          console.log(data);
+        });
     }
   }
 }
