@@ -49,6 +49,9 @@ class User implements Serializable {
 		password blank: false
 	}
 
+	static hasMany =[messages:Message]
+	static hasOne = [role: UserRole]
+
 	static mapping = {
 		password column: '`password`'
 	}

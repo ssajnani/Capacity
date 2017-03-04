@@ -96,6 +96,8 @@ class UserRole implements Serializable {
 		}
 	}
 
+	static hasMany = [users:User]
+
 	static mapping = {
 		id composite: ['user', 'role']
 		version false

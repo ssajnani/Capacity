@@ -33,6 +33,9 @@ class Message {
         return googleID
     }
 
+    static belongsTo = [place:Place]
+    static hasOne = [user:User]
+
     static constraints = {
         messageID blank: false, unique: true, nullable: false
         userName blank: false, nullable: false

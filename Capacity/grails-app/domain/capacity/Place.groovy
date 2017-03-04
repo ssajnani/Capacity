@@ -20,6 +20,8 @@ class Place {
         current = current + 1
     }
 
+    static hasMany = [messages:Message]
+
     static constraints = {
         googleID blank: false, nullable: false
     }
