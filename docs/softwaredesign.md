@@ -8,7 +8,11 @@ This is the current UML diagram for our project with model and controller classe
 
 <img src="pics/uml.jpg" width="3000">
 
-This diagram was created using Gliffy and edited using Adobe Photoshop.
+This is our UML diagram for Stage 2 with our model and controller classes.
+
+<img src="pics/uml2.jpg" width="3000">
+
+These diagrams were created using Gliffy and edited using Adobe Photoshop.
 
 <a href="#top">Back to Top</a>
 
