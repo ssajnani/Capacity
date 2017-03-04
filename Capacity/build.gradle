@@ -44,11 +44,7 @@ configurations.all {
 
 
 dependencies {
-<<<<<<< HEAD
-
-=======
     compile "org.grails.plugins:grails3-cors-interceptor:1.2.1"
->>>>>>> d83f64264bd6d7d4696c670c04a3df315e948737
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.grails:grails-core"
