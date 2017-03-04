@@ -28,7 +28,7 @@ export default {
         scrollwheel: true,
         mapTypeControl: false,
         streetViewControl: false,
-        zoom: 11,
+        zoom: 12,
         maxZoom: 17,
         minZoom: 11,
         styles: [
