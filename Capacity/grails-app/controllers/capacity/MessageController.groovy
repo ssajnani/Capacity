@@ -2,17 +2,22 @@ package capacity
 
 import grails.rest.RestfulController
 
-class MessageController extends RestfulController {
+/*Message Controller
 
+Used to generate a connection between the messages in the
+front end that are recieved via URL_mappings
+ */
+class MessageController extends RestfulController {
+    //Random number used to generate a messageID
     Random random = new Random()
     static responseFormats = ['json', 'xml']
 
+    //Constructor
     MessageController() {
         super(Message)
     }
 
     def index() {
-        // unsure what this does
     }
 
     // Method to create message.

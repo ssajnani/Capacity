@@ -3,6 +3,11 @@ package capacity
 import grails.rest.RestfulController
 import grails.converters.JSON
 
+/*Place Controller
+
+Used to generate a connection between the places/google Maps in the
+front end that are recieved via URL_mappings to a function
+ */
 class PlaceController extends RestfulController{
 
     //static allowedMethods = ['getPlaceInfo']

@@ -3,6 +3,11 @@ package capacity
 import grails.transaction.Transactional
 import capacity.OptionalCategory
 
+/*SignUp Service
+
+Used to signUp a user, by giving it a role and save it to the database
+ */
+
 class UserService {
 
     public static final String ROLE_USER = 'ROLE_USER'
