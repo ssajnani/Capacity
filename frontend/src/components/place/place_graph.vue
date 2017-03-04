@@ -8,7 +8,7 @@
 <style type="text/css">
 #timeChart {
   width: 100%;
-  height: 800px;
+  height: 500px;
 }
 </style>
 

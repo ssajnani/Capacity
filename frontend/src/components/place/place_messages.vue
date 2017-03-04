@@ -1,6 +1,8 @@
 <template lang="html">
 <div>
+<h1 class="title">Comments</h1>
 <!-- FOR ALL CURRENT COMMENTS -->
+
 <article class="media" v-for="msg in messages">
   <figure class="media-left">
     <p class="image is-64x64">
@@ -13,16 +15,17 @@
       <p>
         <strong>Name {{msg.name}}</strong>
         <br>
-        Message {{msg.text}}
+          Comment text, commenlaksdjflkasjdflksdjflkj {{msg.text}}
         <br>
-        <small><a v:on-click="likeMessage(msg.id)">Like</a> · Time {{msg.time}}</small>
+        <small v-if="user.authenticated"><a v:on-click="likeMessage(msg.id)" >Like</a> · </small>
+        <small>Time {{msg.time}}</small>
       </p>
     </div>
   </div>
 </article>
 
 <!-- POST COMMENT -->
-<article class="media">
+<article class="media" v-if="user.authenticated">
   <figure class="media-left">
     <p class="image is-64x64">
       <img src="http://bulma.io/images/placeholders/128x128.png">
@@ -41,11 +44,13 @@
 </template>
 
 <script>
+import auth from '../../auth'
 export default {
   name: 'place_messages',
   props: ['messages'],
   data: function () {
     return {
+      user: auth.user,
       comment: ''
     }
   },
@@ -53,10 +58,19 @@ export default {
     likeMessage: function (id) {
       /* EMIT LIKE EVENT TO PARENT WITH MESSAGE ID */
     },
-    postMessage: function () {
+    postMessage: function (message) {
       /* EMIT POST EVENT TO PARENT WITH TEXT */
       /* return 'this.comment' as the parameter */
       /* reset this.comment value to empty string */
+
+      this.comment = '';
+
+      console.log('LKAJLAKJFLK');
+      this.$emit('postMessage',{
+        text: this.comment,
+        user: auth.user
+      });
+
     }
   }
 }
