@@ -15,6 +15,17 @@ export default {
   },
 
   // Send a request to the login URL and save the returned JWT
+  signup(context, creds, callback) {
+
+    const url = SIGNUP_URL + "?username=" + creds.username
+      + "&password="+creds.password;
+    context.$http.post(url, {}, (data) => {
+      callback(data);
+
+    })
+  },
+
+  // Send a request to the login URL and save the returned JWT
   login(context, creds, redirect) {
     context.$http.post(LOGIN_URL, creds, (data) => {
       localStorage.setItem('id_token', data.id_token)
@@ -26,8 +37,6 @@ export default {
         router.go(redirect)        
       }
 
-    }).error((err) => {
-      context.error = err
     })
   },
 
