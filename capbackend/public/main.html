@@ -1,0 +1,25 @@
+<div class="clearfix">
+			<div ng-controller="EventArgumentsController as vm" ng-show = "authenticated">
+		      Assigning arguments in UI events
+		      <br/>
+		      Click map to place markers
+		      <ng-map zoom="7" center="46.363882, -84.044922" on-click="vm.placeMarker()" & "post()" map-type-id ='satellite' ng-show = "authenticated">
+		      </ng-map>
+		    </div>
+
+  <form ng-Submit="post()" ng-show="authenticated">
+    <h4>{{current_user}}'s Event List</h4>
+    <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
+    <input class="btn submit-btn pull-right" type="submit" value="Post!" />
+  </form>
+</div>
+<div id="post-stream">
+	<h4 ng-show= "authenticated">Post Feed</h4>
+		<div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'" ng-show="authenticated"> 
+			<p>{{post.text}}</p>
+			<small>Posted by @{{post.created_by}}</small>
+			<small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+		</div>
+</div>
+
+

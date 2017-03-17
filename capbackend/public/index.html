@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Mapsical</title>
+	</head>
+	<body ng-app="mapsical">
+		<div id='main' class="container">
+			<nav class="navbar-fluid navbar-default navbar-fixed-top">
+				<div class="container">
+					<a class="navbar-brand" href="#"> Mapsical </a>
+					<p class="navbar-text"></p>
+					<p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/signup">Sign Up</a></p>
+					<p class="navbar-right navbar-text" ng-show="authenticated"><a href = "./index.html" ng-click="signout()">Logout</a></p>
+					<p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>
+				</div>
+			</nav>
+			<p style="text-align:center"><img src="mapsical.png" alt="Mapsical Logo" style="width:600px;height:175px;"  ng-hide = "authenticated" margin: 0 auto></p>
+			<div class="col-md-offset-2 col-md-8">
+				<div ng-view>
+				</div>
+			</div>
+		</div>
+
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.js"></script>
+		<script src="javascripts/mapsical.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="stylesheets/style.css">
+		<script src = "./ng-map.min.js"></script>
+
+	</body>
+</html>

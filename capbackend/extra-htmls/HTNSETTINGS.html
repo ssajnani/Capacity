@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+     
+    #fixedbuttonleft {position: fixed;
+    bottom: 10px;
+            right: 50px; }
+        #fixedbuttonright {position: fixed;
+        bottom:10px;
+        right:10px;
+    }
+    #logo {position:fixed;
+    bottom: 10px;
+    width:100px;
+    height:100px; 
+    }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #585858;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+    float: right;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+</style>
+</head>
+<body>
+<img src="mapsicallogo.png" id="logo"/>
+    
+<button type="button" onclick="alert('Add a map!')" id="fixedbuttonleft">+</button>
+        <button type="button" onclick="alert('Remove a map!')" id="fixedbuttonright">-</button>
+<ul>
+  <li><a class="active" href="#">MAP 1</a></li>
+  <li><a href="#">MAP 2</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn" onclick="myFunction()">Account</a>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="HTNLOGIN.html">Log Out</a>
+      <a href="HTNSETTINGS.html">Settings</a>
+      <a href="#">Connect</a>
+    </div>
+  </li>
+</ul>
+
+    <center><h1>SETTINGS</h1></center>
+    <p></p>
+    <p></p><center><h5><a href="HTNPWCHANGE.html">Change Password</a></h5></center>
+    <center><h5><a href="HTNremoveaccount.html">Deactivate Account</a></h5></center>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var d = 0; d < dropdowns.length; d++) {
+      var openDropdown = dropdowns[d];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
