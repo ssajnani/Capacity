@@ -16,9 +16,9 @@
     <router-link :to="{ name: 'place', params: { id: place.id }}">
       <div class="content">
         <p>
-          <strong>Name {{place.name}}</strong>
-          Location {{place.location}}<br>
-          <em>Rating {{place.rating}}</em>
+          <strong> {{place.name}}</strong>
+          {{place.location}}<br>
+          <em>Rating: {{place.rating}}</em>
         </p>
       </div>
     </router-link>

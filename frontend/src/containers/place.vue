@@ -64,12 +64,7 @@ export default {
     /* Make some dummy data for now... */
     return {
       messages: null,
-      recommended: {
-        name: null,
-        address: null,
-        rating: null
-      },
-
+      recommended: null,
       name: '',
       coords: {
         lat: null,
@@ -94,7 +89,7 @@ export default {
         console.log(data);
         this.name = data.name;
         this.address = data.formatted_address;
-        this.type = data.type;
+       // this.type = data.types[0];
         const lat = data.geometry.location.lat();
         const lng = data.geometry.location.lng();
 
@@ -104,25 +99,24 @@ export default {
         };
 
         console.log(this.coords);
-      } else {
+        this.gmaps.nearbySearch({location: this.coords, radius: 500, type: this.type, openNow: true}, (data, status) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+              this.recommended = data;
+            console.log(this.recommended.name); 
+          } 
+          else {
         // Handle error
-      }
-    });
-
-    this.gmaps.nearbySearch({location: this.coords, radius: 500, type: this.type, openNow: true}, (data, status) => {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for(var i; i <= 5; i++){
-            this.recommended.name = data[i].name; 
-            this.recommended.address = data[i].formatted_address;
-            this.recommended.rating = data[i].rating
-            console.log(this.recommended.name);
-        }
-        
+          }
+        });  
       }
       else{
         //Handle error
       }
-     } );
+     });
+      
+
+   
+
     
     
 
