@@ -99,7 +99,14 @@ export default {
         };
 
         console.log(this.coords);
-        this.gmaps.nearbySearch({location: this.coords, type: this.type, openNow: true, rankBy: google.maps.places.RankBy.DISTANCE}, (data, status) => {
+        
+        this.gmaps.nearbySearch({
+            location: this.coords,
+            type: this.type,
+            radius: 5000,
+            openNow: true,
+            rankBy: google.maps.places.RankBy.PROMINENCE
+          }, (data, status) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
               this.recommended = data;
             console.log(this.recommended.name); 
