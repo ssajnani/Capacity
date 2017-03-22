@@ -64,13 +64,19 @@ export default {
     /* Make some dummy data for now... */
     return {
       messages: null,
-      recommended: null,
+      recommended: {
+        name: null,
+        address: null,
+        rating: null
+      },
+
       name: '',
       coords: {
         lat: null,
         lng: null
       },
       address: '',
+      type: null,
       rating: null,
       place_id: this.$route.params.id,
       gmaps: null,
@@ -88,7 +94,7 @@ export default {
         console.log(data);
         this.name = data.name;
         this.address = data.formatted_address;
-
+        this.type = data.type;
         const lat = data.geometry.location.lat();
         const lng = data.geometry.location.lng();
 
@@ -103,12 +109,30 @@ export default {
       }
     });
 
+    this.gmaps.nearbySearch({location: this.coords, radius: 500, type: this.type, openNow: true}, (data, status) => {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for(var i; i <= 5; i++){
+            this.recommended.name = data[i].name; 
+            this.recommended.address = data[i].formatted_address;
+            this.recommended.rating = data[i].rating
+            console.log(this.recommended.name);
+        }
+        
+      }
+      else{
+        //Handle error
+      }
+     } );
+    
+    
+
     // Calls backend for messages, data
     api.getPlace(this, this.place_id, result => {
       this.messages = result.messages;
       console.log(this.messages);
     })
 
+    
   },
   methods: {
     goToPlace: function (id) {
