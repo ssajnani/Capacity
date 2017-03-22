@@ -26,7 +26,7 @@
    
     </div>
     <div class="column">
-      <place_recommend :recommendations="recommended"></place_recommend>
+      <place_recommend :recommendations="recommended" v-on:goToPlace="goToPlace"></place_recommend>
     </div>
   </div>
 </div>
@@ -73,12 +73,19 @@ export default {
       address: '',
       type: null,
       rating: null,
-      place_id: this.$route.params.id,
+      place_id: null,
       gmaps: null,
     };
   },
+
   created: function () {
-    console.log('place id: ' + this.place_id);
+    this.updatePlace();
+    
+  },
+  methods: {
+    updatePlace: function(){
+      this.place_id = this.$route.params.id;
+      console.log('place id: ' + this.place_id);
 
     // Calls google maps for place details
     this.gmaps = new google.maps.places.PlacesService(document.createElement('div'));
@@ -119,13 +126,7 @@ export default {
       else{
         //Handle error
       }
-     });
-      
-
-   
-
-    
-    
+     });    
 
     // Calls backend for messages, data
     api.getPlace(this, this.place_id, result => {
@@ -133,10 +134,11 @@ export default {
       console.log(this.messages);
     })
 
-    
   },
-  methods: {
     goToPlace: function (id) {
+      console.log(id);
+      router.push({'name':'place', 'params':{'id':id}});
+
       // For recommended places
     },
     postMessage: function (msg) {
@@ -165,6 +167,8 @@ export default {
   },
   watch: {
     '$route' (to, from) {
+      console.log('asdf');
+      this.updatePlace();
       // react to route changes...
       // When the user goes to another page
     }
