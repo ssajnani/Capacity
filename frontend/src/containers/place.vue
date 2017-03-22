@@ -89,7 +89,7 @@ export default {
         console.log(data);
         this.name = data.name;
         this.address = data.formatted_address;
-       // this.type = data.types[0];
+        this.type = data.types[0];
         const lat = data.geometry.location.lat();
         const lng = data.geometry.location.lng();
 
@@ -99,7 +99,7 @@ export default {
         };
 
         console.log(this.coords);
-        this.gmaps.nearbySearch({location: this.coords, radius: 500, type: this.type, openNow: true}, (data, status) => {
+        this.gmaps.nearbySearch({location: this.coords, type: this.type, openNow: true, rankBy: google.maps.places.RankBy.DISTANCE}, (data, status) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
               this.recommended = data;
             console.log(this.recommended.name); 
