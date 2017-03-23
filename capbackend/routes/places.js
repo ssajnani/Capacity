@@ -39,8 +39,8 @@ router.route('/createPlace')
 
 router.route('/id')
     // get place by object ID
-    .post(function(req, res){
-        Place.find({'googleID':req.body.googleID}, function(err, place){
+    .get(function(req, res){
+        Place.find({'googleID':req.query.googleID}, function(err, place){
             if(!place.length){
 		res.send("Place does not exist");	
 	    }else{
@@ -63,14 +63,15 @@ router.route('/id')
 		
             place[0]["heatMap"][m][n] += 1;
 	    	
-	    if(req.params.increment == "Y"){
-		   place.current += 1;
-	    }else if (req.params.increment == "N"){
-		   place.current -= 1;
+	    if(req.body.increment == "Y"){
+		   place[0].current += 1;
+	    }else if (req.body.increment == "N"){
+		   if(place[0].current > 0)
+		   	place[0].current -= 1;
 	    }
 
 
-	    place.save();
+	    place[0].save();
             res.json(place);
 
         });
