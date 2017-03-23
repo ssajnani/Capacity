@@ -106,8 +106,9 @@ export default {
         center: this.location,
         mapTypeControl: false,
         // streetViewControl: false,
-        zoom: 14,
+        // Higher zoom means closer view
         maxZoom: 16,
+        zoom:    14,
         minZoom: 12,
         // Styling for the Google Map, can be changed as necessary
         styles: [
@@ -266,6 +267,7 @@ export default {
         // King Richie's 43.0082° N, 81.2606° W
         // Saugeen-Maitland Hall 43.0115° N, 81.2793° W
         // 7/11 43.0016° N, 81.2768° W
+
         // var suggestedLocations = [
         //   {lat: 43.0082, lng: -81.2606},
         //   {lat: 43.0115, lng: -81.2793},
@@ -305,12 +307,12 @@ export default {
       ];
 
       // Initialize heatmap and other layers
-      this.heatmap = new google.maps.visualization.HeatmapLayer({
-        data: heatmapData
-      });
-      this.trafficLayer = new google.maps.TrafficLayer();
-      this.transitLayer = new google.maps.TransitLayer();
-      this.bikeLayer = new google.maps.BicyclingLayer();
+        this.heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData
+        });
+        this.trafficLayer = new google.maps.TrafficLayer();
+        this.transitLayer = new google.maps.TransitLayer();
+        this.bikeLayer = new google.maps.BicyclingLayer();
 
       // Options for heatmap
         this.heatmap.set('radius', 30);
