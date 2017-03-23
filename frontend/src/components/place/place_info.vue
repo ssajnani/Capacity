@@ -4,6 +4,7 @@
   <p class="title is-3">{{ name }}</p>
   <p class="subtitle is-6">{{ address }}</p>
   <p><em>Rating</em></p>
+  <a class="button is-black" v-on:click="checkIn()"> Check In</a>
 </div>
 </template>
 
@@ -18,6 +19,9 @@ export default {
     }
   },
   methods: {
+    checkIn: function(){
+      this.$emit('checkIn');
+    }
   }
 }
 </script>
