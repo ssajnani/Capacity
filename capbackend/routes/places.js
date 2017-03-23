@@ -5,14 +5,6 @@ var Place = mongoose.model('Place');
 
 router.route('/createPlace')
     
-// get place by object ID
-    .post(function (req, res) {
-        Place.find({'googleID': req.body.googleID}, function (err,
-                                                              place) {
-            if (!place.length) {
-                var place = new Place();
-                place.googleID = req.body.googleID;
-
     // get place by object ID
     .post(function(req, res){
         	Place.find({'googleID': req.body.googleID}, function(err, place){
@@ -39,8 +31,8 @@ router.route('/createPlace')
 
 router.route('/id')
     // get place by object ID
-    .post(function(req, res){
-        Place.find({'googleID':req.body.googleID}, function(err, place){
+    .get(function(req, res){
+        Place.find({'googleID':req.query.googleID}, function(err, place){
             if(!place.length){
 		res.send("Place does not exist");	
 	    }else{
