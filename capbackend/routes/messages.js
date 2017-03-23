@@ -22,7 +22,7 @@ function isAuthenticated (req, res, next) {
     return res.redirect('/#login');
 }
 
-//Register the authentication middleware
+// Register the authentication middleware
 router.use('/createMessage', isAuthenticated);
 
 router.route('/createMessage')
@@ -33,7 +33,7 @@ router.route('/createMessage')
         var message = new Message();
         message.text = req.body.text;
         message.createdBy = req.body.createdBy;
-        message._id = randomstring.generate();
+        message.id = randomstring.generate();
         message.googleID = req.body.googleID;
         message.save(function(err, message) {
             if (err){
@@ -43,6 +43,7 @@ router.route('/createMessage')
         });
     });
 
+// Register authentication middleware
 router.use('/messages/id', isAuthenticated);
 
 router.route('/messages/id')
@@ -66,10 +67,10 @@ router.route('/messages/id')
                 message.isReported = true;
 
             else if(req.params.voteType == 'upvote')
-                message.voteCount = message.voteCount + 1;
+                message.voteCount += 1;
 
             else if(req.params.voteType == 'downvote')
-                message.voteCount = message.voteCount - 1;
+                message.voteCount -= 1;
 
             message.save(function(err, message){
                 if(err)
@@ -91,14 +92,12 @@ router.route('/messages/id')
         });
     });
 
-// get all messages
+// get all messages for place
 router.route('/messages')
 
-    // gets all posts
+    // gets all messages per place
     .get(function(req, res){
-        console.log('debug1');
         Message.find({googleID: req.params.googleID}, function(err, messages){
-            console.log('debug2');
             if(err) {
                 return res.send(500, err);
             }
