@@ -23,18 +23,19 @@ function isAuthenticated (req, res, next) {
 }
 
 // Register the authentication middleware
-router.use('/createMessage', isAuthenticated);
+//router.use('/messages/createMessage', isAuthenticated);
 
-router.route('/createMessage')
+router.route('/messages/createMessage')
 
     // creates a new message
     .post(function(req, res){
-
+        console.log(req.query);
         var message = new Message();
-        message.text = req.body.text;
-        message.createdBy = req.body.createdBy;
+        message.text = req.query.text;
         message.id = randomstring.generate();
-        message.googleID = req.body.googleID;
+        message.reported = false;
+        message.googleID = req.query.googleID;
+        message.voteCount = 0;
         message.save(function(err, message) {
             if (err){
                 return res.send(500, err);
@@ -44,13 +45,13 @@ router.route('/createMessage')
     });
 
 // Register authentication middleware
-router.use('/messages/id', isAuthenticated);
+//router.use('/messages/id', isAuthenticated);
 
 router.route('/messages/id')
 
     // get message by object ID
     .get(function(req, res){
-        Message.findById(req.params.id, function(err, message){
+        Message.find(req.query.id, function(err, message){
             if(err)
                 res.send(err);
             res.json(message);
@@ -59,17 +60,17 @@ router.route('/messages/id')
 
     // upvotes specific message
     .put(function(req, res){
-        Message.findById(req.params.id, function(err, message){
+        Message.find(req.query.id, function(err, message){
             if(err)
                 res.send(err);
 
-            if(req.params.voteType == 'report')
+            if(req.query.voteType == 'report')
                 message.isReported = true;
 
-            else if(req.params.voteType == 'upvote')
+            else if(req.query.voteType == 'upvote')
                 message.voteCount += 1;
 
-            else if(req.params.voteType == 'downvote')
+            else if(req.query.voteType == 'downvote')
                 message.voteCount -= 1;
 
             message.save(function(err, message){
@@ -84,7 +85,7 @@ router.route('/messages/id')
     // deletes the post
     .delete(function(req, res) {
         Message.remove({
-            _id: req.params.id
+            id: req.query.id
         }, function(err) {
             if (err)
                 res.send(err);
@@ -97,11 +98,13 @@ router.route('/messages')
 
     // gets all messages per place
     .get(function(req, res){
-        Message.find({googleID: req.params.googleID}, function(err, messages){
+        console.log(req.query.googleID);
+        Message.find({googleID: req.query.googleID}, function(err, messages){
+            console.log('trash');
             if(err) {
                 return res.send(500, err);
             }
-            return res.send(200, messages);
+            return res.json(200, messages);
         });
     });
 
