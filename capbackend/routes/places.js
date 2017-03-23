@@ -7,27 +7,26 @@ router.route('/createPlace')
 
     // get place by object ID
     .post(function(req, res){
-	if(Place.findById({googleID:req.body.googleID}).count() > 0){
-        	Place.findById({googleID: req.body.googleID} 
-,function(err, place){
-                        if (err){
-                                return res.send(500, err);
-                        }
-                        return res.json(place);
-		});
-	}
-	else{
-		var place = new Place();
-		place.googleID = req.body.googleID;
+        	Place.find({'googleID': req.body.googleID}, function(err, 
+place){
+                        if(!place.length){
+				var place = new Place();
+                		place.googleID = req.body.googleID;
 
-		place.save(function(err, place) {
-			if (err){
-				return res.send(500, err);
+                		place.save(function(err, place) {
+                        	if (err){
+                                	return res.send(500, err);
+                        	}
+                        	return res.json(place);
+				});
+			}else{
+
+				if (err){
+                                	return res.send(500, err);
+                        	}
+                        	return res.json(place);
 			}
-			return res.json(place);
 		});
-
-        }
     })
 
 
