@@ -9,8 +9,10 @@ var passport = require('passport');
 //initialize mongoose schemas
 require('./models/user');
 require('./models/message');
+require('./models/place');
 var index = require('./routes/index');
 var messages = require('./routes/messages');
+var places = require('./routes/places')
 var authenticate = require('./routes/authenticate')(passport);
 var mongoose = require('mongoose');                         //add for Mongo support
 mongoose.connect('mongodb://localhost/test-chirp');              //connect to Mongo
@@ -36,6 +38,7 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/auth', authenticate);
 app.use('/messages', messages);
+app.use('/places', places);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

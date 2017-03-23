@@ -1,27 +1,35 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Message = mongoose.model('Place');
+var Place = mongoose.model('Place');
 
 router.route('/createPlace')
 
-    // creates a new place
+    // get place by object ID
     .post(function(req, res){
-
-        var place = new Place();
-        place.googleID = req.body.googleID;
-	for(var a = 0; a < 7; a++){
-		for(var b = 0; b < 24; b++){
-			place.heatMap.a.b = 0;
-		}
+	if(Place.findById({googleID:req.body.googleID}).count() > 0){
+        	Place.findById({googleID: req.body.googleID} 
+,function(err, place){
+                        if (err){
+                                return res.send(500, err);
+                        }
+                        return res.json(place);
+		});
 	}
-        place.save(function(err, place) {
-            if (err){
-                return res.send(500, err);
-            }
-            return res.json(place);
-        });
-    });
+	else{
+		var place = new Place();
+		place.googleID = req.body.googleID;
+
+		place.save(function(err, place) {
+			if (err){
+				return res.send(500, err);
+			}
+			return res.json(place);
+		});
+
+        }
+    })
+
 
 router.route('/places/id')
 
@@ -44,11 +52,11 @@ router.route('/places/id')
 	    var n = d.getHours();
 	    var m = d.getDay();
 	    
-            place.heatMap.m.n += 1;
+            place.heatMap.m.toString().n.toString() += 1;
 		
 	    if(req.params.current == "Y"){
 		    place.current += 1;
-	    }else if{
+	    }else{
 		   place.current -= 1;
 	    }
 
