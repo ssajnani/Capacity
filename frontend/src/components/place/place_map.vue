@@ -17,9 +17,10 @@
     height: 400px;
     width: 100%;
   }
+  // Needs to disappear if street view is on
   #filters-panel {
     position: absolute;
-    z-index: 5;
+    z-index: 1;
     padding: 1%;
   }
 </style>
@@ -39,53 +40,53 @@ export default {
   },
   methods: {
     // var dataArray = [
-    //     [43.0082, -81.2606, new Date()],
-    //     [43.0115, -81.2793, new Date()],
-    //     [43.000286, -81.278336, new Date()],
-    //     [43.0022, -81.3000, new Date()]];
-       
-    // var todayArray = [];
-    // var weekArray = [];
-    // var monthArray = [];
+      //     [43.0082, -81.2606, new Date()],
+      //     [43.0115, -81.2793, new Date()],
+      //     [43.000286, -81.278336, new Date()],
+      //     [43.0022, -81.3000, new Date()]];
+         
+      // var todayArray = [];
+      // var weekArray = [];
+      // var monthArray = [];
 
-    // var i = 0;
+      // var i = 0;
 
-    // for (i = 0; i < dataArray.length; i++) {
-    //     var long = dataArray[i][0];
-    //     var lat =  dataArray[i][1]
-    //     var time = dataArray[i][2];
+      // for (i = 0; i < dataArray.length; i++) {
+      //     var long = dataArray[i][0];
+      //     var lat =  dataArray[i][1]
+      //     var time = dataArray[i][2];
 
-    //    var otherDate = new Date(time);
-    //     var otherDay = otherDate.getDay();
-    //     var otherMonth = otherDate.getMonth();
-    //     var otherYear = otherDate.getFullYear();
+      //    var otherDate = new Date(time);
+      //     var otherDay = otherDate.getDay();
+      //     var otherMonth = otherDate.getMonth();
+      //     var otherYear = otherDate.getFullYear();
 
 
-    //    var currentDate = new Date();
-    //     var day = currentDate.getDay();
-    //     var month = currentDate.getMonth();
-    //     var year = currentDate.getFullYear();
+      //    var currentDate = new Date();
+      //     var day = currentDate.getDay();
+      //     var month = currentDate.getMonth();
+      //     var year = currentDate.getFullYear();
 
-    //    // today, week, month
+      //    // today, week, month
 
-    //    if (day == otherDay && year == otherYear && month == otherMonth) { // today
-    //         todayArray.push({long, lat});
-    //     }
+      //    if (day == otherDay && year == otherYear && month == otherMonth) { // today
+      //         todayArray.push({long, lat});
+      //     }
 
-    //    if (month == otherMonth && year == otherYear) { // month
-    //         monthArray.push({long, lat});
-    //     }
-        
-    //     var diffDate = Math.abs(otherDate - currentDate);
-    //     var diffDays = (diffDate / 1000) / 60 / 60 / 24;
-    //     if (diffDays <= 7 && year == otherYear && month == otherMonth) { // week
-    //         weekArray.push({long, lat});
-    //     }
-    // }
+      //    if (month == otherMonth && year == otherYear) { // month
+      //         monthArray.push({long, lat});
+      //     }
+          
+      //     var diffDate = Math.abs(otherDate - currentDate);
+      //     var diffDays = (diffDate / 1000) / 60 / 60 / 24;
+      //     if (diffDays <= 7 && year == otherYear && month == otherMonth) { // week
+      //         weekArray.push({long, lat});
+      //     }
+      // }
 
-    // console.log(todayArray);
-    // console.log(monthArray);
-    // console.log(weekArray);
+      // console.log(todayArray);
+      // console.log(monthArray);
+      // console.log(weekArray);
 
     toggleHeatmap: function() {
       this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
@@ -101,11 +102,9 @@ export default {
     }, 
     initMap: function() {
       this.location = this.coords;
-      // Google Map options
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
         mapTypeControl: false,
-        // streetViewControl: false,
         // Higher zoom means closer view
         maxZoom: 16,
         zoom:    14,
@@ -117,8 +116,7 @@ export default {
             "elementType": "all",
             "stylers": [
               {
-                // "visibility": "off"
-                "visibility": "on"
+                "visibility": "simplified"
               }
             ]
           },
@@ -154,8 +152,7 @@ export default {
             "elementType": "all",
             "stylers": [
               {
-                // "visibility": "simplified"
-                "visibility": "on"
+                "visibility": "simplified"
               }
             ]
           },
@@ -164,7 +161,7 @@ export default {
             "elementType": "all",
             "stylers": [
               {
-                "visibility": "off"
+                "visibility": "simplified"
               },
               {
                 "weight": 0.6
@@ -191,8 +188,7 @@ export default {
             "elementType": "all",
             "stylers": [
               {
-                // "visibility": "simplified"
-                "visibility": "on"
+                "visibility": "simplified"
               }
             ]
           },
@@ -201,8 +197,7 @@ export default {
             "elementType": "all",
             "stylers": [
               {
-                // "visibility": "simplified"
-                "visibility": "on"
+                "visibility": "simplified"
               }
             ]
           },
@@ -211,8 +206,7 @@ export default {
             "elementType": "all",
             "stylers": [
               {
-                // "visibility": "simplified"
-                "visibility": "on"
+                "visibility": "simplified"
               }
             ]
           },
@@ -312,6 +306,7 @@ export default {
         });
         this.trafficLayer = new google.maps.TrafficLayer();
         this.transitLayer = new google.maps.TransitLayer();
+        this.transitLayer.setMap(null);
         this.bikeLayer = new google.maps.BicyclingLayer();
 
       // Options for heatmap
