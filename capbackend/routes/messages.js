@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var randomstring = require('randomstring');
 var Message = mongoose.model('Message');
 
 //Used for routes that must be authenticated.
@@ -32,6 +33,7 @@ router.route('/createMessage')
         var message = new Message();
         message.text = req.body.text;
         message.createdBy = req.body.createdBy;
+        message._id = randomstring.generate();
         message.googleID = req.body.googleID;
         message.save(function(err, message) {
             if (err){

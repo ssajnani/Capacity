@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 //initialize mongoose schemas
-require('./models/models');
+require('./models/user');
 require('./models/message');
 var index = require('./routes/index');
 var messages = require('./routes/messages');
