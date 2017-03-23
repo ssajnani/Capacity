@@ -31,7 +31,7 @@ router.route('/createMessage')
 
         var message = new Message();
         message.text = req.body.text;
-        message.createdBy = req.params.createdBy;
+        message.createdBy = req.body.createdBy;
         message.googleID = req.body.googleID;
         message.save(function(err, message) {
             if (err){
