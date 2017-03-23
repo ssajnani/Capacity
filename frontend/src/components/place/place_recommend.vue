@@ -7,7 +7,7 @@
 <article class="media" v-for="place in filtered" v-on:click="goTo(place.id)">
   <figure class="media-left">
       <p class="image is-64x64">
-        <img src="http://bulma.io/images/placeholders/128x128.png">
+        <img v-bind:src="place.photos[0].getUrl({maxWidth:128, maxHeight:128})">
       </p>
   </figure>
   <div class="media-content">
@@ -23,17 +23,28 @@
 </div>
 </template>
 
+<style>
+.image img{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+</style>
+
 <script>
 export default {
   name: 'place_recommend',
   props: ['recommendations'],
+  
   computed: {
       filtered: function(){
+
        if(this.recommendations == null) {
         return [];
       }
       else{
         return this.recommendations.slice(0,5);
+        //console.log(this.recommendations.icon);
 
       }
   }
@@ -42,6 +53,7 @@ export default {
 methods: {
   goTo: function(id){
     console.log(id);
+
     this.$emit("goToPlace", id);
   }
 }
