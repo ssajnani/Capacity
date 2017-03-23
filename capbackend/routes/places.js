@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Place = mongoose.model('Place');
 
 router.route('/createPlace')
-    
+
 // get place by object ID
     .post(function (req, res) {
         Place.find({'googleID': req.body.googleID}, function (err,
