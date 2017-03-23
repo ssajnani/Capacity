@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var randomstring = require('randomstring');
 var Message = mongoose.model('Message');
 
-//Used for routes that must be authenticated.
+// Used for routes that must be authenticated.
 function isAuthenticated (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler
     // Passport adds this method to request object. A middleware is allowed to add properties to
@@ -43,13 +43,13 @@ router.route('/createMessage')
         });
     });
 
-router.use('/messages/:id', isAuthenticated);
+router.use('/messages/id', isAuthenticated);
 
-router.route('/messages/:id')
+router.route('/messages/id')
 
     // get message by object ID
     .get(function(req, res){
-        Post.findById(req.params.id, function(err, message){
+        Message.findById(req.params.id, function(err, message){
             if(err)
                 res.send(err);
             res.json(message);
@@ -91,7 +91,7 @@ router.route('/messages/:id')
         });
     });
 
-// get all posts
+// get all messages
 router.route('/messages')
 
     // gets all posts
