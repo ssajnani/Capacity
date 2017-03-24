@@ -1,14 +1,18 @@
+//Add packages
 var mongoose = require('mongoose');
 var randomstring = require('randomstring');
 var Schema = mongoose.Schema;
 
+//Create a database model for place
+//Use a randomly generated integer from 0 - 999 for the defaults in the 
+//heatMap. The heatMap is a 2-D array [0-6][0-23]
 var placeSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now},
     googleID: String,
     heatMap: {
 	0: { 
 		0:{ type: Number, min: 0, default: 
-randomstring.generate({length: 3, charset: 'numeric'})},
+randomstring.generate({length: 3, charset: 'numeric'})}, 
 		1:{ type: Number, min: 0, default: 
 randomstring.generate({length: 3, charset: 'numeric'})},
 		2:{ type: Number, min: 0, default: 
