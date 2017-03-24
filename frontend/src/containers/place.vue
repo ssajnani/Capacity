@@ -79,18 +79,19 @@ export default {
   },
 
   created: function () {
+    this.gmaps = new google.maps.places.PlacesService(document.createElement('div'));
     this.updatePlace();
-    
   },
   methods: {
     updatePlace: function(){
       this.place_id = this.$route.params.id;
       console.log('place id: ' + this.place_id);
 
-    // Calls google maps for place details
-    this.gmaps = new google.maps.places.PlacesService(document.createElement('div'));
+    // Calls google maps for place getDetails
 
     this.gmaps.getDetails({ placeId: this.place_id }, (data, status) => {
+      console.log(status);
+      console.log(data);
 
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         console.log(data);
@@ -115,7 +116,9 @@ export default {
             rankBy: google.maps.places.RankBy.PROMINENCE
           }, (data, status) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-              this.recommended = data;
+              this.recommended = data.filter(place => {
+                return this.place_id == place.place_id;
+              });
             console.log(this.recommended.name); 
           } 
           else {
@@ -146,7 +149,7 @@ export default {
       //Add these coords to an array
       this.coords.lat;
       this.coords.lng;
-    }
+    },
     postMessage: function (msg) {
       console.log(msg)
       api.postMessage(this, msg, this.place_id, (data) => {
