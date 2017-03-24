@@ -1,7 +1,7 @@
 <template lang="html">
 <section class="hero is-fullheight">
   <div class="hero-head"><navbar></navbar></div>
-  <div class="hero-body">
+  <div id = "hero-body-id" class="hero-body">
     <div class="container">
 
       <div class="columns">
@@ -36,6 +36,19 @@
 
 <style scoped>
 
+.title {
+  color: white;
+}
+
+.hero .nav {
+  background-color: black;
+}
+
+.hero-body-id {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://placehold.it/350x150');
+  background-position: center top;
+}
+
 #search-bar {
   margin-bottom: 0;
 }
@@ -67,6 +80,10 @@ export default {
         lat: null,
         lng: null
       },
+      stock_images: [
+      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg',
+      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg',
+      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg'],
       search_text: '',
       search_rad: 10000,
       autocomplete: null,
@@ -101,6 +118,15 @@ export default {
     this.autocomplete = new google.maps.places.AutocompleteService();
 
   },
+  mounted: function() {
+    var stock_images_length = this.stock_images.length;
+    var stock_image = this.stock_images[Math.floor((Math.random() * stock_images_length) + 0)];
+    //document.body.style.backgroundImage = "url('" + stock_image + "')";
+    var img = document.createElement("img");
+    img.src = stock_image;
+    //document.getElementById("hero-body-id").style.backgroundImage = "url('" + stock_image + "')";
+    document.getElementById("hero-body-id").style.background = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('"+ stock_image +"')";
+  },
 
   // Fires off events on data changes
   watch: {
@@ -118,7 +144,7 @@ export default {
             radius: this.search_rad,
             types: ['establishment'],
             input: new_text
-          }, 
+          },
           (response, status) => {
 
             if (status != google.maps.places.PlacesServiceStatus.OK) {
