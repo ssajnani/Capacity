@@ -16,7 +16,6 @@ require('./models/message');
 require('./models/place');
 
 //Generate variables for routes
-var index = require('./routes/index');
 var messages = require('./routes/messages');
 var places = require('./routes/places');
 var authenticate = require('./routes/authenticate')(passport);
@@ -28,8 +27,7 @@ mongoose.connect('mongodb://localhost/Capacity');        //connect to Mongo data
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -51,10 +49,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Redirect routes to the controllers
-app.use('/', index);
 app.use('/auth', authenticate);
 app.use('/messages', messages);
 app.use('/places', places);
+
+app.get('*', function(req, res){
+	res.sendfile('./public/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
