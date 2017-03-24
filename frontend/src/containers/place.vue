@@ -11,6 +11,7 @@
       <place_info 
         :name="name"
         :address="address"
+        :rating="rating"
         >
       </place_info>
 
@@ -105,6 +106,7 @@ export default {
         this.name = data.name;
         this.address = data.formatted_address;
         this.type = data.types[0];
+        this.rating = data.rating;
         const lat = data.geometry.location.lat();
         const lng = data.geometry.location.lng();
 

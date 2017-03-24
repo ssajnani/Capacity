@@ -4,7 +4,7 @@
 
 <!-- SUGGESTED PLACE OBJECT -->
 <!-- REPEAT FOR EVERY SUGGESTED PLACE IN ARRAY -->
-<article class="media" v-for="place in filtered" v-on:click="goTo(place.place_id)">
+<a class="media" v-for="place in filtered" v-on:click="goTo(place.place_id)">
   <figure class="media-left">
       <p class="image is-64x64">
         <img v-bind:src="place.photos[0].getUrl({maxWidth:128, maxHeight:128})">
@@ -19,7 +19,7 @@
         </p>
       </div>
   </div>
-</article>
+</a>
 </div>
 </template>
 
