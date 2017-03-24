@@ -4,32 +4,58 @@
 
 <!-- SUGGESTED PLACE OBJECT -->
 <!-- REPEAT FOR EVERY SUGGESTED PLACE IN ARRAY -->
-<article class="media" v-for="place in recommendations">
+<article class="media" v-for="place in filtered" v-on:click="goTo(place.place_id)">
   <figure class="media-left">
-    <router-link :to="{ name: 'place', params: { id: place.id }}">
       <p class="image is-64x64">
-        <img src="http://bulma.io/images/placeholders/128x128.png">
+        <img v-bind:src="place.photos[0].getUrl({maxWidth:128, maxHeight:128})">
       </p>
-    </router-link>
   </figure>
   <div class="media-content">
-    <router-link :to="{ name: 'place', params: { id: place.id }}">
       <div class="content">
         <p>
-          <strong>Name {{place.name}}</strong>
-          Location {{place.location}}<br>
-          <em>Rating {{place.rating}}</em>
+          <strong> {{place.name}}</strong>
+          {{place.location}}<br>
+          <em>Rating: {{place.rating}}</em>
         </p>
       </div>
-    </router-link>
   </div>
 </article>
 </div>
 </template>
 
+<style>
+.image img{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+</style>
+
 <script>
 export default {
   name: 'place_recommend',
-  props: ['recommendations']
+  props: ['recommendations'],
+  
+  computed: {
+      filtered: function(){
+
+       if(this.recommendations == null) {
+        return [];
+      }
+      else{
+        return this.recommendations.slice(0,5);
+        //console.log(this.recommendations.icon);
+
+      }
+  }
+},
+
+methods: {
+  goTo: function(id){
+    console.log(id);
+
+    this.$emit("goToPlace", id);
+  }
+}
 }
 </script>
