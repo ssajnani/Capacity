@@ -126,9 +126,9 @@ export default {
       //Add these coords to an array
       this.coords.lat;
       this.coords.lng;
-    }
+    },
     postMessage: function (msg) {
-      console.log(msg)
+      console.log(msg);
       api.postMessage(this, msg, this.place_id, (data) => {
         console.log(data);
         this.messages.push(data);
