@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sudo pacman -S nodejs
+sudo pacman -S node-express
+sudo pacman -S mongodb
+
+npm install
+
+(sudo mongod --dbpath 'node_modules/mongodb' &)
+
+npm start
