@@ -16,7 +16,6 @@ require('./models/message');
 require('./models/place');
 
 //Generate variables for routes
-var index = require('./routes/index');
 var messages = require('./routes/messages');
 var places = require('./routes/places');
 var authenticate = require('./routes/authenticate')(passport);
@@ -26,6 +25,7 @@ mongoose.connect('mongodb://localhost/Capacity');        //connect to Mongo data
 
 //Needed to connect express to the app
 var app = express();
+
 
 // view engine setup
 // app.use(express.static(__dirname + '/public'));
@@ -50,8 +50,7 @@ app.use(passport.session());
 
 
 //Redirect routes to the controllers
-app.use(express.static('public'));
-app.use('/', index);
+app.use('/', express.static('public'));
 app.use('/auth', authenticate);
 app.use('/messages', messages);
 app.use('/places', places);

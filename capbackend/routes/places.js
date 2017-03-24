@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Place = mongoose.model('Place');
 
-router.route('/createPlace')
+router.route('/create')
 
     // Post request on route 'places/createPlace'
     .post(function(req, res){
