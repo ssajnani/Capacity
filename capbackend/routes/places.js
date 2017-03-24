@@ -36,6 +36,7 @@ router.route('/createPlace')
 router.route('/id')
     // get place by google ID
     .get(function(req, res){
+        console.log('tet');
         Place.find({'googleID':req.query.googleID}, function(err, place){
             //If there is no place say it does not exist
 	    if(!place.length){
