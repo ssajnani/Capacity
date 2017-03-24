@@ -1,0 +1,8 @@
+<div id="post-stream">
+	<h4 ng-show= "authenticated">Post Feed</h4>
+		<div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'" ng-show="authenticated"> 
+			<p>{{post.text}}</p>
+			<small>Posted by @{{post.created_by}}</small>
+			<small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+		</div>
+</div>

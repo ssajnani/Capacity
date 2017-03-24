@@ -1,0 +1,13 @@
+<div class="clearfix">
+
+<form ng-Submit="post()" ng-show="authenticated" ng-click = "list">
+    <h4>{{current_user}}'s Event List</h4>
+    <textarea required class="form-control" maxlength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
+    <input class="btn submit-btn pull-right" type="submit" value="Post!" />
+</form>
+	<input type="submit" value="list" class="btn btn-primary" />
+	<div ng-view>
+	</div>
+</div>
+
+
