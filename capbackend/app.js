@@ -18,6 +18,7 @@ require('./models/place');
 //Generate variables for routes
 var messages = require('./routes/messages');
 var places = require('./routes/places');
+var index = require('./routes/index');
 var authenticate = require('./routes/authenticate')(passport);
 
 var mongoose = require('mongoose');                         //add for Mongo support
@@ -54,6 +55,7 @@ app.use('/', express.static('public'));
 app.use('/auth', authenticate);
 app.use('/messages', messages);
 app.use('/places', places);
+app.use('*', index);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
