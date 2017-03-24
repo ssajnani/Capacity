@@ -28,40 +28,33 @@ export default {
   },
 
   getMessages (context, place_id, callback) {
-    const options = {
-      body: {
-        googleID: place_id
-      }
-    };
 
-    context.$http.get(api.msg_get_url, options).then(callback);
+    context.$http.get(api.msg_get_url, 
+      { params: { googleID: place_id }})
+      .then(callback);
   },  
 
   // requires auth token header
   likeMessage (context, message_id, callback) {
 
-    const options = {
-      headers: auth.getAuthHeader(),
-      params: {
-        text: message_id
-      }
+    const body= {
+      id: message_id,
+      voteType: 'upvote'
     };
 
-    context.$http.post(api.like_msg_url, {}, options).then(callback);
+    context.$http.put(api.msg_like_url, body).then(callback);
   },
 
   // requires auth token header
   postMessage (context, msg, place_id, callback) {
 
-    const options = {
-      params: {
-        googleID: place_id,
-        text: msg.text,
-        user: msg.user.username
-      }
+    const body = {
+      googleID: place_id,
+      text: msg.text,
+      user: msg.user.username
     };
 
-    context.$http.post(api.msg_post_url, options, res => {
+    context.$http.post(api.msg_post_url, body).then(res => {
       console.log(res);
       callback(res);
     });

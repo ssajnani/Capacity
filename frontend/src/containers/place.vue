@@ -145,7 +145,7 @@ export default {
       });
 
       // Calls backend for messages
-      api.getMessages(this, this.place_id, result => {
+      api.getMessages(this, this.place_id, (result) => {
         this.messages = result.body;
         console.log('MSGS');
         console.log(this.messages);
@@ -165,21 +165,20 @@ export default {
     },
     postMessage: function (msg) {
       console.log(msg);
+
       api.postMessage(this, msg, this.place_id, (data) => {
-        console.log(data);
-        this.messages.push(data);
+        api.getMessages(this, this.place_id, (result) => {
+          this.messages = result.body;
+          // console.log(result.body);
+        });
       });
     },
     likeMessage: function (id) {
 
-      api.likeMessage(this, id, (id) => {
-        console.log('return')
-        // console.log(this.messages);
-
-        this.messages.forEach(n => {
-          if (n.id === id) {
-            n.likes += 1; 
-          }
+      api.likeMessage(this, id, (response) => {
+        api.getMessages(this, this.place_id, (result) => {
+          this.messages = result.body;
+          // console.log(result.body);
         });
       });
     },

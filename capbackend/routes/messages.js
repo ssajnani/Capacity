@@ -29,14 +29,14 @@ router.route('/createMessage')
 
     // creates a new message
     .post(function(req, res){
-        console.log(req.query);
+        console.log(req.body);
         console.log('asdasd');
         var message = new Message();
-        message.text = req.query.text;
+        message.text = req.body.text;
         message.id = randomstring.generate();
-        message.user = req.query.user;
+        message.user = req.body.user;
         message.reported = false;
-        message.googleID = req.query.googleID;
+        message.googleID = req.body.googleID;
         message.voteCount = 0;
         message.save(function(err, message) {
             if (err){
@@ -62,18 +62,19 @@ router.route('/id')
 
     // upvotes specific message
     .put(function(req, res){
-        Message.find({id: req.query.id}, function(err, message){
+        console.log(req.body.id);
+        Message.find({id: req.body.id}, function(err, message){
             if(err)
                 res.send(err);
 
             try {
-                if(req.query.voteType == 'report')
+                if(req.body.voteType == 'report')
                     message[0].reported = true;
 
-                else if(req.query.voteType == 'upvote')
+                else if(req.body.voteType == 'upvote')
                     message[0].voteCount += 1;
 
-                else if(req.query.voteType == 'downvote')
+                else if(req.body.voteType == 'downvote')
                     message[0].voteCount -= 1;
 
                 message[0].save();
@@ -101,6 +102,7 @@ router.route('/messages')
 
     // gets all messages per place
     .get(function(req, res){
+        console.log(req.query.googleID);
         Message.find({googleID: req.query.googleID}, function(err, messages){
             if(err) {
                 return res.send(500, err);

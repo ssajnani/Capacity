@@ -10,23 +10,23 @@
 <h1 class="title">Comments</h1>
 <!-- FOR ALL CURRENT COMMENTS -->
 
-<article class="media" v-for="msg in messages">
+<article class="media" v-for="msg in msgs">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src="http://bulma.io/images/placeholders/128x128.png">
+      <img src="http://blog.sumall.com/wp-content/uploads/2015/05/default-profile-01.png">
     </p>
   </figure>
   <!-- There are placeholders for now -->
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>{{msg.name}}</strong>
+        <strong>{{msg.user}}</strong>
         <br>
           {{msg.text}}
         <br>
         <small v-if="user.authenticated"><a v-on:click="likeMessage(msg.id)" >Like</a> · </small>
-        <small>{{msg.likes}} likes · </small>
-        <small>Time {{msg.time}}</small>
+        <small>{{msg.voteCount}} like(s) · </small>
+        <small>{{msg.createdAt}}</small>
       </p>
     </div>
   </div>
@@ -37,7 +37,7 @@
 <article class="media" v-if="user.authenticated">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src="http://bulma.io/images/placeholders/128x128.png">
+      <img src="http://blog.sumall.com/wp-content/uploads/2015/05/default-profile-01.png">
     </p>
   </figure>
   <div class="media-content">
@@ -93,6 +93,11 @@ export default {
         user: auth.user
       });
 
+    }
+  },
+  watch: {
+    messages: function (to) {
+      this.msgs = to;
     }
   }
 }
