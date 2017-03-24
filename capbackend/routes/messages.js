@@ -23,9 +23,9 @@ function isAuthenticated (req, res, next) {
 }
 
 // Register the authentication middleware
-//router.use('/messages/createMessage', isAuthenticated);
+router.use('/createMessage', isAuthenticated);
 
-router.route('/messages/createMessage')
+router.route('/createMessage')
 
     // creates a new message
     .post(function(req, res){
@@ -45,9 +45,9 @@ router.route('/messages/createMessage')
     });
 
 // Register authentication middleware
-//router.use('/messages/id', isAuthenticated);
+router.use('/id', isAuthenticated);
 
-router.route('/messages/id')
+router.route('/id')
 
     // get message by object ID
     .get(function(req, res){

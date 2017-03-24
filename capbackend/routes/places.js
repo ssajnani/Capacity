@@ -4,8 +4,16 @@ var mongoose = require('mongoose');
 var Place = mongoose.model('Place');
 
 router.route('/createPlace')
-    
-    // get place by object ID
+
+// get place by google ID
+    .post(function (req, res) {
+        Place.find({'googleID': req.body.googleID}, function (err,
+                                                              place) {
+            if (!place.length) {
+                var place = new Place();
+                place.googleID = req.body.googleID;
+
+    // get place by google ID
     .post(function(req, res){
         	Place.find({'googleID': req.body.googleID}, function(err, place){
                         if(!place.length){
@@ -30,7 +38,7 @@ router.route('/createPlace')
 
 
 router.route('/id')
-    // get place by object ID
+    // get place by google ID
     .get(function(req, res){
         Place.find({'googleID':req.query.googleID}, function(err, place){
             if(!place.length){
