@@ -44,7 +44,6 @@ export default {
       }
       else{
         return this.recommendations.slice(0,5);
-        //console.log(this.recommendations.icon);
 
       }
   }

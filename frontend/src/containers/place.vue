@@ -122,11 +122,11 @@ export default {
             openNow: true,
             rankBy: google.maps.places.RankBy.PROMINENCE
           }, (data, status) => {
+
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-              this.recommended = data.filter(place => {
-                return this.place_id == place.place_id;
-              });
-            console.log(this.recommended.name); 
+            this.recommended = data.filter(place => {
+              return this.place_id != place.place_id;
+            });
           } 
           else {
         // Handle error
