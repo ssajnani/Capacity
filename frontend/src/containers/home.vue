@@ -13,13 +13,9 @@
           <!-- Logo -->
           <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4NBPJ65P/testlogo1.png"/>
 
-          <!-- Space formatting -->
-          <br>
-          <br>
-
           <!-- Search bar -->
           <div id="search-bar" class="control has-icon has-icon-right">
-            <input v-model="search_text" v-on:keyup.enter="submit_text" class="input is-large" type="text" placeholder="Libraries, bars, stores...">
+            <input v-model="search_text" v-on:keyup.enter="submit_text" class="input is-large" type="text" v-bind:placeholder="placeholder_text">
             <span class="icon is-small">
               <i id="search-icon" v-on:click="submit_text" class="fa fa-search"></i>
             </span>
@@ -53,6 +49,9 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://placehold.it/350x150');
   background-position: center top;
   background-size: cover !important;
+}
+#hero-body-id img {
+  margin-bottom: 10%;
 }
 #search-bar {
   margin-bottom: 0;
@@ -144,6 +143,41 @@ export default {
       search_rad: 10000,
       autocomplete: null,
       suggestions: [],
+      placeholder_nouns: [
+        // Entertainment
+        'Theatres',
+        'Bars',
+        'Clubs',
+        'Beaches',
+        'Parks',
+        'Zoos',
+        // Business/Work
+        'Offices',
+        'Banks',
+        // Shopping
+        'Stores', 
+        'Malls',
+        'Plazas',
+        // Dining
+        'Restuarants',
+        'Coffee shops',
+        'Fast food',
+        // Travel
+        'Airports',
+        'Subways',
+        // Health
+        'Hospitals',
+        'Gyms',
+        // Home
+        'Condos',
+        'Apartments',
+        // Education
+        'Libraries', 
+        'Schools',
+        // Groceries
+        'Grocery shops',
+        ],
+      placeholder_text: ''
     }
   },
   methods: {
@@ -178,6 +212,44 @@ export default {
 
     // Initialize autocompleteservice
     this.autocomplete = new google.maps.places.AutocompleteService();
+
+    // Generate random numbers
+    var list_length = this.placeholder_nouns.length;
+    console.log("List length: " + list_length);
+    function randomPlaceIndex(array_length) {
+      // Returns int from 0 to array.length - 1
+      return Math.floor(Math.random() * array_length);
+    }
+
+    var first, second, third; 
+    first = randomPlaceIndex(list_length);
+    do {
+      second = randomPlaceIndex(list_length);
+    }
+    while (second === first);
+    do {
+      third = randomPlaceIndex(list_length);
+    }
+    while (third === first || third === second);
+
+    console.log("First: " + first)
+    console.log("Second: " + second);
+    console.log("Third: " + third);
+    // Add 3 elements to placeholder_array
+    var placeholder_array = [];
+    placeholder_array.push(this.placeholder_nouns[first]);
+    placeholder_array.push(this.placeholder_nouns[second]);
+
+    placeholder_array.push(this.placeholder_nouns[third]);
+
+    // Add to text that displays within search bar
+    this.placeholder_text += placeholder_array[0];
+    // this.placeholder_text += ', ' + placeholder_array[1].toLowerCase();
+    // this.placeholder_text += ', anywhere';
+    for (var i = 1; i < 3; i++) {
+      this.placeholder_text += ', ' + placeholder_array[i].toLowerCase();
+    }
+    this.placeholder_text += '...';
 
   },
   mounted: function() {    
