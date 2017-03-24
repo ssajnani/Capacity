@@ -82,7 +82,7 @@ export default {
         }, error => {
           console.log(error);
           this.closeModal();
-          alert(error.data.error);
+          alert(error.body.message);
         });
     }
   }

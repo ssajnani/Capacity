@@ -81,7 +81,7 @@ export default {
           alert("You're logged in!");
           this.closeModal();
         }, error => {
-          alert(error.data.error);
+          alert(error.body.message);
           this.closeModal();
         });
     }

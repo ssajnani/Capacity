@@ -31,7 +31,7 @@
     </div>
   </div>
 </article>
-<p v-if="!messages.size">(No comments...)</p>
+<p v-if="!messages || !messages.length">(No comments...)</p>
 
 <!-- POST COMMENT -->
 <article class="media" v-if="user.authenticated">

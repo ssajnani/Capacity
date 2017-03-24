@@ -3,9 +3,9 @@
 import router from '../router'
 
 // URL and endpoint constants
-const API_URL = 'http://localhost:8080/'
-const LOGIN_URL = API_URL + 'api/login'
-const SIGNUP_URL = API_URL + 'api/signup'
+const API_URL = 'http://localhost:3000/'
+const LOGIN_URL = API_URL + 'auth/login'
+const SIGNUP_URL = API_URL + 'auth/signup'
 
 export default {
   
@@ -16,72 +16,45 @@ export default {
   },
 
   // Send a request to the login URL and save the returned JWT
-  signup(context, creds, callback, error) {
+  signup(context, creds, success, failure) {
 
-    //
-    let ls_u = {};
-    if (localStorage.users) {
-      ls_u = JSON.parse(localStorage.getItem('users'));
-    }
+    const user = {
+      username: creds.username, 
+      password: creds.password
+    };
 
-    if (ls_u.hasOwnProperty(creds.username)) {
-      error({
-        data: {
-          error: "A user already exists with that name"
-        }
-      })
-    } else {
-      this.user.username = creds.username;
-      ls_u[creds.username] = creds.password;
-      localStorage.setItem('users', JSON.stringify(ls_u));
-      callback({});
-    }
-    return;
-    ///
-
-    const url = SIGNUP_URL + "?username=" + creds.username
-      + "&password="+creds.password;
-
-
-    context.$http.post(url).then(callback, error);
+    context.$http.post(SIGNUP_URL, user).then(succ => {
+      if (succ.body.state != 'success') {
+        failure(succ);
+      } else {
+        success(succ);
+      }
+    }, failure);
   },
 
   // Send a request to the login URL and save the returned JWT
   login(context, creds, success, failure) {
 
-    //
-    let ls_u = {};
-    if (localStorage.users) {
-      ls_u = JSON.parse(localStorage.getItem('users'));
-    }
+    const user = {
+      username: creds.username, 
+      password: creds.password
+    };
 
-    if (ls_u.hasOwnProperty(creds.username) && ls_u[creds.username] == creds.password) {
-      this.user.username = creds.username;
-      localStorage.setItem('username', creds.username);
-      this.user.authenticated = true;
-      success({});
-    } else {
-      failure({
-        data: {
-          error: "Invalid Login!"
-        }
-      })
-    }
-    return;
-    //
+    context.$http.post(LOGIN_URL, user).then(succ => {
 
-    context.$http.post(LOGIN_URL, creds, {
-      method: 'POST',
-      credentials: false,
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+      if (succ.body.state != 'success') {
+        failure(succ);
+      } else {
+        localStorage.setItem('id_token', succ.body.user._id)
+        localStorage.setItem('username', succ.body.user.username)
+
+        this.user.authenticated = true;
+        this.user.username = succ.body.user.username;
+        
+        success(succ);
       }
-    }).then(succ => {
-      localStorage.setItem('id_token', data.id_token)
-      this.user.authenticated = true;
-      success(succ);
-    }, failure)
+
+    }, failure);
   },
 
   // To log out, we just need to remove the token

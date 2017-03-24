@@ -3,46 +3,36 @@
 import auth from '../auth'
 
 // Configurations for requests
-const api = {
-  url: 'http://localhost:8080/',
-  place_url: this.url + 'place/createPlace',
-  like_msg_url: this.url + 'message/upvoteMessage',
-  post_msg_url: this.url + 'message/createMessage'
-};
 
-const gmaps = {
-  url: 'https://maps.googleapis.com/maps/api/place/details/json',
-  key: 'AIzaSyC-vHdasMaCWTC-QWS_vuwjNwBqq8_SlmE'
-}
+const url = 'http://localhost:3000/';
+const api = {
+  place_url: url + 'places/create',
+  msg_url: url + 'messages/upvoteMessage',
+  post_msg_url: url + 'messages/createMessage'
+};
 
 export default {
 
   getPlace (context, place_id, callback) {
-    //
-    let ls_m = {};
-    if (localStorage.msgs) {
-      ls_m = JSON.parse(localStorage.getItem('msgs'));
-    }
-    let msgs = Object.keys(ls_m);
-    let place_msgs_ids = msgs.filter(msg => ls_m[msg].place == place_id);
-    console.log(place_msgs_ids);
-
-    let place_msgs = [];
-    place_msgs_ids.forEach(msg_id => place_msgs.push(ls_m[msg_id]));
-    console.log(place_msgs);
-    callback({ messages: place_msgs });
-    return;
-    //
 
     const options = {
-      params: {
+      body: {
         googleID: place_id
       }
     };
 
-    context.$http.get(api.place_url, options).then(callback);
+    context.$http.post(api.place_url, options).then(
+      function (data, status) {
+        console.log(data);
+        console.log(status);
+      }
+    );
 
   },
+
+  getMessages (context, place_id, callback) {
+
+  },  
 
   // requires auth token header
   likeMessage (context, message_id, callback) {
