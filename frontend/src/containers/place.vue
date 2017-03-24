@@ -181,9 +181,6 @@ export default {
           // console.log(result.body);
         });
       });
-    },
-    incrementMsglike: function (id) {
-
     }
   },
   watch: {

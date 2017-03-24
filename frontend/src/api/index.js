@@ -58,5 +58,27 @@ export default {
       console.log(res);
       callback(res);
     });
+  },
+
+  // checking in to the place
+  checkIn (context, place_id, callback) {
+    const body = {
+      googleID: place_id,
+      increment: 'Y'
+    };
+
+    context.$http.put(api.msg_check.url, body)
+    .then(callback);
+  },
+
+  // check out of place
+  checkOut (context, place_id, callback) {
+    const body = {
+      googleID: place_id,
+      increment: 'N'
+    };
+
+    context.$http.put(api.msg_check.url, body)
+    .then(callback);
   }
 }

@@ -79,7 +79,6 @@ router.route('/id')
 	
 	    //Return the place that after the updates
             res.json(place);
-
         });
     })
 

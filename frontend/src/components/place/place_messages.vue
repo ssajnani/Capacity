@@ -77,11 +77,11 @@ export default {
     }
   },
   methods: {
-    likeMessage: function (id) {
+    likeMessage (id) {
       /* EMIT LIKE EVENT TO PARENT WITH MESSAGE ID */
       this.$emit('likeMessage', id);
     },
-    submitMessage: function (message) {
+    submitMessage (message) {
       /* EMIT POST EVENT TO PARENT WITH TEXT */
       /* return 'this.comment' as the parameter */
       /* reset this.comment value to empty string */
@@ -92,6 +92,8 @@ export default {
         text: text,
         user: auth.user
       });
+    },
+    checkIn () {
 
     }
   },
