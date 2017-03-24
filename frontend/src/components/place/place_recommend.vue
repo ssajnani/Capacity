@@ -20,14 +20,21 @@
       </div>
   </div>
 </a>
+<p v-if="!filtered.size">
+  (No suggestions available...)
+</p>
 </div>
 </template>
 
-<style>
+<style scoped>
 .image img{
   width: 64px;
   height: 64px;
   border-radius: 50%;
+}
+
+p {
+  font-style: italic; 
 }
 </style>
 

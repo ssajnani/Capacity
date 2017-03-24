@@ -21,10 +21,6 @@
       
       <div class="card">
         <place_map :coords="coords"></place_map>
-        <!-- <place_info 
-          :name="name"
-          :address="address">
-        </place_info> -->
       </div>
 
 
