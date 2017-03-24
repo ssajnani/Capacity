@@ -24,6 +24,7 @@
     </div>
   </div>
 </article>
+<p v-if="!messages.size">(No comments...)</p>
 
 <!-- POST COMMENT -->
 <article class="media" v-if="user.authenticated">
@@ -41,6 +42,12 @@
 </article>
 </div>
 </template>
+
+<style scoped>
+p {
+  font-style: italic; 
+}
+</style>
 
 <script>
 import auth from '../../auth'
