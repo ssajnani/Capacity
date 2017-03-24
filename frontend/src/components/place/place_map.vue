@@ -3,10 +3,36 @@
 <!-- Google Maps -->
 <div class="card-image">
   <div id="filters-panel">
-    <a class="button" v-on:click="toggleHeatmap()">Toggle Heatmap</a>
-    <a class="button" v-on:click="toggleTraffic()">Traffic</a>
-    <a class="button" v-on:click="toggleTransit()">Transit</a>
-    <a class="button" v-on:click="toggleBicycle()">Bicycle</a>
+
+      <div class="field">
+        <a class="button" v-on:click="toggleHeatmap()">Toggle Heatmap</a>
+      </div>
+
+    <!-- Show/hide other filters -->
+    <div class="field">
+      <a class="button" v-on:click="toggleFilters()">Toggle Filters</a>
+      <a class="button filter no-display" v-on:click="toggleTraffic()">
+        <span class="icon">
+          <i class="fa fa-car"></i>
+        </span>
+      </a>
+      <a class="button filter no-display" v-on:click="toggleTransit()">
+        <span class="icon">
+          <i class="fa fa-bus"></i>
+        </span>
+      </a>
+      <a class="button filter no-display" v-on:click="toggleBicycle()">
+        <span class="icon">
+          <i class="fa fa-bicycle"></i>
+        </span>
+      </a>
+      <a class="button filter no-display" v-on:click="toggleLayerClear()">
+        <span class="icon">
+          <i class="fa fa-ban"></i>
+        </span>
+      </a>
+
+    </div>
   </div>
   <div id="map"></div>
 </div>
@@ -19,8 +45,11 @@
   }
   #filters-panel {
     position: absolute;
-    z-index: 5;
+    z-index: 1;
     padding: 1%;
+  }
+  .no-display {
+    display: none;
   }
 </style>
 
@@ -38,65 +67,80 @@ export default {
     };
   },
   methods: {
-    // var dataArray = [
-    //     [43.0082, -81.2606, new Date()],
-    //     [43.0115, -81.2793, new Date()],
-    //     [43.000286, -81.278336, new Date()],
-    //     [43.0022, -81.3000, new Date()]];
-       
-    // var todayArray = [];
-    // var weekArray = [];
-    // var monthArray = [];
+    // Siavash's array parser
+      // var dataArray = [
+      //     [43.0082, -81.2606, new Date()],
+      //     [43.0115, -81.2793, new Date()],
+      //     [43.000286, -81.278336, new Date()],
+      //     [43.0022, -81.3000, new Date()]];
+         
+      // var todayArray = [];
+      // var weekArray = [];
+      // var monthArray = [];
 
-    // var i = 0;
+      // var i = 0;
 
-    // for (i = 0; i < dataArray.length; i++) {
-    //     var long = dataArray[i][0];
-    //     var lat =  dataArray[i][1]
-    //     var time = dataArray[i][2];
+      // for (i = 0; i < dataArray.length; i++) {
+      //     var long = dataArray[i][0];
+      //     var lat =  dataArray[i][1]
+      //     var time = dataArray[i][2];
 
-    //    var otherDate = new Date(time);
-    //     var otherDay = otherDate.getDay();
-    //     var otherMonth = otherDate.getMonth();
-    //     var otherYear = otherDate.getFullYear();
+      //    var otherDate = new Date(time);
+      //     var otherDay = otherDate.getDay();
+      //     var otherMonth = otherDate.getMonth();
+      //     var otherYear = otherDate.getFullYear();
 
 
-    //    var currentDate = new Date();
-    //     var day = currentDate.getDay();
-    //     var month = currentDate.getMonth();
-    //     var year = currentDate.getFullYear();
+      //    var currentDate = new Date();
+      //     var day = currentDate.getDay();
+      //     var month = currentDate.getMonth();
+      //     var year = currentDate.getFullYear();
 
-    //    // today, week, month
+      //    // today, week, month
 
-    //    if (day == otherDay && year == otherYear && month == otherMonth) { // today
-    //         todayArray.push({long, lat});
-    //     }
+      //    if (day == otherDay && year == otherYear && month == otherMonth) { // today
+      //         todayArray.push({long, lat});
+      //     }
 
-    //    if (month == otherMonth && year == otherYear) { // month
-    //         monthArray.push({long, lat});
-    //     }
-        
-    //     var diffDate = Math.abs(otherDate - currentDate);
-    //     var diffDays = (diffDate / 1000) / 60 / 60 / 24;
-    //     if (diffDays <= 7 && year == otherYear && month == otherMonth) { // week
-    //         weekArray.push({long, lat});
-    //     }
-    // }
+      //    if (month == otherMonth && year == otherYear) { // month
+      //         monthArray.push({long, lat});
+      //     }
+          
+      //     var diffDate = Math.abs(otherDate - currentDate);
+      //     var diffDays = (diffDate / 1000) / 60 / 60 / 24;
+      //     if (diffDays <= 7 && year == otherYear && month == otherMonth) { // week
+      //         weekArray.push({long, lat});
+      //     }
+      // }
 
-    // console.log(todayArray);
-    // console.log(monthArray);
-    // console.log(weekArray);
+      // console.log(todayArray);
+      // console.log(monthArray);
+      // console.log(weekArray);
 
     toggleHeatmap: function() {
       this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
     },
+    toggleFilters: function() {
+      var filters = document.getElementsByClassName("filter");
+      for (var i = 0; i < filters.length; i++) {
+        filters[i].classList.toggle('no-display');
+      }
+    },
+    toggleLayerClear: function() {
+      this.trafficLayer.setMap(null);
+      this.transitLayer.setMap(null);
+      this.bikeLayer.setMap(null);
+    },
     toggleTraffic: function () {
+      this.toggleLayerClear();
       this.trafficLayer.setMap(this.trafficLayer.getMap() ? null : this.map);
     },
     toggleTransit: function () {
+      this.toggleLayerClear();
       this.transitLayer.setMap(this.transitLayer.getMap() ? null : this.map);
     },
     toggleBicycle: function () {
+      this.toggleLayerClear();
       this.bikeLayer.setMap(this.bikeLayer.getMap() ? null : this.map);
     }, 
     initMap: function() {
@@ -105,7 +149,6 @@ export default {
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
         mapTypeControl: false,
-        // streetViewControl: false,
         // Higher zoom means closer view
         maxZoom: 16,
         zoom:    14,
@@ -255,11 +298,11 @@ export default {
         //   anchor: new google.maps.Point(0, 32)
         // };
 
-      // Main marker dropping
+      // Main marker drop
       var mainMarker = new google.maps.Marker({
         position: this.location,
         map: this.map,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
         // icon: mainMarker
       });
 
@@ -268,11 +311,11 @@ export default {
         // Saugeen-Maitland Hall 43.0115° N, 81.2793° W
         // 7/11 43.0016° N, 81.2768° W
 
-        // var suggestedLocations = [
-        //   {lat: 43.0082, lng: -81.2606},
-        //   {lat: 43.0115, lng: -81.2793},
-        //   {lat: 43.0016, lng: -81.2768}
-        // ];
+        var suggestedLocations = [
+          {lat: 43.0082, lng: -81.2606},
+          {lat: 43.0115, lng: -81.2793},
+          {lat: 43.0016, lng: -81.2768}
+        ];
 
       var labels = '123456789';
       var labelIndex = 0; 
@@ -284,15 +327,17 @@ export default {
             map: map,
             animation: google.maps.Animation.DROP,
             // label: labels[labelIndex++ % labels.length],
-            // icon: suggestedMarker
+            // icon: suggestedMarker,
+
+            symbol: {fillColor: 'yellow'}
           });
         }, timeout);
       };
 
       // Wierd i values to adjust for drop time against mainMarker
-      // for (var i = 1; i <= suggestedLocations.length; i++) {
-      //   addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
-      // };
+      for (var i = 1; i <= suggestedLocations.length; i++) {
+        addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
+      };
 
       // Dummy map data
       var heatmapData = [
@@ -325,6 +370,20 @@ export default {
         this.initMap();
       }
     }
+  },
+  created: function() {
+    var streetViewMode = this.map.getStreetView();
+    var filtersPanel = document.getElementById('filters-panel');
+    google.maps.event.addListener(streetViewMode, 'visible_changed', function() {
+      if (streetViewMode.getVisible()) {    
+        // Hide custom UI
+        filtersPanel.classList.add('no-display');
+      } 
+      else {
+        // Display original UI
+        filtersPanel.classList.remove('no-display');
+      }
+    });
   }
 }
 </script>
