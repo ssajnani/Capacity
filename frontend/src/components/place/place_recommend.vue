@@ -5,7 +5,7 @@
 
 <!-- SUGGESTED PLACE OBJECT -->
 <!-- REPEAT FOR EVERY SUGGESTED PLACE IN ARRAY -->
-<a class="media" v-for="place in filtered" v-on:click="goTo(place.place_id)">
+<a class="media" v-for="place in filtered_recommendations" v-on:click="goTo(place.place_id)">
   <figure class="media-left">
       <p class="image is-64x64">
         <img v-bind:src="place.photos[0].getUrl({maxWidth:128, maxHeight:128})">
@@ -22,7 +22,7 @@
       </div>
   </div>
 </a>
-<p v-if="!filtered.size">
+<p v-if="!filtered_recommendations || !filtered_recommendations.length">
   (No suggestions available...)
 </p>
 </div>
@@ -44,23 +44,27 @@ p {
 export default {
   name: 'place_recommend',
   props: ['recommendations'],
-  
-  computed: {
-      filtered: function(){
-
-       if(this.recommendations == null) {
-        return [];
-      }
-      else{
-        return this.recommendations.slice(0,5);
-      }
-    },
+  data: function () {
+    return {
+      filtered_recommendations: []
+    };
   },
   methods: {
     goTo: function(id){
       console.log(id);
 
       this.$emit("goToPlace", id);
+    }
+  },
+  watch: {
+    recommendations: function (to) {
+      console.log(to);
+      if (to == null) {
+        this.filtered_recommendations = [];
+      }
+      else{
+        this.filtered_recommendations = to.slice(0,5);
+      }
     }
   }
 }

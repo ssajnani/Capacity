@@ -4,10 +4,10 @@ import auth from '../auth'
 
 // Configurations for requests
 const api = {
-  // url: 'http://localhost:8080/',
-  place_url: 'http://localhost:8080/place/getPlaceInfo',
-  like_msg_url: 'http://localhost:8080/message/upvoteMessage',
-  post_msg_url: 'http://localhost:8080/message/createMessage'
+  url: 'http://localhost:8080/',
+  place_url: this.url + 'place/createPlace',
+  like_msg_url: this.url + 'message/upvoteMessage',
+  post_msg_url: this.url + 'message/createMessage'
 };
 
 const gmaps = {
@@ -33,7 +33,6 @@ export default {
     callback({ messages: place_msgs });
     return;
     //
-
 
     const options = {
       params: {
