@@ -23,7 +23,7 @@ function isAuthenticated (req, res, next) {
 }
 
 // Register the authentication middleware
-//router.use('/createMessage', isAuthenticated);
+router.use('/createMessage', isAuthenticated);
 
 router.route('/createMessage')
 
@@ -45,7 +45,7 @@ router.route('/createMessage')
     });
 
 // Register authentication middleware
-//router.use('/id', isAuthenticated);
+router.use('/id', isAuthenticated);
 
 router.route('/id')
 
