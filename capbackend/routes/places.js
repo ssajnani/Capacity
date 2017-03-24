@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Place = mongoose.model('Place');
 
-router.route('/createPlace')
+router.route('/create')
 
     // Post request on route 'places/createPlace'
     .post(function(req, res){
@@ -36,6 +36,7 @@ router.route('/createPlace')
 router.route('/id')
     // get place by google ID
     .get(function(req, res){
+        console.log('tet');
         Place.find({'googleID':req.query.googleID}, function(err, place){
             //If there is no place say it does not exist
 	    if(!place.length){
