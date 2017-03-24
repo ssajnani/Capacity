@@ -23,7 +23,7 @@ function isAuthenticated (req, res, next) {
 }
 
 // Register the authentication middleware
-//router.use('/createMessage', isAuthenticated);
+router.use('/createMessage', isAuthenticated);
 
 router.route('/createMessage')
 
@@ -45,13 +45,13 @@ router.route('/createMessage')
     });
 
 // Register authentication middleware
-//router.use('/id', isAuthenticated);
+router.use('/id', isAuthenticated);
 
 router.route('/id')
 
     // get message by object ID
     .get(function(req, res){
-        Message.find(req.query.id, function(err, message){
+        Message.find({id: req.query.id}, function(err, message){
             if(err)
                 res.send(err);
             res.json(message);
