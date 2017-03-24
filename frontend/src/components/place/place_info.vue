@@ -5,6 +5,7 @@
     <p class="subtitle is-6">{{ address }}</p>
     <p>Rating {{ rating }}</p>
     <br>
+    <a class="button is-black" v-on:click="checkIn()"> Check In</a>
   </div>
 </template>
 
@@ -21,6 +22,9 @@ export default {
   methods: {
     starRating: function() {
       // Convert number into stars
+    },
+    checkIn: function(){
+      this.$emit('checkIn');
     }
   }
 }

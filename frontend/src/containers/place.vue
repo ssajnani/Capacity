@@ -121,6 +121,12 @@ export default {
     goToPlace: function (id) {
       // For recommended places
     },
+    checkIn: function()
+    {
+      //Add these coords to an array
+      this.coords.lat;
+      this.coords.lng;
+    }
     postMessage: function (msg) {
       console.log(msg)
       api.postMessage(this, msg, this.place_id, (data) => {

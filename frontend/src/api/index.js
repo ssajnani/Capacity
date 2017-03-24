@@ -100,5 +100,4 @@ export default {
 
     context.$http.post(api.post_msg_url, options, callback);
   }
-
 }

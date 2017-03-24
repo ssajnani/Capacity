@@ -3,7 +3,7 @@
 <!-- Google Maps -->
 <div class="card-image">
   <div id="filters-panel">
-
+  
       <div class="field">
         <a class="button" v-on:click="toggleHeatmap()">Toggle Heatmap</a>
       </div>
