@@ -12,6 +12,9 @@ router.route('/createPlace')
             if (!place.length) {
                 var place = new Place();
                 place.googleID = req.body.googleID;
+            }
+        })
+    })
 
     // get place by google ID
     .post(function(req, res){

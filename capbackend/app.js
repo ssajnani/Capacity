@@ -6,13 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
-//initialize mongoose schemas
 require('./models/user');
 require('./models/message');
 require('./models/place');
 var index = require('./routes/index');
 var messages = require('./routes/messages');
-var places = require('./routes/places')
+var places = require('./routes/places');
 var authenticate = require('./routes/authenticate')(passport);
 var mongoose = require('mongoose');                         //add for Mongo support
 mongoose.connect('mongodb://localhost/test-chirp');              //connect to Mongo
@@ -28,6 +27,7 @@ app.use(logger('dev'));
 app.use(session({
   secret: 'keyboard cat'
 }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
