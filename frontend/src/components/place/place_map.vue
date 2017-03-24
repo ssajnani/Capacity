@@ -7,6 +7,7 @@
     <a class="button" v-on:click="toggleTraffic()">Traffic</a>
     <a class="button" v-on:click="toggleTransit()">Transit</a>
     <a class="button" v-on:click="toggleBicycle()">Bicycle</a>
+
   </div>
   <div id="map"></div>
 </div>
