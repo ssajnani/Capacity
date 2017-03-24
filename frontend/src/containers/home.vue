@@ -83,51 +83,53 @@ export default {
       'https://images8.alphacoders.com/501/thumb-1920-501447.jpg',
       // Berlin
       'https://images8.alphacoders.com/710/thumb-1920-710914.jpg',
-      // 3. Vienna (Austria)
+      // Vienna
       'https://images5.alphacoders.com/595/thumb-1920-595628.jpg',
       // Danish girl
       'https://images2.alphacoders.com/441/thumb-1920-441238.jpg',
-      // 5. Munich (Germany)
+      // Jackie Chan
+      'https://images8.alphacoders.com/463/thumb-1920-463250.jpg',
+      // Munich
       'https://images8.alphacoders.com/684/thumb-1920-684186.jpg',
-      // 6. Melbourne (Australia)
+      // Melbourne
       'https://images4.alphacoders.com/714/thumb-1920-714270.jpeg',
       // Kyoto
       'https://images4.alphacoders.com/289/thumb-1920-289526.jpg',
-      // 8. Sydney (Australia)
+      // Sydney
       'https://images.alphacoders.com/701/thumb-1920-701597.jpg',
       // Osaka
       'https://images.alphacoders.com/658/thumb-1920-658784.jpg',
-      // 10. Stockholm (Sweden)
+      // Stockholm 
       'https://iceland.nordicvisitor.com/images/1/sweden/stockholm-sweden-winter.jpg',
-      // 11. Vancouver (Canada)
+      // Vancouver
       'https://images.alphacoders.com/706/thumb-1920-706505.jpg',
       // Shenzhen
       'http://wallpaper.pickywallpapers.com/1920x1080/great-city-landscape.jpg',
-      // 13. Zurich (Switzerland)
+      // Zurich
       'https://images2.alphacoders.com/459/thumb-1920-459147.jpg',
-      // 14. Madrid (Spain)
+      // Madrid
       'https://images3.alphacoders.com/740/thumb-1920-740158.png',
-      // 15. Hamburg (Germany)
+      // Hamburg
       'https://images2.alphacoders.com/257/thumb-1920-257010.jpg',
-      // 16. Lisbon (Portugal)
+      // Lisbon
       'https://images4.alphacoders.com/689/thumb-1920-689197.jpg',
-      // 17. Frankfurt (Germany)
+      // Frankfurt
       'https://images6.alphacoders.com/540/thumb-1920-540020.jpg',
-      // 18. Hong Kong (China)
+      // Hong Kong
       'https://images5.alphacoders.com/352/thumb-1920-352111.jpg',
-      // 19. Barcelona (Spain)
+      // Barcelona 
       'https://images2.alphacoders.com/278/thumb-1920-278552.jpg',
-      // 20. Singapore (Singapore)
+      // Singapore 
       'https://images.alphacoders.com/526/thumb-1920-526090.jpg',
-      // 21. Amsterdam (The Netherlands)
+      // Amsterdam
       'https://images8.alphacoders.com/427/thumb-1920-427490.jpg',
-      // 22. Dublin
+      // Dublin
       'https://wallpprs.media/1920x1080/dublin_wallpprs.com_.jpg',
-      // (Hawaii)
+      // Hawaii
       'https://images7.alphacoders.com/360/thumb-1920-360408.jpg',
       // Boston
       'https://images4.alphacoders.com/234/thumb-1920-234136.jpg',
-      // 25. Montreal (Canada)
+      // Montreal
       'https://images8.alphacoders.com/430/thumb-1920-430779.jpg'
       ],
       search_text: '',
@@ -164,7 +166,7 @@ export default {
     this.autocomplete = new google.maps.places.AutocompleteService();
 
   },
-  mounted: function() {
+  mounted: function() {    
     var stock_images_length = this.stock_images.length;
     var stock_image = this.stock_images[Math.floor((Math.random() * stock_images_length) + 0)];
     //document.body.style.backgroundImage = "url('" + stock_image + "')";

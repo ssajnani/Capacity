@@ -1,5 +1,12 @@
 <template lang="html">
 <div>
+
+<div class="row">
+  <div id="checkIn">
+    <a class="button is-primary is-large has-text-centered" v-on:click="checkIn()">Check In</a>
+  </div>
+</div>
+<br>
 <h1 class="title">Comments</h1>
 <!-- FOR ALL CURRENT COMMENTS -->
 
@@ -46,6 +53,15 @@
 <style scoped>
 p {
   font-style: italic; 
+}
+.row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 

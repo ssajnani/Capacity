@@ -23,7 +23,6 @@
         <place_map :coords="coords"></place_map>
       </div>
 
-
       <div class="section">
         <place_messages :messages="messages" v-on:postMessage="postMessage" v-on:likeMessage="likeMessage"></place_messages>
       </div>

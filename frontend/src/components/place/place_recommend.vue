@@ -1,5 +1,6 @@
 <template lang="html">
 <div>
+<!-- If mobile, has-text-centered -->
 <h1 class="title">Suggested Places</h1>
 
 <!-- SUGGESTED PLACE OBJECT -->
@@ -15,6 +16,7 @@
         <p>
           <strong> {{place.name}}</strong>
           {{place.location}}<br>
+          <!-- Change this to stars -->
           <em>Rating: {{place.rating}}</em>
         </p>
       </div>
@@ -51,17 +53,15 @@ export default {
       }
       else{
         return this.recommendations.slice(0,5);
-
       }
-  }
-},
+    },
+  },
+  methods: {
+    goTo: function(id){
+      console.log(id);
 
-methods: {
-  goTo: function(id){
-    console.log(id);
-
-    this.$emit("goToPlace", id);
+      this.$emit("goToPlace", id);
+    }
   }
-}
 }
 </script>
