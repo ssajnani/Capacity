@@ -18,7 +18,7 @@ require('./models/place');
 //Generate variables for routes
 var index = require('./routes/index');
 var messages = require('./routes/messages');
-var places = require('./routes/places')
+var places = require('./routes/places');
 var authenticate = require('./routes/authenticate')(passport);
 
 var mongoose = require('mongoose');                         //add for Mongo support

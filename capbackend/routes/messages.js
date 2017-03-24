@@ -23,7 +23,7 @@ function isAuthenticated (req, res, next) {
 }
 
 // Register the authentication middleware
-router.use('/createMessage', isAuthenticated);
+//router.use('/createMessage', isAuthenticated);
 
 router.route('/createMessage')
 
@@ -45,7 +45,7 @@ router.route('/createMessage')
     });
 
 // Register authentication middleware
-router.use('/id', isAuthenticated);
+//router.use('/id', isAuthenticated);
 
 router.route('/id')
 
@@ -60,25 +60,26 @@ router.route('/id')
 
     // upvotes specific message
     .put(function(req, res){
-        Message.find(req.query.id, function(err, message){
+        Message.find({id: req.query.id}, function(err, message){
             if(err)
                 res.send(err);
 
-            if(req.query.voteType == 'report')
-                message.isReported = true;
+            try {
+                if(req.query.voteType == 'report')
+                    message[0].reported = true;
 
-            else if(req.query.voteType == 'upvote')
-                message.voteCount += 1;
+                else if(req.query.voteType == 'upvote')
+                    message[0].voteCount += 1;
 
-            else if(req.query.voteType == 'downvote')
-                message.voteCount -= 1;
+                else if(req.query.voteType == 'downvote')
+                    message[0].voteCount -= 1;
 
-            message.save(function(err, message){
-                if(err)
-                    res.send(err);
-
+                message[0].save();
                 res.json(message);
-            });
+            } catch(err) {
+                console.log('undefined object, no action taken');
+                res.json(message);
+            }
         });
     })
 
@@ -98,9 +99,7 @@ router.route('/messages')
 
     // gets all messages per place
     .get(function(req, res){
-        console.log(req.query.googleID);
         Message.find({googleID: req.query.googleID}, function(err, messages){
-            console.log('trash');
             if(err) {
                 return res.send(500, err);
             }
