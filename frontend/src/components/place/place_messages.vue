@@ -42,7 +42,7 @@
   </figure>
   <div class="media-content">
     <p class="control">
-      <textarea class="textarea" v-model="comment" placeholder="Add a comment..."></textarea>
+      <textarea class="textarea" v-model="comment" placeholder="Add a comment..." maxlength="300"></textarea>
     </p>
       <button class="button" v-bind:class="{ 'is-disabled': (comment=='') }"v-on:click="submitMessage">Post comment</button>
   </div>

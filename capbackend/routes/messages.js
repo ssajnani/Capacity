@@ -30,9 +30,11 @@ router.route('/createMessage')
     // creates a new message
     .post(function(req, res){
         console.log(req.query);
+        console.log('asdasd');
         var message = new Message();
         message.text = req.query.text;
         message.id = randomstring.generate();
+        message.user = req.query.user;
         message.reported = false;
         message.googleID = req.query.googleID;
         message.voteCount = 0;
@@ -103,7 +105,7 @@ router.route('/messages')
             if(err) {
                 return res.send(500, err);
             }
-            return res.json(200, messages);
+            return res.status(200).json(messages);
         });
     });
 

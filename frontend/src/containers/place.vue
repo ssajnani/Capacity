@@ -23,7 +23,7 @@
         <place_map :coords="coords"></place_map>
       </div>
 
-      <div class="section">
+      <div class="section content">
         <place_messages :messages="messages" v-on:postMessage="postMessage" v-on:likeMessage="likeMessage"></place_messages>
       </div>
    
@@ -78,7 +78,9 @@ export default {
       type: null,
       rating: null,
       place_id: null,
-      gmaps: null,
+      graph_data:null,
+      capacities: null,
+      gmaps: null
     };
   },
 
@@ -127,22 +129,28 @@ export default {
             });
           } 
           else {
-        // Handle error
+            this.recommended = [];
           }
         });  
       }
       else{
-        //Handle error
+        alert('error fetching place info');
+        
       }
-     });    
+      });    
 
-    // Calls backend for messages, data
-    api.getPlace(this, this.place_id, result => {
-      this.messages = result.messages;
-      console.log(this.messages);
-    })
+      // Calls backend for data
+      api.getPlace(this, this.place_id, result => {
+        this.graph_data = result.body.graph_data;
+      });
 
-  },
+      // Calls backend for messages
+      api.getMessages(this, this.place_id, result => {
+        this.messages = result.body;
+        console.log('MSGS');
+        console.log(this.messages);
+      });
+    },
     goToPlace: function (id) {
       console.log(id);
       router.push({'name':'place', 'params':{'id':id}});
@@ -180,11 +188,11 @@ export default {
     }
   },
   watch: {
+    // react to route changes...
+    // When the user goes to another page
     '$route' (to, from) {
       console.log('asdf');
       this.updatePlace();
-      // react to route changes...
-      // When the user goes to another page
     }
   }
 }

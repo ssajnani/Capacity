@@ -58,7 +58,6 @@ export default {
   },
   watch: {
     recommendations: function (to) {
-      console.log(to);
       if (to == null) {
         this.filtered_recommendations = [];
       }
