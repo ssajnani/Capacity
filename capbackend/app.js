@@ -16,6 +16,7 @@ require('./models/message');
 require('./models/place');
 
 //Generate variables for routes
+var index = require('./routes/index');
 var messages = require('./routes/messages');
 var places = require('./routes/places');
 var authenticate = require('./routes/authenticate')(passport);
@@ -52,10 +53,7 @@ app.use(passport.session());
 app.use('/auth', authenticate);
 app.use('/messages', messages);
 app.use('/places', places);
-
-app.get('*', function(req, res){
-	res.sendfile('./public/index.html');
-});
+app.use('*', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -63,6 +61,10 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+// app.get('*', function(req, res){
+//     res.sendfile('./public/index.html');
+// });
 
 //// Initialize Passport
 var initPassport = require('./passport-init');
