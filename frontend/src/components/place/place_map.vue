@@ -280,66 +280,15 @@ export default {
         ]
       });
 
-      // Custom marker icons code
-        // var mainMarker = 'https://image.flaticon.com/icons/png/128/179/179386.png'
-        // var suggestedMarker = 'http://findicons.com/files/icons/1963/colorcons_blue/128/questionmark.png';
-
-        // Marker sizes are expressed as a Size of X,Y where the origin of the image
-        // (0,0) is located in the top left of the image.
-        // Origins, anchor positions and coordinates of the marker increase in the X
-        // direction to the right and in the Y direction down.
-        // var image = {
-        //   url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-        //   // This marker is 20 pixels wide by 32 pixels high.
-        //   size: new google.maps.Size(20, 32),
-        //   // The origin for this image is (0, 0).
-        //   origin: new google.maps.Point(0, 0),
-        //   // The anchor for this image is the base of the flagpole at (0, 32).
-        //   anchor: new google.maps.Point(0, 32)
-        // };
-
       // Main marker drop
       var mainMarker = new google.maps.Marker({
         position: this.location,
         map: this.map,
         animation: google.maps.Animation.DROP,
-        // icon: mainMarker
       });
 
-      // More placeholders for marker drop, represents suggested locations
-        // King Richie's 43.0082° N, 81.2606° W
-        // Saugeen-Maitland Hall 43.0115° N, 81.2793° W
-        // 7/11 43.0016° N, 81.2768° W
-
-        var suggestedLocations = [
-          {lat: 43.0082, lng: -81.2606},
-          {lat: 43.0115, lng: -81.2793},
-          {lat: 43.0016, lng: -81.2768}
-        ];
-
-      var labels = '123456789';
-      var labelIndex = 0; 
-
-      function addMarkerWithTimeout(location, map, timeout) {
-        setTimeout(function(){ 
-          var newMarker = new google.maps.Marker({
-            position: location,
-            map: map,
-            animation: google.maps.Animation.DROP,
-            // label: labels[labelIndex++ % labels.length],
-            // icon: suggestedMarker,
-
-            symbol: {fillColor: 'yellow'}
-          });
-        }, timeout);
-      };
-
-      // Wierd i values to adjust for drop time against mainMarker
-      for (var i = 1; i <= suggestedLocations.length; i++) {
-        addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
-      };
-
-      // Dummy map data
+      // Need fake data from backend 
+      // Dummy heatmap data
       var heatmapData = [
         {location: new google.maps.LatLng(43.0082, -81.2606), weight: 5},
         {location: new google.maps.LatLng(43.0115, -81.2793), weight: 10},
@@ -387,3 +336,41 @@ export default {
   }
 }
 </script>
+
+<!-- 
+
+// Code for having suggested locations appear on map as well
+// More placeholders for marker drop, represents suggested locations
+  // King Richie's 43.0082° N, 81.2606° W
+  // Saugeen-Maitland Hall 43.0115° N, 81.2793° W
+  // 7/11 43.0016° N, 81.2768° W
+
+  var suggestedLocations = [
+    {lat: 43.0082, lng: -81.2606},
+    {lat: 43.0115, lng: -81.2793},
+    {lat: 43.0016, lng: -81.2768}
+  ];
+
+var labels = '123456789';
+var labelIndex = 0; 
+
+function addMarkerWithTimeout(location, map, timeout) {
+  setTimeout(function(){ 
+    var newMarker = new google.maps.Marker({
+      position: location,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      // label: labels[labelIndex++ % labels.length],
+      // icon: suggestedMarker,
+
+      symbol: {fillColor: 'yellow'}
+    });
+  }, timeout);
+};
+
+// Wierd i values to adjust for drop time against mainMarker
+for (var i = 1; i <= suggestedLocations.length; i++) {
+  addMarkerWithTimeout(suggestedLocations[i-1], this.map, i * 200);
+};
+
+ -->

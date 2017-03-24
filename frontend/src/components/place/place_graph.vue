@@ -37,6 +37,7 @@ export default {
 	    data: {
         labels: ["7 am", "8 am", "9 am", "10 am", "11 am", "12 pm"],
         datasets: [{
+          // Need data from backend
           data: [5, 7, 12, 10, 9, 6],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)'
