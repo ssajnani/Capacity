@@ -34,10 +34,11 @@
     </div>
   </div>
 </div>
-<!-- <div></div> -->
 
 </div>
 </template>
+
+
 
 <!-- $route.params.id for place id -->
 <script>

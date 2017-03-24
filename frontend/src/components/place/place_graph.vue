@@ -2,6 +2,13 @@
 <div>
 	<h1 class="title">History</h1>
 	<canvas id="timeChart"></canvas>
+	<br>
+	<div class="columns">
+		<div class="column is-2 is-offset-3">
+			<a class="button is-primary is-large has-text-centered" v-on:click="checkIn()">Check In</a>
+			
+		</div>
+	</div>
 </div>
 </template>
 
@@ -23,7 +30,9 @@ export default {
   	};
   },
   methods: {
-		
+		checkIn: function(){
+      this.$emit('checkIn');
+    }
 	},
 	mounted: function() {
 		this.ctx = document.getElementById("timeChart");

@@ -1,15 +1,19 @@
 <template lang="html">
 <section class="hero is-fullheight">
   <div class="hero-head"><navbar></navbar></div>
-  <div class="hero-body">
+  <div id="hero-body-id" class="hero-body">
     <div class="container">
 
       <div class="columns">
         <div class="column is-half is-offset-one-quarter">
 
-        <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4PN7L80P/finallogo.png"/>
+        <!-- Logo -->
+        <!-- <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4P26QSBC/testlogo2.png"/> -->
+        <!-- Second logo version -->
+        <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4NBPJ65P/testlogo1.png"/>
         <br>
         <br>
+
           <div id="search-bar" class="control has-icon has-icon-right">
             <input v-model="search_text" class="input is-large" type="text" placeholder="Libraries, bars, stores...">
             <span class="icon is-small">
@@ -34,15 +38,23 @@
 </template>
 
 <style scoped>
-
+.title {
+  color: white;
+}
+.hero .nav {
+  background-color: #eeeeee;
+}
+#hero-body-id {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://placehold.it/350x150');
+  background-position: center top;
+  background-size: cover !important;
+}
 #search-bar {
   margin-bottom: 0;
 }
-
 .autocomplete tr {
   cursor: pointer;
 }
-
 </style>
 
 <script>
@@ -66,6 +78,58 @@ export default {
         lat: null,
         lng: null
       },
+      stock_images: [
+      // Tokyo
+      'https://images8.alphacoders.com/501/thumb-1920-501447.jpg',
+      // Berlin
+      'https://images8.alphacoders.com/710/thumb-1920-710914.jpg',
+      // 3. Vienna (Austria)
+      'https://images5.alphacoders.com/595/thumb-1920-595628.jpg',
+      // Danish girl
+      'https://images2.alphacoders.com/441/thumb-1920-441238.jpg',
+      // 5. Munich (Germany)
+      'https://images8.alphacoders.com/684/thumb-1920-684186.jpg',
+      // 6. Melbourne (Australia)
+      'https://images4.alphacoders.com/714/thumb-1920-714270.jpeg',
+      // Kyoto
+      'https://images4.alphacoders.com/289/thumb-1920-289526.jpg',
+      // 8. Sydney (Australia)
+      'https://images.alphacoders.com/701/thumb-1920-701597.jpg',
+      // Osaka
+      'https://images.alphacoders.com/658/thumb-1920-658784.jpg',
+      // 10. Stockholm (Sweden)
+      'https://iceland.nordicvisitor.com/images/1/sweden/stockholm-sweden-winter.jpg',
+      // 11. Vancouver (Canada)
+      'https://images.alphacoders.com/706/thumb-1920-706505.jpg',
+      // Shenzhen
+      'http://wallpaper.pickywallpapers.com/1920x1080/great-city-landscape.jpg',
+      // 13. Zurich (Switzerland)
+      'https://images2.alphacoders.com/459/thumb-1920-459147.jpg',
+      // 14. Madrid (Spain)
+      'https://images3.alphacoders.com/740/thumb-1920-740158.png',
+      // 15. Hamburg (Germany)
+      'https://images2.alphacoders.com/257/thumb-1920-257010.jpg',
+      // 16. Lisbon (Portugal)
+      'https://images4.alphacoders.com/689/thumb-1920-689197.jpg',
+      // 17. Frankfurt (Germany)
+      'https://images6.alphacoders.com/540/thumb-1920-540020.jpg',
+      // 18. Hong Kong (China)
+      'https://images5.alphacoders.com/352/thumb-1920-352111.jpg',
+      // 19. Barcelona (Spain)
+      'https://images2.alphacoders.com/278/thumb-1920-278552.jpg',
+      // 20. Singapore (Singapore)
+      'https://images.alphacoders.com/526/thumb-1920-526090.jpg',
+      // 21. Amsterdam (The Netherlands)
+      'https://images8.alphacoders.com/427/thumb-1920-427490.jpg',
+      // 22. Dublin
+      'https://wallpprs.media/1920x1080/dublin_wallpprs.com_.jpg',
+      // (Hawaii)
+      'https://images7.alphacoders.com/360/thumb-1920-360408.jpg',
+      // Boston
+      'https://images4.alphacoders.com/234/thumb-1920-234136.jpg',
+      // 25. Montreal (Canada)
+      'https://images8.alphacoders.com/430/thumb-1920-430779.jpg'
+      ],
       search_text: '',
       search_rad: 10000,
       autocomplete: null,
@@ -100,7 +164,16 @@ export default {
     this.autocomplete = new google.maps.places.AutocompleteService();
 
   },
-
+  mounted: function() {
+    var stock_images_length = this.stock_images.length;
+    var stock_image = this.stock_images[Math.floor((Math.random() * stock_images_length) + 0)];
+    //document.body.style.backgroundImage = "url('" + stock_image + "')";
+    var img = document.createElement("img");
+    img.src = stock_image;
+    console.log(stock_image);
+    //document.getElementById("hero-body-id").style.backgroundImage = "url('" + stock_image + "')";
+    document.getElementById("hero-body-id").style.background = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('"+ stock_image +"')";
+  },
   // Fires off events on data changes
   watch: {
 
@@ -133,5 +206,4 @@ export default {
     }
   }
 }
-
 </script>

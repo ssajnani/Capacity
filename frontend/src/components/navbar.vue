@@ -52,6 +52,12 @@
 </nav>
 </template>
 
+<style>
+.nav {
+  background-color: #eeeeee;
+}
+</style>
+
 <!-- For each button, we will have a modal (preferably seperate components) -->
 <script>
 import auth from '../auth'
