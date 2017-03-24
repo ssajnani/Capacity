@@ -1,7 +1,7 @@
 <template lang="html">
 <div>
 	<!-- If mobile, has-text-centered -->
-	<h1 class="title">Busyness</h1>
+	<h1 class="title">Location Activity</h1>
 	<canvas id="timeChart"></canvas>
 </div>
 </template>
