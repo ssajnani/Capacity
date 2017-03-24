@@ -7,10 +7,8 @@
       <div class="columns">
         <div class="column is-half is-offset-one-quarter">
 
-          <h1 class="title">
-            Search
-          </h1>
-
+        <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4PN7L80P/finallogo.png"/>
+        <br>
           <div id="search-bar" class="control has-icon has-icon-right">
             <input v-model="search_text" class="input is-large" type="text" placeholder="Libraries, bars, stores...">
             <span class="icon is-small">

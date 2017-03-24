@@ -7,16 +7,23 @@
 <div id="placepage" class="section container">
   <div class="columns">
     <div class="column">
+
+      <place_info 
+        :name="name"
+        :address="address"
+        >
+      </place_info>
+
       <place_graph></place_graph>
     </div>
     <div class="column is-half">
       
       <div class="card">
         <place_map :coords="coords"></place_map>
-        <place_info 
+        <!-- <place_info 
           :name="name"
           :address="address">
-        </place_info>
+        </place_info> -->
       </div>
 
 

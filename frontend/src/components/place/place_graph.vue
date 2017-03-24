@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-	<h1 class="title">Hours</h1>
+	<h1 class="title">History</h1>
 	<canvas id="timeChart"></canvas>
 </div>
 </template>
@@ -24,45 +24,47 @@ export default {
   },
   methods: {
 		
-  	
 	},
-	created: function() {
+	mounted: function() {
 		this.ctx = document.getElementById("timeChart");
+
+		Chart.defaults.global.defaultFontColor = '#666';
+		Chart.defaults.global.defaultFontFamily = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+		Chart.defaults.global.defaultFontSize = 10;
+		Chart.defaults.global.defaultFontStyle = 	'normal';
+
 		this.timeChart = new Chart(this.ctx, {
-		    type: 'bar',
-		    data: {
-		        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-		        datasets: [{
-		            label: '# of Votes',
-		            data: [12, 19, 3, 5, 2, 3],
-		            backgroundColor: [
-		                'rgba(255, 99, 132, 0.2)',
-		                'rgba(54, 162, 235, 0.2)',
-		                'rgba(255, 206, 86, 0.2)',
-		                'rgba(75, 192, 192, 0.2)',
-		                'rgba(153, 102, 255, 0.2)',
-		                'rgba(255, 159, 64, 0.2)'
-		            ],
-		            borderColor: [
-		                'rgba(255,99,132,1)',
-		                'rgba(54, 162, 235, 1)',
-		                'rgba(255, 206, 86, 1)',
-		                'rgba(75, 192, 192, 1)',
-		                'rgba(153, 102, 255, 1)',
-		                'rgba(255, 159, 64, 1)'
-		            ],
-		            borderWidth: 1
-		        }]
-		    },
-		    options: {
-		        scales: {
-		            yAxes: [{
-		                ticks: {
-		                    beginAtZero:true
-		                }
-		            }]
-		        }
-		    }
+	    type: 'line',
+	    data: {
+        labels: ["7 am", "8 am", "9 am", "10 am", "11 am", "12 pm"],
+        datasets: [{
+          data: [5, 7, 12, 10, 9, 6],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+          ],
+          borderWidth: 1
+        }]
+	    },
+	    options: {
+	    	responsive: true,
+	    	title: {
+	    		display: true,
+	    		text: 'Past 6 Hours',
+	    	},
+	    	legend: {
+	    		display: false,
+	    	},
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+	    }
 		});
 	}
 }
