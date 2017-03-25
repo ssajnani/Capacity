@@ -10,10 +10,9 @@
       <div class="columns">
         <div class="column is-half is-offset-one-quarter">
 
-          <!-- Logo -->
-          <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4NBPJ65P/testlogo1.png"/>
-
-          <!-- Search bar -->
+        <img src="https://files.slack.com/files-pri/T3R2NUV7E-F4PN7L80P/finallogo.png"/>
+        <br>
+        <br>
           <div id="search-bar" class="control has-icon has-icon-right">
             <input v-model="search_text" v-on:keyup.enter="submit_text" class="input is-large" type="text" v-bind:placeholder="placeholder_text">
             <span class="icon is-small">
@@ -53,6 +52,7 @@
 #hero-body-id img {
   margin-bottom: 10%;
 }
+
 #search-bar {
   margin-bottom: 0;
 }
@@ -86,6 +86,7 @@ export default {
         lng: null
       },
       stock_images: [
+<<<<<<< HEAD
         // Tokyo
         'https://images8.alphacoders.com/501/thumb-1920-501447.jpg',
         // Berlin
@@ -139,6 +140,11 @@ export default {
         // Montreal
         'https://images8.alphacoders.com/430/thumb-1920-430779.jpg'
         ],
+=======
+      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg',
+      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg',
+      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg'],
+>>>>>>> 39fb3606676ab56754817b12f7c2f6ef9cb86290
       search_text: '',
       search_rad: 10000,
       autocomplete: null,
@@ -213,6 +219,7 @@ export default {
     // Initialize autocompleteservice
     this.autocomplete = new google.maps.places.AutocompleteService();
 
+<<<<<<< HEAD
     // Generate random numbers
     var list_length = this.placeholder_nouns.length;
     console.log("List length: " + list_length);
@@ -239,6 +246,18 @@ export default {
     var placeholder_array = [];
     placeholder_array.push(this.placeholder_nouns[first]);
     placeholder_array.push(this.placeholder_nouns[second]);
+=======
+  },
+  mounted: function() {
+    var stock_images_length = this.stock_images.length;
+    var stock_image = this.stock_images[Math.floor((Math.random() * stock_images_length) + 0)];
+    //document.body.style.backgroundImage = "url('" + stock_image + "')";
+    var img = document.createElement("img");
+    img.src = stock_image;
+    //document.getElementById("hero-body-id").style.backgroundImage = "url('" + stock_image + "')";
+    document.getElementById("hero-body-id").style.background = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('"+ stock_image +"')";
+  },
+>>>>>>> 39fb3606676ab56754817b12f7c2f6ef9cb86290
 
     placeholder_array.push(this.placeholder_nouns[third]);
 
@@ -274,7 +293,7 @@ export default {
             radius: this.search_rad,
             types: ['establishment'],
             input: new_text
-          }, 
+          },
           (response, status) => {
 
             if (status != google.maps.places.PlacesServiceStatus.OK) {

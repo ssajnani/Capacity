@@ -12,6 +12,12 @@ This is our UML diagram for Stage 2 with our model and controller classes.
 
 <img src="pics/uml2.jpg" width="3000">
 
+This is our UML diagram for Stage 3 with our model and controller 
+classes.
+
+<img src="pics/uml3.jpg" width="3000">
+
+
 These diagrams were created using Gliffy and edited using Adobe Photoshop.
 
 <a href="#top">Back to Top</a>

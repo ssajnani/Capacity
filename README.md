@@ -1,5 +1,5 @@
 # Capacity
-Our web-based application, currently named Capacity, is a tool that will help you save time by giving you the information you wish you had before getting to your destination.
+Our web-based application, currently named Capacity, is a tool that will help you save time by giving you the information you wish you had before getting to your destination. Our website can be found here: https://ssajnani.github.io/Capacity/homepage.html
 
 ## Repository Structure
 Our repository follows the structure of a typical Grails app. The backend of Capacity is found under the Capacity/grails-app folder tree. Here you can find classes for our Grails domains and controllers.
