@@ -1,7 +1,7 @@
 <template lang="html">
 <div>
 	<!-- If mobile, has-text-centered -->
-	<h1 class="title">Busyness</h1>
+	<h1 class="title">Location Activity</h1>
 	<canvas id="timeChart"></canvas>
 </div>
 </template>
@@ -40,10 +40,13 @@ export default {
           // Need data from backend
           data: [5, 7, 12, 10, 9, 6],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)'
+          	// Same color as primary button (green/teal)
+            'rgba(0, 196, 167, 0.2)',
+            
           ],
           borderColor: [
-            'rgba(255,99,132,1)',
+          	// Same as background color but opaque, 0 = transparent and 1 = opaque
+            'rgba(0, 196, 167, 1)',
           ],
           borderWidth: 1
         }]
