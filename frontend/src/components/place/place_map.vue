@@ -273,26 +273,49 @@ export default {
       this.heatmap.set('radius', 40);
       this.heatmap.set('dissipating', true);
 
+      // var gradient = [
+      //   // Really light blue
+      //   'rgba(0, 255, 255, 0)',
+      //   'rgba(0, 255, 255, 1)',
+      //   'rgba(0, 191, 255, 1)',
+      //   // Light/dark blue
+      //   'rgba(0, 127, 255, 1)',
+      //   'rgba(0, 63, 255, 1)',
+      //   'rgba(0, 0, 255, 1)',
+      //   'rgba(0, 0, 223, 1)',
+      //   'rgba(0, 0, 191, 1)',
+      //   'rgba(0, 0, 159, 1)',
+      //   'rgba(0, 0, 127, 1)',
+      //   // Purple
+      //   'rgba(63, 0, 91, 1)',
+      //   'rgba(127, 0, 63, 1)',
+      //   //Red
+      //   'rgba(191, 0, 31, 1)',
+      //   // Very red
+      //   'rgba(255, 0, 0, 1)'
+      // ];
+
       var gradient = [
-        // Really light blue
+        // Bulma grey
         'rgba(0, 255, 255, 0)',
         'rgba(0, 255, 255, 1)',
         'rgba(0, 191, 255, 1)',
-        // Light/dark blue
+
         'rgba(0, 127, 255, 1)',
         'rgba(0, 63, 255, 1)',
         'rgba(0, 0, 255, 1)',
+
         'rgba(0, 0, 223, 1)',
         'rgba(0, 0, 191, 1)',
         'rgba(0, 0, 159, 1)',
+
         'rgba(0, 0, 127, 1)',
-        // Purple
         'rgba(63, 0, 91, 1)',
         'rgba(127, 0, 63, 1)',
-        //Red
+
+        // Bulma green (need to change from here)
         'rgba(191, 0, 31, 1)',
-        // Very red
-        'rgba(255, 0, 0, 1)'
+        'rgba(0, 196, 167, 1)',
       ];
       this.heatmap.set('gradient', gradient);
     }
