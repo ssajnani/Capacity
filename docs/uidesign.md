@@ -16,7 +16,7 @@ Our web app will be a two-state application to keep it clear and user-intuitive.
 
 The home page will simply consist of the search bar and top navigation bar (for user login and account info). There will be an autocomplete list of possible location results which the user can choose from. After selecting an item, the website will redirect to the corresponding place page.
 
-![UI mockup](http://i.imgur.com/wwsanVN.png)
+![UI mockup](http://i.imgur.com/ts72i82.jpg)
 
 A place page will display data pertaining to the location:
 
@@ -25,11 +25,11 @@ A place page will display data pertaining to the location:
 3. The centre column will have: A map of the area, its description, and extra information. Beneath will be messages from other users about the location.
 4. The right column will show other suggested places similar to the current one.
 
-![UI mockup](http://i.imgur.com/Y61JnEV.png)
+![UI mockup](http://i.imgur.com/sGrVk5X.png)
 
 There will be a simple login popup accessible from the navigation bar, allowing the user the to login in for user functionality.
 
-![UI mockup](http://i.imgur.com/Im9RZOl.png)
+![UI mockup](http://i.imgur.com/PWbR3Zi.png)
 
 
 
