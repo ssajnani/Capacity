@@ -16,7 +16,7 @@
 <script>
 export default {
   name: 'place_graph',
-  props: ['chart_data'],
+  props: ['graph_data'],
   data: function () {
   	return {
   		ctx: null,

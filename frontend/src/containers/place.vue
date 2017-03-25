@@ -15,7 +15,7 @@
         >
       </place_info>
 
-      <place_graph></place_graph>
+      <place_graph :data="graph_data"></place_graph>
     </div>
     <div class="column is-half">
       
