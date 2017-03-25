@@ -1,6 +1,5 @@
 <template lang="html">
 
-<!-- Google Maps -->
 <div class="card-image">
   <div id="filters-panel">
   
@@ -8,8 +7,8 @@
         <a class="button" v-on:click="toggleHeatmap()">Toggle Heatmap</a>
       </div>
 
-    <!-- Show/hide other filters -->
     <div class="field">
+      <!-- Show/hide other filters -->
       <a class="button" v-on:click="toggleFilters()">Toggle Filters</a>
       <a id="trafficIcon" class="button filter no-display" v-on:click="toggleTraffic()">
         <span class="icon">
@@ -102,7 +101,7 @@ export default {
     }, 
     initMap: function() {
       this.location = this.coords;
-      // Google Map options
+      // Initialize Google Map
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: this.location,
         mapTypeControl: false,
@@ -236,38 +235,16 @@ export default {
           }
         ]
       });
-
-      // Main marker drop
+      // Drop main marker on map
       var mainMarker = new google.maps.Marker({
         position: this.location,
         map: this.map,
-        animation: google.maps.Animation.DROP,
+        animation: google.maps.Animation.DROP
       });
-
-      // Need fake data from backend 
-      // // Dummy heatmap data
-      // var heatmapData = [
-      //   {location: new google.maps.LatLng(43.0082, -81.2606), weight: 5},
-      //   {location: new google.maps.LatLng(43.0115, -81.2793), weight: 10},
-      //   {location: new google.maps.LatLng(43.000286, -81.278336), weight: 3},
-      //   {location: new google.maps.LatLng(43.000735, -81.276809), weight: 5},
-
-      //   new google.maps.LatLng(43.0115, -81.2793),
-      //   new google.maps.LatLng(43.0016, -81.2768),
-      //   new google.maps.LatLng(43.001623, -81.276882),
-      // ];
-
-      // // Initialize heatmap and other layers
-      //   this.heatmap = new google.maps.visualization.HeatmapLayer({
-      //     data: heatmapData
-      //   });
-      //   this.heatmap.setMap(this.map);
-
-        this.trafficLayer = new google.maps.TrafficLayer();
-        this.transitLayer = new google.maps.TransitLayer();
-        this.bikeLayer = new google.maps.BicyclingLayer();
-
-      // Options for heatmap
+      // Initialize layers for filters
+      this.trafficLayer = new google.maps.TrafficLayer();
+      this.transitLayer = new google.maps.TransitLayer();
+      this.bikeLayer = new google.maps.BicyclingLayer();
     }
   },
   watch: {
@@ -287,13 +264,37 @@ export default {
           });
       }
       console.log(mapdat);
+      // Initialize heatmap
       this.heatmap = new google.maps.visualization.HeatmapLayer({
           data: mapdat
         });
       this.heatmap.setMap(this.map);
-
+      // Set heatmap options
       this.heatmap.set('radius', 40);
       this.heatmap.set('dissipating', true);
+
+      var gradient = [
+        // Really light blue
+        'rgba(0, 255, 255, 0)',
+        'rgba(0, 255, 255, 1)',
+        'rgba(0, 191, 255, 1)',
+        // Light/dark blue
+        'rgba(0, 127, 255, 1)',
+        'rgba(0, 63, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 223, 1)',
+        'rgba(0, 0, 191, 1)',
+        'rgba(0, 0, 159, 1)',
+        'rgba(0, 0, 127, 1)',
+        // Purple
+        'rgba(63, 0, 91, 1)',
+        'rgba(127, 0, 63, 1)',
+        //Red
+        'rgba(191, 0, 31, 1)',
+        // Very red
+        'rgba(255, 0, 0, 1)'
+      ];
+      this.heatmap.set('gradient', gradient);
     }
   },
   created: function() {

@@ -81,9 +81,20 @@ export default {
 		          backgroundColor: [
 		          	// Same color as Bulma primary button (green/teal)
 		            'rgba(0, 196, 167, 0.2)',     
+		            'rgba(0, 196, 167, 0.2)',     
+		            'rgba(0, 196, 167, 0.2)',     
+		            'rgba(0, 196, 167, 0.2)',     
+		            'rgba(0, 196, 167, 0.2)',     
+		            'rgba(0, 196, 167, 0.2)',     
 		          ],
 		          borderColor: [
 		          	// Same as background color but opaque, 0 = transparent and 1 = opaque
+		            'rgba(0, 196, 167, 1)',
+		            'rgba(0, 196, 167, 1)',
+		            'rgba(0, 196, 167, 1)',
+		            'rgba(0, 196, 167, 1)',
+		            'rgba(0, 196, 167, 1)',
+		            'rgba(0, 196, 167, 1)',
 		            'rgba(0, 196, 167, 1)',
 		          ],
 		          borderWidth: 1
