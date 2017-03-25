@@ -137,7 +137,7 @@ export default {
       // Calls backend for data
       api.getPlace(this, this.place_id, result => {
         console.log(result);
-        this.graph_data = result.body[0].heatMap;
+        this.graph_data = result.body.heatMap;
       });
 
       // Calls backend for messages
@@ -180,7 +180,7 @@ export default {
     },
     checkOut ()
     {
-      api.checkIn(this, this.place_id, response => {
+      api.checkOut(this, this.place_id, response => {
         this.checked_in = (this.place_id == api.checked_in_place);
       });
     },

@@ -3,8 +3,8 @@
 
 <div class="row">
   <div id="checkIn">
-    <a class="button is-large has-text-centered" v-bind:class="{ 'is-primary': !checked_into, 'is-warning': checked_into }"
-    v-on:click="checkInOut">{{!checked_in ? 'Check In' : 'Check out'}}</a>
+    <a class="button is-large has-text-centered" v-bind:class="{ 'is-primary': (!checked_into), 'is-warning': checked_into }"
+    v-on:click="checkInOut">{{!checked_into ? 'Check In' : 'Check out'}}</a>
   </div>
 </div>
 <br>

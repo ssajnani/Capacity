@@ -10,7 +10,7 @@ const api = {
   msg_get_url: url + 'messages/messages',
   msg_post_url: url + 'messages/createMessage',
   msg_like_url: url + 'messages/id',
-  msg_check_url: url + 'places/id/'
+  msg_check_url: url + 'places/id'
 };
 
 export default {
@@ -19,13 +19,11 @@ export default {
 
   getPlace (context, place_id, callback) {
 
-    const options = {
-      body: {
-        googleID: place_id
-      }
+    const body = {
+        "googleID": place_id
     };
 
-    context.$http.post(api.place_url, options).then(callback);
+    context.$http.post(api.place_url, body).then(callback);
 
   },
 
@@ -51,7 +49,7 @@ export default {
   postMessage (context, msg, place_id, callback) {
 
     const body = {
-      googleID: place_id,
+      "googleID": place_id,
       text: msg.text,
       user: msg.user.username
     };
@@ -65,11 +63,11 @@ export default {
   // checking in to the place
   checkIn (context, place_id, callback) {
     const body = {
-      googleID: place_id,
-      increment: 'Y'
+      "googleID": place_id,
+      "increment": "Y"
     };
 
-    context.$http.put(api.msg_check_url, body)
+    context.$http.post(api.msg_check_url, body)
     .then(res => {
       this.checked_in_place = place_id;
       callback(res);
@@ -79,13 +77,13 @@ export default {
   // check out of place
   checkOut (context, place_id, callback) {
     const body = {
-      googleID: place_id,
-      increment: 'N'
+      "googleID": place_id,
+      "increment": "N"
     };
 
-    context.$http.put(api.msg_check_url, body)
+    context.$http.post(api.msg_check_url, body)
     .then(res => {
-      this.checked_in_place = place_id;
+      this.checked_in_place = null;
       callback(res);
     });
   }
