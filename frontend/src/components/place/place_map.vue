@@ -11,22 +11,22 @@
     <!-- Show/hide other filters -->
     <div class="field">
       <a class="button" v-on:click="toggleFilters()">Toggle Filters</a>
-      <a class="button filter no-display" v-on:click="toggleTraffic()">
+      <a id="trafficIcon" class="button filter no-display" v-on:click="toggleTraffic()">
         <span class="icon">
           <i class="fa fa-car"></i>
         </span>
       </a>
-      <a class="button filter no-display" v-on:click="toggleTransit()">
+      <a id="transitIcon" class="button filter no-display" v-on:click="toggleTransit()">
         <span class="icon">
           <i class="fa fa-bus"></i>
         </span>
       </a>
-      <a class="button filter no-display" v-on:click="toggleBicycle()">
+      <a id="bicycleIcon" class="button filter no-display" v-on:click="toggleBicycle()">
         <span class="icon">
           <i class="fa fa-bicycle"></i>
         </span>
       </a>
-      <a class="button filter no-display" v-on:click="toggleLayerClear()">
+      <a id="clearIcon" class="button filter no-display" v-on:click="toggleLayerClear()">
         <span class="icon">
           <i class="fa fa-ban"></i>
         </span>
@@ -130,18 +130,25 @@ export default {
       this.trafficLayer.setMap(null);
       this.transitLayer.setMap(null);
       this.bikeLayer.setMap(null);
+      var filters = document.getElementsByClassName("filter");
+      for (var i = 0; i < filters.length; i++) {
+        filters[i].classList.remove('is-active');
+      }
     },
     toggleTraffic: function () {
       this.toggleLayerClear();
       this.trafficLayer.setMap(this.trafficLayer.getMap() ? null : this.map);
+      document.getElementById('trafficIcon').classList.add('is-active');
     },
     toggleTransit: function () {
       this.toggleLayerClear();
       this.transitLayer.setMap(this.transitLayer.getMap() ? null : this.map);
+      document.getElementById('transitIcon').classList.add('is-active');
     },
     toggleBicycle: function () {
       this.toggleLayerClear();
       this.bikeLayer.setMap(this.bikeLayer.getMap() ? null : this.map);
+      document.getElementById('bicycleIcon').classList.add('is-active');
     }, 
     initMap: function() {
       this.location = this.coords;

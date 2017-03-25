@@ -164,7 +164,7 @@ export default {
         'Fast food',
         // Travel
         'Airports',
-        'Subways',
+        'Subway stations',
         // Health
         'Hospitals',
         'Gyms',
