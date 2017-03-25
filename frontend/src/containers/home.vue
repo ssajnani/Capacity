@@ -86,7 +86,6 @@ export default {
         lng: null
       },
       stock_images: [
-<<<<<<< HEAD
         // Tokyo
         'https://images8.alphacoders.com/501/thumb-1920-501447.jpg',
         // Berlin
@@ -140,11 +139,6 @@ export default {
         // Montreal
         'https://images8.alphacoders.com/430/thumb-1920-430779.jpg'
         ],
-=======
-      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg',
-      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg',
-      'http://www.pixelstalk.net/wp-content/uploads/2016/06/1920x1080-Wallpaper-Image.jpg'],
->>>>>>> 39fb3606676ab56754817b12f7c2f6ef9cb86290
       search_text: '',
       search_rad: 10000,
       autocomplete: null,
