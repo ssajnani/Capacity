@@ -213,7 +213,6 @@ export default {
     // Initialize autocompleteservice
     this.autocomplete = new google.maps.places.AutocompleteService();
 
-<<<<<<< HEAD
     // Generate random numbers
     var list_length = this.placeholder_nouns.length;
     console.log("List length: " + list_length);
@@ -240,18 +239,6 @@ export default {
     var placeholder_array = [];
     placeholder_array.push(this.placeholder_nouns[first]);
     placeholder_array.push(this.placeholder_nouns[second]);
-=======
-  },
-  mounted: function() {
-    var stock_images_length = this.stock_images.length;
-    var stock_image = this.stock_images[Math.floor((Math.random() * stock_images_length) + 0)];
-    //document.body.style.backgroundImage = "url('" + stock_image + "')";
-    var img = document.createElement("img");
-    img.src = stock_image;
-    //document.getElementById("hero-body-id").style.backgroundImage = "url('" + stock_image + "')";
-    document.getElementById("hero-body-id").style.background = "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('"+ stock_image +"')";
-  },
->>>>>>> 39fb3606676ab56754817b12f7c2f6ef9cb86290
 
     placeholder_array.push(this.placeholder_nouns[third]);
 
