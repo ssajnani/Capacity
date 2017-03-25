@@ -3,7 +3,8 @@
 
 <div class="row">
   <div id="checkIn">
-    <a class="button is-primary is-large has-text-centered" v-on:click="checkIn()">Check In</a>
+    <a class="button is-large has-text-centered" v-bind:class="{ 'is-primary': !checked_into, 'is-warning': checked_into }"
+    v-on:click="checkInOut">{{!checked_in ? 'Check In' : 'Check out'}}</a>
   </div>
 </div>
 <br>
@@ -69,11 +70,12 @@ p {
 import auth from '../../auth'
 export default {
   name: 'place_messages',
-  props: ['messages'],
+  props: ['messages', 'checked_in'],
   data: function () {
     return {
       user: auth.user,
-      comment: ''
+      comment: '',
+      checked_into: false
     }
   },
   methods: {
@@ -93,13 +95,20 @@ export default {
         user: auth.user
       });
     },
-    checkIn () {
-
+    checkInOut: function () {
+      if (this.checked_into) {
+        this.$emit('checkOut');
+      } else {
+        this.$emit('checkIn');
+      }
     }
   },
   watch: {
     messages: function (to) {
       this.msgs = to;
+    },
+    checked_in (to) {
+      this.checked_into = to;
     }
   }
 }

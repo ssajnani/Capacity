@@ -24,7 +24,7 @@
       </div>
 
       <div class="section content">
-        <place_messages :messages="messages" v-on:postMessage="postMessage" v-on:likeMessage="likeMessage"></place_messages>
+        <place_messages :messages="messages" :checked_in="checked_in" v-on:postMessage="postMessage" v-on:likeMessage="likeMessage" v-on:checkOut="checkOut" v-on:checkIn="checkIn"></place_messages>
       </div>
    
     </div>
@@ -36,8 +36,6 @@
 
 </div>
 </template>
-
-
 
 <!-- $route.params.id for place id -->
 <script>
@@ -65,7 +63,6 @@ export default {
     place_info
   },
   data: function () {
-    /* Make some dummy data for now... */
     return {
       messages: null,
       recommended: null,
@@ -80,7 +77,8 @@ export default {
       place_id: null,
       graph_data:null,
       capacities: null,
-      gmaps: null
+      gmaps: null,
+      checked_in: null
     };
   },
 
@@ -91,52 +89,49 @@ export default {
   methods: {
     updatePlace: function(){
       this.place_id = this.$route.params.id;
+      this.checked_in = (this.place_id == api.checked_in_place);
+
       console.log('place id: ' + this.place_id);
 
-    // Calls google maps for place getDetails
+      // Calls google maps for place getDetails
+      this.gmaps.getDetails({ placeId: this.place_id }, (data, status) => {
+        console.log(status);
 
-    this.gmaps.getDetails({ placeId: this.place_id }, (data, status) => {
-      console.log(status);
-      console.log(data);
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          console.log(data);
+          this.name = data.name;
+          this.address = data.formatted_address;
+          this.type = data.types[0];
+          this.rating = data.rating;
+          const lat = data.geometry.location.lat();
+          const lng = data.geometry.location.lng();
 
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        console.log(data);
-        this.name = data.name;
-        this.address = data.formatted_address;
-        this.type = data.types[0];
-        this.rating = data.rating;
-        const lat = data.geometry.location.lat();
-        const lng = data.geometry.location.lng();
+          this.coords = {
+            lat: lat,
+            lng: lng
+          };
 
-        this.coords = {
-          lat: lat,
-          lng: lng
-        };
+          // get suggested places
+          this.gmaps.nearbySearch({
+              location: this.coords,
+              type: this.type,
+              radius: 5000,
+              openNow: true,
+              rankBy: google.maps.places.RankBy.PROMINENCE
+            }, (data, status) => {
 
-        console.log(this.coords);
-        
-        this.gmaps.nearbySearch({
-            location: this.coords,
-            type: this.type,
-            radius: 5000,
-            openNow: true,
-            rankBy: google.maps.places.RankBy.PROMINENCE
-          }, (data, status) => {
-
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
-            this.recommended = data.filter(place => {
-              return this.place_id != place.place_id;
-            });
-          } 
-          else {
-            this.recommended = [];
-          }
-        });  
-      }
-      else{
-        alert('error fetching place info');
-        
-      }
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+              this.recommended = data.filter(place => {
+                return this.place_id != place.place_id;
+              });
+            } 
+            else {
+              this.recommended = [];
+            }
+          });  
+        } else {
+          alert('error fetching place info');
+        }
       });    
 
       // Calls backend for data
@@ -157,31 +152,37 @@ export default {
 
       // For recommended places
     },
-    checkIn: function()
-    {
-      //Add these coords to an array
-      this.coords.lat;
-      this.coords.lng;
-    },
     postMessage: function (msg) {
       console.log(msg);
 
       api.postMessage(this, msg, this.place_id, (data) => {
         api.getMessages(this, this.place_id, (result) => {
           this.messages = result.body;
-          // console.log(result.body);
         });
       });
     },
-    likeMessage: function (id) {
+    likeMessage (id) {
 
-      api.likeMessage(this, id, (response) => {
-        api.getMessages(this, this.place_id, (result) => {
+      api.likeMessage(this, id, response => {
+        api.getMessages(this, this.place_id, result => {
           this.messages = result.body;
           // console.log(result.body);
         });
       });
-    }
+    },
+    checkIn ()
+    {
+      api.checkIn(this, this.place_id, response => {
+        this.checked_in = (this.place_id == api.checked_in_place);
+        
+      });
+    },
+    checkOut ()
+    {
+      api.checkIn(this, this.place_id, response => {
+        this.checked_in = (this.place_id == api.checked_in_place);
+      });
+    },
   },
   watch: {
     // react to route changes...

@@ -10,10 +10,12 @@ const api = {
   msg_get_url: url + 'messages/messages',
   msg_post_url: url + 'messages/createMessage',
   msg_like_url: url + 'messages/id',
-
+  msg_check_url: url + 'places/id/'
 };
 
 export default {
+
+  checked_in_place: null,
 
   getPlace (context, place_id, callback) {
 
@@ -67,8 +69,11 @@ export default {
       increment: 'Y'
     };
 
-    context.$http.put(api.msg_check.url, body)
-    .then(callback);
+    context.$http.put(api.msg_check_url, body)
+    .then(res => {
+      this.checked_in_place = place_id;
+      callback(res);
+    });
   },
 
   // check out of place
@@ -78,7 +83,10 @@ export default {
       increment: 'N'
     };
 
-    context.$http.put(api.msg_check.url, body)
-    .then(callback);
+    context.$http.put(api.msg_check_url, body)
+    .then(res => {
+      this.checked_in_place = place_id;
+      callback(res);
+    });
   }
 }

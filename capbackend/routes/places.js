@@ -36,7 +36,6 @@ router.route('/create')
 router.route('/id')
     // get place by google ID
     .get(function(req, res){
-        console.log('tet');
         Place.find({'googleID':req.query.googleID}, function(err, place){
             //If there is no place say it does not exist
 	    if(!place.length){
@@ -53,15 +52,14 @@ router.route('/id')
     .put(function(req, res){
 	//Find the place for the heat map
         Place.find({'googleID': req.body.googleID} , function(err, place){
-            if(err)
-                res.send(err);
+            if(err) { res.send(err) };
 	    //Get the day and hour in (0-6, 0-23)	
 	    var d = new Date();
 	    var n = d.getHours();
 	    var m = d.getDay();
 
 	    //Increment the density overtime
-            place[0]["heatMap"][m][n] += 1;
+        place[0]["heatMap"][m][n] += 1;
 		
 	    //Increment the current counter if increment is yes ("Y")	    	
 	    if(req.body.increment == "Y"){
