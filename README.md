@@ -2,7 +2,7 @@
 Our web-based application, currently named Capacity, is a tool that will help you save time by giving you the information you wish you had before getting to your destination. Our website can be found here: https://ssajnani.github.io/Capacity/homepage.html
 
 ## Repository Structure
-Our repository follows the structure of a typical Grails app. The backend of Capacity is found under the Capacity/grails-app folder tree. Here you can find classes for our Grails domains and controllers.
+Our repository structure is seperated under frontend and backend, both developed in javascript. The backend uses node, express, and mongodb. The frontend uses vue. The frontend files are already compiled into the backend public folder so setup is easier.
 
 ## Setup
 LINUX:
@@ -12,13 +12,13 @@ Navigate to localhost:3000 on your browser to load the website and start using C
 
 WINDOWS:
 
-You will need to install node and mongodb seperately
+You will need to install node and mongodb seperately.
 
                         				NODE & NPM
 
 Download Node here: https://nodejs.org/en/
 
-After Node downloads, you have to run the .exe to install it. After it has been installed, open up the Node command prompt and type npm to update npm. navigate to ./capbackend and type `npm install` to install the dependencies.
+After Node downloads, you have to run the .exe to install it. After it has been installed, open up the Node command prompt and type npm to update npm. Then, avigate to ./capbackend and type `npm install` to install the dependencies.
 
                                   MONGODB
 
