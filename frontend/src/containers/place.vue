@@ -15,7 +15,7 @@
         >
       </place_info>
 
-      <place_graph :data="graph_data"></place_graph>
+      <place_graph :graph_data="graph_data"></place_graph>
     </div>
     <div class="column is-half">
       
@@ -136,7 +136,8 @@ export default {
 
       // Calls backend for data
       api.getPlace(this, this.place_id, result => {
-        this.graph_data = result.body.graph_data;
+        console.log(result);
+        this.graph_data = result.body[0].heatMap;
       });
 
       // Calls backend for messages
