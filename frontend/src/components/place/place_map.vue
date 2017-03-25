@@ -56,7 +56,7 @@
 <script>
 export default {
   name: 'place_map',
-  props: ['coords', 'suggestions'],
+  props: ['coords', 'heatPlaces', 'recommended'],
   data: function () {
     return {
       map: null,
@@ -67,56 +67,6 @@ export default {
     };
   },
   methods: {
-    // Siavash's array parser
-      // var dataArray = [
-      //     [43.0082, -81.2606, new Date()],
-      //     [43.0115, -81.2793, new Date()],
-      //     [43.000286, -81.278336, new Date()],
-      //     [43.0022, -81.3000, new Date()]];
-         
-      // var todayArray = [];
-      // var weekArray = [];
-      // var monthArray = [];
-
-      // var i = 0;
-
-      // for (i = 0; i < dataArray.length; i++) {
-      //     var long = dataArray[i][0];
-      //     var lat =  dataArray[i][1]
-      //     var time = dataArray[i][2];
-
-      //    var otherDate = new Date(time);
-      //     var otherDay = otherDate.getDay();
-      //     var otherMonth = otherDate.getMonth();
-      //     var otherYear = otherDate.getFullYear();
-
-
-      //    var currentDate = new Date();
-      //     var day = currentDate.getDay();
-      //     var month = currentDate.getMonth();
-      //     var year = currentDate.getFullYear();
-
-      //    // today, week, month
-
-      //    if (day == otherDay && year == otherYear && month == otherMonth) { // today
-      //         todayArray.push({long, lat});
-      //     }
-
-      //    if (month == otherMonth && year == otherYear) { // month
-      //         monthArray.push({long, lat});
-      //     }
-          
-      //     var diffDate = Math.abs(otherDate - currentDate);
-      //     var diffDays = (diffDate / 1000) / 60 / 60 / 24;
-      //     if (diffDays <= 7 && year == otherYear && month == otherMonth) { // week
-      //         weekArray.push({long, lat});
-      //     }
-      // }
-
-      // console.log(todayArray);
-      // console.log(monthArray);
-      // console.log(weekArray);
-
     toggleHeatmap: function() {
       this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
     },
@@ -295,29 +245,29 @@ export default {
       });
 
       // Need fake data from backend 
-      // Dummy heatmap data
-      var heatmapData = [
-        {location: new google.maps.LatLng(43.0082, -81.2606), weight: 5},
-        {location: new google.maps.LatLng(43.0115, -81.2793), weight: 10},
-        {location: new google.maps.LatLng(43.000286, -81.278336), weight: 3},
-        {location: new google.maps.LatLng(43.000735, -81.276809), weight: 5},
+      // // Dummy heatmap data
+      // var heatmapData = [
+      //   {location: new google.maps.LatLng(43.0082, -81.2606), weight: 5},
+      //   {location: new google.maps.LatLng(43.0115, -81.2793), weight: 10},
+      //   {location: new google.maps.LatLng(43.000286, -81.278336), weight: 3},
+      //   {location: new google.maps.LatLng(43.000735, -81.276809), weight: 5},
 
-        new google.maps.LatLng(43.0115, -81.2793),
-        new google.maps.LatLng(43.0016, -81.2768),
-        new google.maps.LatLng(43.001623, -81.276882),
-      ];
+      //   new google.maps.LatLng(43.0115, -81.2793),
+      //   new google.maps.LatLng(43.0016, -81.2768),
+      //   new google.maps.LatLng(43.001623, -81.276882),
+      // ];
 
-      // Initialize heatmap and other layers
-        this.heatmap = new google.maps.visualization.HeatmapLayer({
-          data: heatmapData
-        });
+      // // Initialize heatmap and other layers
+      //   this.heatmap = new google.maps.visualization.HeatmapLayer({
+      //     data: heatmapData
+      //   });
+      //   this.heatmap.setMap(this.map);
+
         this.trafficLayer = new google.maps.TrafficLayer();
         this.transitLayer = new google.maps.TransitLayer();
         this.bikeLayer = new google.maps.BicyclingLayer();
 
       // Options for heatmap
-        this.heatmap.set('radius', 30);
-        this.heatmap.set('dissipating', true);
     }
   },
   watch: {
@@ -325,6 +275,25 @@ export default {
       if (new_coords.lat != null && new_coords.lng != null) {
         this.initMap();
       }
+    },
+    heatPlaces: function (to) {
+      console.log("NEW PLACES");
+      console.log(to);
+      let mapdat = [];
+      for (let i = 0; i < to.length; i++) {
+        mapdat.push({
+          location: new google.maps.LatLng(this.recommended[i].geometry.location.lat(), this.recommended[i].geometry.location.lng()),
+          weight: to[i].body.current
+          });
+      }
+      console.log(mapdat);
+      this.heatmap = new google.maps.visualization.HeatmapLayer({
+          data: mapdat
+        });
+      this.heatmap.setMap(this.map);
+
+      this.heatmap.set('radius', 40);
+      this.heatmap.set('dissipating', true);
     }
   },
   created: function() {

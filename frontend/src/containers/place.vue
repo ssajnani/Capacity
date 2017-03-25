@@ -20,7 +20,7 @@
     <div class="column is-half">
       
       <div class="card">
-        <place_map :coords="coords"></place_map>
+        <place_map :coords="coords" :recommended="nearby" :heatPlaces="heatPlaces"></place_map>
       </div>
 
       <div class="section content">
@@ -66,6 +66,7 @@ export default {
     return {
       messages: null,
       recommended: null,
+      nearby: null,
       name: '',
       coords: {
         lat: null,
@@ -78,7 +79,8 @@ export default {
       graph_data:null,
       capacities: null,
       gmaps: null,
-      checked_in: null
+      checked_in: null,
+      heatPlaces: null
     };
   },
 
@@ -119,15 +121,42 @@ export default {
               openNow: true,
               rankBy: google.maps.places.RankBy.PROMINENCE
             }, (data, status) => {
-
+              console.log('NOTICE');
+              console.log(data);
+              this.nearby = data;
+            let suggested = [];
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-              this.recommended = data.filter(place => {
+              suggested = data.filter(place => {
                 return this.place_id != place.place_id;
               });
+              this.recommended = suggested;
+              console.log(suggested);
             } 
             else {
-              this.recommended = [];
+              suggested = [];
+              this.recommended = suggested;
+            };
+
+            let placeList = [];
+            let compcontext = this;
+
+            let findCAP = function (places) {
+              console.log(places.length);
+
+              if (places.length <= 0) {
+                compcontext.heatPlaces = placeList;
+                console.log(compcontext.heatPlaces);
+                return;
+              }
+              api.getPlace(compcontext, places[0].place_id, result => {
+                placeList.push(result);
+                findCAP(places.slice(1));
+              });
             }
+
+            console.log('NOTICE');
+            console.log(data);
+            findCAP(data);
           });  
         } else {
           alert('error fetching place info');
@@ -151,7 +180,6 @@ export default {
       console.log(id);
       router.push({'name':'place', 'params':{'id':id}});
 
-      // For recommended places
     },
     postMessage: function (msg) {
       console.log(msg);
