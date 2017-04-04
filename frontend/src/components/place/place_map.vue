@@ -296,26 +296,26 @@ export default {
       // ];
 
       var gradient = [
-        // Bulma grey
-        'rgba(0, 255, 255, 0)',
-        'rgba(0, 255, 255, 1)',
-        'rgba(0, 191, 255, 1)',
+        // Bulma grey (white smoke)
+        'rgba(245, 245, 245, 0)',
+        'rgba(245, 245, 245, 0.5)', 
 
-        'rgba(0, 127, 255, 1)',
-        'rgba(0, 63, 255, 1)',
-        'rgba(0, 0, 255, 1)',
+        // Bulma is-primary green 
+        'rgba(0, 196, 167, 0.2)',
+        'rgba(0, 196, 167, 0.2)',
+        'rgba(0, 196, 167, 0.2)',
 
-        'rgba(0, 0, 223, 1)',
-        'rgba(0, 0, 191, 1)',
-        'rgba(0, 0, 159, 1)',
-
-        'rgba(0, 0, 127, 1)',
-        'rgba(63, 0, 91, 1)',
-        'rgba(127, 0, 63, 1)',
-
-        // Bulma green (need to change from here)
-        'rgba(191, 0, 31, 1)',
-        'rgba(0, 196, 167, 1)',
+        // Bulma is-success green
+        'rgba(34, 198, 91, 0.4)',
+        'rgba(34, 198, 91, 0.4)',
+        'rgba(34, 198, 91, 0.6)',
+        'rgba(34, 198, 91, 0.6)',
+        'rgba(34, 198, 91, 0.8)',
+        'rgba(34, 198, 91, 0.8)',
+        'rgba(34, 198, 91, 0.9)',
+        'rgba(34, 198, 91, 0.9)',
+        'rgba(34, 198, 91, 1)',
+        'rgba(34, 198, 91, 1)',
       ];
       this.heatmap.set('gradient', gradient);
     }
