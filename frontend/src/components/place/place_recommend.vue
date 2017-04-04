@@ -15,9 +15,10 @@
       <div class="content">
         <p>
           <strong> {{place.name}}</strong>
-          {{place.location}}<br>
-          <!-- Change this to stars -->
-          <em>Rating: {{place.rating}}</em>
+          <br>
+          {{place.vicinity}}
+          <br>
+          <place_rating :rating="place.rating"></place_rating>
         </p>
       </div>
   </div>
@@ -41,12 +42,17 @@ p {
 </style>
 
 <script>
+import place_rating from './place_rating.vue'
 export default {
   name: 'place_recommend',
   props: ['recommendations'],
+  components: {
+    place_rating,
+  },
   data: function () {
     return {
-      filtered_recommendations: []
+      filtered_recommendations: [],
+      rating: null,
     };
   },
   methods: {
@@ -54,7 +60,7 @@ export default {
       console.log(id);
 
       this.$emit("goToPlace", id);
-    }
+    },
   },
   watch: {
     recommendations: function (to) {
@@ -64,7 +70,7 @@ export default {
       else{
         this.filtered_recommendations = to.slice(0,5);
       }
-    }
-  }
+    },
+  },
 }
 </script>

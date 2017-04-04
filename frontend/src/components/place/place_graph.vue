@@ -24,11 +24,6 @@ export default {
   		loc_data: null
   	};
   },
-  methods: {
-		initChart () {
-
-		}
-	},
 	mounted: function() {
 		Chart.defaults.global.defaultFontSize = 10;
 		this.ctx = document.getElementById("timeChart");
