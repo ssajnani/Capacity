@@ -5,6 +5,8 @@
 
 # Capacity
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2ueAJYZsqvM" frameborder="0" allowfullscreen></iframe>
+
 How many times have you gone to the library looking for a cubicle only to wander for an hour? How many times have you cabbed downtown only to see the bar you wanted to visit was full? Think about the time you could have saved by knowing this information before you even left the house.
 
 Our web-based application, currently named Capacity, is a tool that will help you save time by giving you the information you wish you had before getting to your destination. Capacity will allow users to report information on wait times, crowd sizes, seat availability, and more. This information is recorded interactively, by allowing users to self-report data with incentives from the destinations they are visiting. The self-reported data can be self-moderated, by allowing other users to comment and vote on the reliability of the information. Furthermore, crowd sizes can also be determined with data collected from location services as permitted by the user.
