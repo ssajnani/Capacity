@@ -26,3 +26,5 @@ Install mongo seperately: https://www.mongodb.com/
 Run mongod.exe before starting the server (usually located within program files). Then navigate to ./capbackend in your cmd and run `npm start`
 
 Navigate to localhost:3000 on your browser to load the website and start using Capacity!
+
+((Project))
